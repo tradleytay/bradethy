@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PackagePro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">PackagePro</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">(0)</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Get in touch with our team today.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <div class="container contact-container">
+        <div class="contact-info">
+            <div class="info-card">
+                <h3>Office Location</h3>
+                <p>123 Packaging Avenue</p>
+                <p>New York, NY 10001</p>
+                <p>United States</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Contact Information</h3>
+                <p><strong>Phone:</strong> 1-800-PACKAGE (1-800-722-5323)</p>
+                <p><strong>Email:</strong> info@packagepro.com</p>
+                <p><strong>Support Email:</strong> support@packagepro.com</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Business Hours</h3>
+                <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM EST</p>
+                <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM EST</p>
+                <p><strong>Sunday:</strong> Closed</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Department Contacts</h3>
+                <p><strong>Sales:</strong> sales@packagepro.com</p>
+                <p><strong>Customer Service:</strong> support@packagepro.com</p>
+                <p><strong>Wholesale:</strong> wholesale@packagepro.com</p>
+                <p><strong>Shipping/Delivery:</strong> shipping@packagepro.com</p>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <h2>Send us a Message</h2>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Name *</label>
+                    <input type="text" id="contact-name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-email">Email *</label>
+                    <input type="email" id="contact-email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-company">Company Name</label>
+                    <input type="text" id="contact-company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-subject">Subject *</label>
+                    <select id="contact-subject" name="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="product">Product Information</option>
+                        <option value="order">Order Status</option>
+                        <option value="bulk">Bulk Orders</option>
+                        <option value="custom">Custom Solutions</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-message">Message *</label>
+                    <textarea id="contact-message" name="message" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Send Message</button>
+                <p id="form-message" class="form-message" style="display:none;"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>What are your shipping times?</h3>
+                    <p>We offer Standard (5-7 days), Express (2-3 days), and Overnight shipping options. All orders are typically processed within 24 hours.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer bulk discounts?</h3>
+                    <p>Yes! We offer special pricing for large orders and regular customers. Contact our sales team for a custom quote.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can you customize packaging?</h3>
+                    <p>Absolutely. We offer custom packaging solutions including printing, sizing, and material options. Contact us for details.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What payment methods do you accept?</h3>
+                    <p>We accept all major credit cards, debit cards, and bank transfers for larger orders.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is there a minimum order requirement?</h3>
+                    <p>No minimum order required! You can order as little or as much as you need.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you have eco-friendly options?</h3>
+                    <p>Yes, we offer a range of sustainable and recyclable packaging materials to suit environmentally conscious businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>PackagePro</h4>
+                    <p>Your trusted partner for premium packaging solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Email: info@packagepro.com</p>
+                    <p>Phone: 1-800-PACKAGE</p>
+                    <p>Hours: Mon-Fri 9AM-6PM EST</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PackagePro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

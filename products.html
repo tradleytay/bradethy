@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - PackagePro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">PackagePro</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">(0)</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>Browse our complete range of packaging solutions</p>
+        </div>
+    </section>
+
+    <!-- Filters and Products -->
+    <div class="container products-container">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3>Categories</h3>
+                <ul class="category-filter">
+                    <li><a href="#" data-category="all" class="active">All Products</a></li>
+                    <li><a href="#" data-category="boxes">Boxes</a></li>
+                    <li><a href="#" data-category="bags">Bags & Pouches</a></li>
+                    <li><a href="#" data-category="labels">Labels & Stickers</a></li>
+                    <li><a href="#" data-category="tape">Tape & Adhesives</a></li>
+                    <li><a href="#" data-category="protection">Protection Materials</a></li>
+                    <li><a href="#" data-category="supplies">Supplies</a></li>
+                </ul>
+            </div>
+            <div class="filter-section">
+                <h3>Price Range</h3>
+                <input type="range" id="price-range" min="0" max="500" value="500">
+                <p>Max: $<span id="price-value">500</span></p>
+            </div>
+        </aside>
+
+        <main class="products-main">
+            <div class="products-header">
+                <p id="product-count">Showing products</p>
+                <select id="sort-select">
+                    <option value="name">Sort by Name</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="products-grid" id="products-list">
+                <!-- Products loaded by JavaScript -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>PackagePro</h4>
+                    <p>Your trusted partner for premium packaging solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p>Email: info@packagepro.com</p>
+                    <p>Phone: 1-800-PACKAGE</p>
+                    <p>Hours: Mon-Fri 9AM-6PM EST</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PackagePro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body">
+                <!-- Product details loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

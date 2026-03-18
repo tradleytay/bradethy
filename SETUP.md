@@ -1,4 +1,4 @@
-# PackagePro Website - Setup Instructions
+# Bradethy Website - Setup Instructions
 
 ## QuickStart
 Simply open `index.html` in your browser to run the website. No server setup required!
@@ -186,4 +186,4 @@ For issues or questions, add them to the contact form or reach out via your What
 
 ---
 
-Last Updated: March 2024
+Last Updated: March 

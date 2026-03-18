@@ -6,123 +6,103 @@ const WHATSAPP_API = 'https://api.whatsapp.com/send';
 const products = [
     {
         id: 1,
-        name: 'Cardboard Shipping Boxes',
-        category: 'boxes',
+        name: 'Luxury Soap Packaging',
+        category: 'amenities',
         price: 45.99,
-        image: '📦',
-        description: 'High-quality cardboard boxes perfect for shipping. Crush-resistant and durable.',
+        image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop',
+        description: 'Elegant packaging for premium hotel soaps. Combines functionality with sophisticated design.',
         stock: true,
-        features: ['3-ply kraft paper', 'Crush-resistant', 'Easy assembly', 'Recyclable']
+        features: ['Waterproof materials', 'Luxury finish', 'Easy dispensing', 'Brand customizable']
     },
     {
         id: 2,
-        name: 'Small Storage Boxes',
-        category: 'boxes',
+        name: 'Shampoo & Conditioner Bottles',
+        category: 'amenities',
         price: 28.99,
-        image: '📦',
-        description: 'Perfect for storage and small-item packaging. Compact and stackable.',
+        image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=300&fit=crop',
+        description: 'Premium bottles for hotel toiletries. Elegant design with secure, leak-proof caps.',
         stock: true,
-        features: ['Stackable design', 'Compact size', 'Lightweight', 'Affordable']
+        features: ['Leak-proof design', 'Elegant labeling', 'Recyclable materials', 'Custom branding']
     },
     {
         id: 3,
-        name: 'Protective Bubble Wrap',
-        category: 'protection',
+        name: 'Coffee & Tea Sachets',
+        category: 'condiments',
         price: 35.99,
-        image: '🛡️',
-        description: 'Premium bubble wrap for protecting fragile items during shipping.',
+        image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop',
+        description: 'Individual portion packaging for hotel room coffee and tea service.',
         stock: true,
-        features: ['1/2 inch bubbles', '150 ft roll', 'Waterproof', 'Protective']
+        features: ['Airtight sealing', 'Premium presentation', 'Easy opening', 'Bulk packaging available']
     },
     {
         id: 4,
-        name: 'Kraft Paper Bags',
-        category: 'bags',
+        name: 'Sugar & Sweetener Packets',
+        category: 'condiments',
         price: 22.50,
-        image: '🛍️',
-        description: 'Large kraft paper bags ideal for retail packaging and gift wrapping.',
+        image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0b9?w=400&h=300&fit=crop',
+        description: 'Elegant portion packs for sugar, sweeteners, and creamer in hotel rooms.',
         stock: true,
-        features: ['Brown kraft paper', '10x5x13 size', 'Twisted handles', 'Recyclable']
+        features: ['Tear-open design', 'Moisture-resistant', 'Custom branding', 'Multiple portion sizes']
     },
     {
         id: 5,
-        name: 'Clear Poly Mailers',
-        category: 'bags',
+        name: 'Salt & Pepper Shakers',
+        category: 'condiments',
         price: 19.99,
-        image: '🛍️',
-        description: 'Waterproof poly mailers for e-commerce shipping. Self-sealing.',
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+        description: 'Miniature condiment sets for hotel dining and room service.',
         stock: true,
-        features: ['Self-sealing', 'Waterproof', '10x13 size', 'Tamper-evident']
+        features: ['Elegant design', 'Secure caps', 'Easy refilling', 'Hotel-grade quality']
     },
     {
         id: 6,
-        name: 'Pressure Sensitive Labels',
-        category: 'labels',
+        name: 'Lotion & Cream Bottles',
+        category: 'amenities',
         price: 55.00,
-        image: '🏷️',
-        description: 'Custom printable labels for branding and product identification.',
+        image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop',
+        description: 'Luxury packaging for hotel body lotions and facial creams.',
         stock: true,
-        features: ['Waterproof', 'Customizable', 'High-adhesion', '1000 labels']
+        features: ['Pump dispensers', 'Elegant labeling', 'Leak-proof', 'Spa-quality presentation']
     },
     {
         id: 7,
-        name: 'Kraft Packing Tape',
-        category: 'tape',
+        name: 'Custom Branded Boxes',
+        category: 'boutique',
         price: 12.99,
-        image: '🎀',
-        description: 'Heavy-duty kraft paper packing tape. Strong adhesive for secure sealing.',
+        image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop',
+        description: 'Custom-branded packaging boxes for boutique hotels and luxury establishments.',
         stock: true,
-        features: ['Heavy-duty adhesive', '2-inch width', 'Eco-friendly', '4 pack']
+        features: ['Full customization', 'Premium materials', 'Brand alignment', 'Luxury finish']
     },
     {
         id: 8,
-        name: 'Clear Packing Tape',
-        category: 'tape',
+        name: 'Eco-Friendly Amenity Kits',
+        category: 'eco-friendly',
         price: 9.99,
-        image: '🎀',
-        description: 'Clear, transparent packing tape. Perfect for visible sealing.',
+        image: 'https://images.unsplash.com/photo-1587302283541-0b3e8b6e8b7f?w=400&h=300&fit=crop',
+        description: 'Sustainable packaging solutions for environmentally conscious hotels.',
         stock: true,
-        features: ['Transparent', 'Strong hold', '2-inch width', '6 pack']
+        features: ['Biodegradable materials', 'Recycled content', 'Eco-certification', 'Minimal waste']
     },
     {
         id: 9,
-        name: 'Foam Sheet Protection',
-        category: 'protection',
+        name: 'Bulk Condiment Packaging',
+        category: 'bulk',
         price: 41.99,
-        image: '🛡️',
-        description: 'Closed-cell foam sheets for superior item protection.',
+        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
+        description: 'Large-scale packaging solutions for hotel chains and resorts.',
         stock: true,
-        features: ['1/2 inch thick', 'Cushioning', 'Moisture-resistant', 'Reusable']
+        features: ['Bulk quantities', 'Cost-effective', 'Consistent quality', 'Easy distribution']
     },
     {
         id: 10,
-        name: 'Shipping Label Printer',
-        category: 'supplies',
-        price: 189.99,
-        image: '🖨️',
-        description: 'High-speed thermal label printer for shipping labels.',
+        name: 'Custom Label Design Service',
+        category: 'custom',
+        price: 75.00,
+        image: 'https://images.unsplash.com/photo-1626785774625-0b1c2c5b7c6d?w=400&h=300&fit=crop',
+        description: 'Professional design service for custom hotel branding and packaging labels.',
         stock: true,
-        features: ['Thermal printing', '4x6 label support', 'USB connection', 'Fast printing']
-    },
-    {
-        id: 11,
-        name: 'Packing Peanuts',
-        category: 'protection',
-        price: 24.99,
-        image: '🛡️',
-        description: 'Biodegradable packing peanuts. Lightweight protection for fragile items.',
-        stock: true,
-        features: ['Biodegradable', 'Lightweight', '14 lb bag', 'Cushioning']
-    },
-    {
-        id: 12,
-        name: 'Tissue Paper Assortment',
-        category: 'supplies',
-        price: 16.50,
-        image: '📄',
-        description: 'Colorful tissue paper for gift wrapping and decoration.',
-        stock: true,
-        features: ['Multiple colors', '400 sheets', 'Lightweight', 'Eco-friendly']
+        features: ['Brand consultation', 'Custom design', 'Print-ready files', 'Multiple formats']
     }
 ];
 
@@ -224,8 +204,8 @@ function displayCart() {
 }
 
 // ===== Products Page Functions =====
-function displayProducts(productsToShow = products, page = 'products') {
-    const container = document.getElementById('products-list');
+function displayProducts(productsToShow = products, containerId = 'products-list') {
+    const container = document.getElementById(containerId);
     if (!container) return;
 
     container.innerHTML = '';
@@ -239,7 +219,7 @@ function displayProducts(productsToShow = products, page = 'products') {
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
         productCard.innerHTML = `
-            <div class="product-image">${product.image}</div>
+            <div class="product-image"><img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;"></div>
             <div class="product-info">
                 <div class="product-category">${product.category.toUpperCase()}</div>
                 <div class="product-name">${product.name}</div>
@@ -262,11 +242,8 @@ function displayProducts(productsToShow = products, page = 'products') {
 }
 
 function displayFeaturedProducts() {
-    const container = document.getElementById('featured-products');
-    if (!container) return;
-
     const featured = products.slice(0, 6);
-    displayProducts(featured, 'home');
+    displayProducts(featured, 'featured-products');
 }
 
 function showProductModal(productId) {
@@ -280,7 +257,7 @@ function showProductModal(productId) {
 
     modalBody.innerHTML = `
         <div class="product-modal">
-            <div class="product-modal-image">${product.image}</div>
+            <div class="product-modal-image"><img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"></div>
             <div class="product-modal-details">
                 <h2>${product.name}</h2>
                 <div class="product-modal-category">${product.category.toUpperCase()}</div>
@@ -382,6 +359,7 @@ function displayCheckoutSummary() {
     const shippingEl = document.getElementById('checkout-shipping');
     const taxEl = document.getElementById('checkout-tax');
     const totalEl = document.getElementById('checkout-total');
+    const paymentEl = document.getElementById('checkout-payment');
     const form = document.getElementById('checkout-form');
 
     if (!itemsContainer) return;
@@ -402,19 +380,6 @@ function displayCheckoutSummary() {
         itemsContainer.appendChild(itemDiv);
     });
 
-    // Shipping calculation based on selected method
-    let shipping = 10;
-
-    const shippingRadios = document.querySelectorAll('input[name="shipping"]');
-    shippingRadios.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-            if (e.target.value === 'standard') shipping = 10;
-            if (e.target.value === 'express') shipping = 25;
-            if (e.target.value === 'overnight') shipping = 50;
-            updateCheckoutTotal();
-        });
-    });
-
     function updateCheckoutTotal() {
         const shippingRadios = document.querySelectorAll('input[name="shipping"]');
         let selectedShipping = 10;
@@ -426,16 +391,46 @@ function displayCheckoutSummary() {
             }
         });
 
+        const paymentRadios = document.querySelectorAll('input[name="payment"]');
+        let selectedPayment = 'Cash on Delivery';
+        paymentRadios.forEach(radio => {
+            if (radio.checked) {
+                if (radio.value === 'cash_on_delivery') selectedPayment = 'Cash on Delivery';
+                if (radio.value === 'mobile_money') selectedPayment = 'Mobile Money / Bank Transfer';
+            }
+        });
+
         const tax = (subtotal * 0.1);
         const total = subtotal + selectedShipping + tax;
 
         if (subtotalEl) subtotalEl.textContent = '$' + subtotal.toFixed(2);
         if (shippingEl) shippingEl.textContent = '$' + selectedShipping.toFixed(2);
         if (taxEl) taxEl.textContent = '$' + tax.toFixed(2);
+        if (paymentEl) paymentEl.textContent = selectedPayment;
         if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
     }
 
     updateCheckoutTotal();
+
+    // Payment method change handler
+    const paymentRadios = document.querySelectorAll('input[name="payment"]');
+    const mobilePaymentDetails = document.getElementById('mobile-payment-details');
+    paymentRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.value === 'mobile_money') {
+                mobilePaymentDetails.style.display = 'block';
+            } else {
+                mobilePaymentDetails.style.display = 'none';
+            }
+            updateCheckoutTotal();
+        });
+    });
+
+    // Shipping method change handler
+    const shippingRadios = document.querySelectorAll('input[name="shipping"]');
+    shippingRadios.forEach(radio => {
+        radio.addEventListener('change', updateCheckoutTotal);
+    });
 
     // Form submission
     if (form) {
@@ -447,22 +442,37 @@ function displayCheckoutSummary() {
             const buyerCompany = document.getElementById('company').value;
             const buyerEmail = document.getElementById('email').value;
             const buyerPhone = document.getElementById('phone').value;
-            const shippingAddress = `${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('state').value} ${document.getElementById('zip').value}`;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const zip = document.getElementById('zip').value;
+            const country = document.getElementById('country').value;
             
-            // Get selected shipping method
+            // Shipping method
             const shippingRadios = document.querySelectorAll('input[name="shipping"]');
-            let selectedShipping = 'Standard';
+            let selectedShipping = 'standard';
             let shippingCost = 10;
             shippingRadios.forEach(radio => {
                 if (radio.checked) {
-                    if (radio.value === 'standard') { selectedShipping = 'Standard (5-7 days)'; shippingCost = 10; }
-                    if (radio.value === 'express') { selectedShipping = 'Express (2-3 days)'; shippingCost = 25; }
-                    if (radio.value === 'overnight') { selectedShipping = 'Overnight'; shippingCost = 50; }
+                    selectedShipping = radio.value;
+                    if (radio.value === 'standard') shippingCost = 10;
+                    if (radio.value === 'express') shippingCost = 25;
+                    if (radio.value === 'overnight') shippingCost = 50;
                 }
             });
-
+            
+            // Payment method
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            let selectedPayment = 'cash_on_delivery';
+            paymentRadios.forEach(radio => {
+                if (radio.checked) {
+                    selectedPayment = radio.value;
+                }
+            });
+            
             // Build WhatsApp message
-            let message = '🛍️ *NEW ORDER FROM PACKAGEPRO*\n\n';
+            let message = '🛍️ *NEW ORDER FROM BRADETHY*\n\n';
+            
             message += '👤 *BUYER INFORMATION*\n';
             message += `Name: ${buyerName}\n`;
             if (buyerCompany) {
@@ -470,9 +480,29 @@ function displayCheckoutSummary() {
             }
             message += `Email: ${buyerEmail}\n`;
             message += `Phone: ${buyerPhone}\n`;
-            message += `Address: ${shippingAddress}\n\n`;
             
-            message += '📦 *ORDER ITEMS*\n';
+            message += '\n📍 *SHIPPING ADDRESS*\n';
+            message += `${address}\n`;
+            message += `${city}, ${state} ${zip}\n`;
+            message += `${country}\n`;
+            
+            message += `\n🚚 *SHIPPING METHOD*\n`;
+            message += `${selectedShipping.charAt(0).toUpperCase() + selectedShipping.slice(1)} Shipping ($${shippingCost.toFixed(2)})\n`;
+            
+            message += `\n💳 *PAYMENT METHOD*\n`;
+            if (selectedPayment === 'cash_on_delivery') {
+                message += 'Cash on Delivery\n';
+            } else {
+                message += 'Mobile Money / Bank Transfer\n';
+                const mobileNetwork = document.getElementById('mobile-network').value;
+                const accountNumber = document.getElementById('account-number').value;
+                const accountName = document.getElementById('account-name').value;
+                if (mobileNetwork) message += `Network/Bank: ${mobileNetwork}\n`;
+                if (accountNumber) message += `Account/Phone: ${accountNumber}\n`;
+                if (accountName) message += `Account Name: ${accountName}\n`;
+            }
+            
+            message += '\n📦 *ORDER ITEMS*\n';
             let subtotal = 0;
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
@@ -482,13 +512,13 @@ function displayCheckoutSummary() {
             
             message += `\n💰 *ORDER SUMMARY*\n`;
             message += `Subtotal: $${subtotal.toFixed(2)}\n`;
-            message += `Shipping (${selectedShipping}): $${shippingCost.toFixed(2)}\n`;
+            message += `Shipping: $${shippingCost.toFixed(2)}\n`;
             const tax = (subtotal * 0.1);
             message += `Tax (10%): $${tax.toFixed(2)}\n`;
             const total = subtotal + shippingCost + tax;
             message += `*TOTAL: $${total.toFixed(2)}*\n\n`;
             
-            message += '✅ Customer will contact you to proceed with payment.';
+            message += '✅ Thank you for your order! We will contact you shortly to confirm the details and process payment.';
 
             // Send to WhatsApp
             sendToWhatsApp(message);
@@ -566,7 +596,34 @@ function setupModal() {
 }
 
 // ===== Initialize Page =====
+function updateYear() {
+    const yearElement = document.getElementById('year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
+function setupMobileNav() {
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (!navToggle || !navMenu) return;
+
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
 function initPage() {
+    updateYear();
+    setupMobileNav();
     updateCartDisplay();
 
     // Home page

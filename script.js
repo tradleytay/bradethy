@@ -242,7 +242,7 @@ function displayProducts(productsToShow = products, containerId = 'products-list
 }
 
 function displayFeaturedProducts() {
-    const featured = products.slice(0, 6);
+    const featured = products.slice(0, 4);
     displayProducts(featured, 'featured-products');
 }
 
@@ -442,11 +442,6 @@ function displayCheckoutSummary() {
             const buyerCompany = document.getElementById('company').value;
             const buyerEmail = document.getElementById('email').value;
             const buyerPhone = document.getElementById('phone').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-            const zip = document.getElementById('zip').value;
-            const country = document.getElementById('country').value;
             
             // Shipping method
             const shippingRadios = document.querySelectorAll('input[name="shipping"]');
@@ -512,7 +507,7 @@ function displayCheckoutSummary() {
             
             message += `\n💰 *ORDER SUMMARY*\n`;
             message += `Subtotal: $${subtotal.toFixed(2)}\n`;
-            message += `Shipping: $${shippingCost.toFixed(2)}\n`;
+            message += `Delivery: $${shippingCost.toFixed(2)}\n`;
             const tax = (subtotal * 0.1);
             message += `Tax (10%): $${tax.toFixed(2)}\n`;
             const total = subtotal + shippingCost + tax;

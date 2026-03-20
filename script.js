@@ -2,109 +2,24 @@
 const WHATSAPP_NUMBER = '260760678894'; // Replace with your WhatsApp Business number (country code + number, no + or spaces)
 const WHATSAPP_API = 'https://api.whatsapp.com/send';
 
-// ===== Product Data =====
-const products = [
-    {
-        id: 1,
-        name: 'Luxury Soap Packaging',
-        category: 'amenities',
-        price: 45.99,
-        image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop',
-        description: 'Elegant packaging for premium hotel soaps. Combines functionality with sophisticated design.',
-        stock: true,
-        features: ['Waterproof materials', 'Luxury finish', 'Easy dispensing', 'Brand customizable']
-    },
-    {
-        id: 2,
-        name: 'Shampoo & Conditioner Bottles',
-        category: 'amenities',
-        price: 28.99,
-        image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=300&fit=crop',
-        description: 'Premium bottles for hotel toiletries. Elegant design with secure, leak-proof caps.',
-        stock: true,
-        features: ['Leak-proof design', 'Elegant labeling', 'Recyclable materials', 'Custom branding']
-    },
-    {
-        id: 3,
-        name: 'Coffee & Tea Sachets',
-        category: 'condiments',
-        price: 35.99,
-        image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop',
-        description: 'Individual portion packaging for hotel room coffee and tea service.',
-        stock: true,
-        features: ['Airtight sealing', 'Premium presentation', 'Easy opening', 'Bulk packaging available']
-    },
-    {
-        id: 4,
-        name: 'Sugar & Sweetener Packets',
-        category: 'condiments',
-        price: 22.50,
-        image: 'https://images.unsplash.com/photo-1587734195503-904fca47e0b9?w=400&h=300&fit=crop',
-        description: 'Elegant portion packs for sugar, sweeteners, and creamer in hotel rooms.',
-        stock: true,
-        features: ['Tear-open design', 'Moisture-resistant', 'Custom branding', 'Multiple portion sizes']
-    },
-    {
-        id: 5,
-        name: 'Salt & Pepper Shakers',
-        category: 'condiments',
-        price: 19.99,
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
-        description: 'Miniature condiment sets for hotel dining and room service.',
-        stock: true,
-        features: ['Elegant design', 'Secure caps', 'Easy refilling', 'Hotel-grade quality']
-    },
-    {
-        id: 6,
-        name: 'Lotion & Cream Bottles',
-        category: 'amenities',
-        price: 55.00,
-        image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop',
-        description: 'Luxury packaging for hotel body lotions and facial creams.',
-        stock: true,
-        features: ['Pump dispensers', 'Elegant labeling', 'Leak-proof', 'Spa-quality presentation']
-    },
-    {
-        id: 7,
-        name: 'Custom Branded Boxes',
-        category: 'boutique',
-        price: 12.99,
-        image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=300&fit=crop',
-        description: 'Custom-branded packaging boxes for boutique hotels and luxury establishments.',
-        stock: true,
-        features: ['Full customization', 'Premium materials', 'Brand alignment', 'Luxury finish']
-    },
-    {
-        id: 8,
-        name: 'Eco-Friendly Amenity Kits',
-        category: 'eco-friendly',
-        price: 9.99,
-        image: 'https://images.unsplash.com/photo-1587302283541-0b3e8b6e8b7f?w=400&h=300&fit=crop',
-        description: 'Sustainable packaging solutions for environmentally conscious hotels.',
-        stock: true,
-        features: ['Biodegradable materials', 'Recycled content', 'Eco-certification', 'Minimal waste']
-    },
-    {
-        id: 9,
-        name: 'Bulk Condiment Packaging',
-        category: 'bulk',
-        price: 41.99,
-        image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop',
-        description: 'Large-scale packaging solutions for hotel chains and resorts.',
-        stock: true,
-        features: ['Bulk quantities', 'Cost-effective', 'Consistent quality', 'Easy distribution']
-    },
-    {
-        id: 10,
-        name: 'Custom Label Design Service',
-        category: 'custom',
-        price: 75.00,
-        image: 'https://images.unsplash.com/photo-1626785774625-0b1c2c5b7c6d?w=400&h=300&fit=crop',
-        description: 'Professional design service for custom hotel branding and packaging labels.',
-        stock: true,
-        features: ['Brand consultation', 'Custom design', 'Print-ready files', 'Multiple formats']
+// ===== Loyalty Configuration =====
+const POINTS_PER_DOLLAR = 0.05; // 1 point for every $20 spent
+let loyaltyPoints = parseInt(localStorage.getItem('loyaltyPoints') || '0', 10);
+
+function updateLoyaltyDisplay() {
+    const loyaltyEl = document.getElementById('loyalty-points');
+    if (loyaltyEl) {
+        loyaltyEl.textContent = `(${loyaltyPoints})`;
     }
-];
+}
+
+function addLoyaltyPoints(orderSubtotal) {
+    const pointsEarned = Math.floor(orderSubtotal * POINTS_PER_DOLLAR);
+    loyaltyPoints += pointsEarned;
+    localStorage.setItem('loyaltyPoints', loyaltyPoints);
+    updateLoyaltyDisplay();
+    return pointsEarned;
+}
 
 // ===== Cart Management =====
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -476,11 +391,19 @@ function displayCheckoutSummary() {
             message += `Email: ${buyerEmail}\n`;
             message += `Phone: ${buyerPhone}\n`;
             
-            message += '\n📍 *SHIPPING ADDRESS*\n';
-            message += `${address}\n`;
-            message += `${city}, ${state} ${zip}\n`;
-            message += `${country}\n`;
-            
+            const address = document.getElementById('address') ? document.getElementById('address').value.trim() : '';
+            const city = document.getElementById('city') ? document.getElementById('city').value.trim() : '';
+            const state = document.getElementById('state') ? document.getElementById('state').value.trim() : '';
+            const zip = document.getElementById('zip') ? document.getElementById('zip').value.trim() : '';
+            const country = document.getElementById('country') ? document.getElementById('country').value.trim() : '';
+
+            if (address || city || state || zip || country) {
+                message += '\n📍 *SHIPPING ADDRESS*\n';
+                if (address) message += `${address}\n`;
+                if (city || state || zip) message += `${city}${city && (state||zip)?', ': ''}${state}${(state && zip)?' ':''}${zip ? zip : ''}\n`;
+                if (country) message += `${country}\n`;
+            }
+
             message += `\n🚚 *SHIPPING METHOD*\n`;
             message += `${selectedShipping.charAt(0).toUpperCase() + selectedShipping.slice(1)} Shipping ($${shippingCost.toFixed(2)})\n`;
             
@@ -512,6 +435,12 @@ function displayCheckoutSummary() {
             message += `Tax (10%): $${tax.toFixed(2)}\n`;
             const total = subtotal + shippingCost + tax;
             message += `*TOTAL: $${total.toFixed(2)}*\n\n`;
+            
+            // Add loyalty points for this purchase
+            const pointsEarned = addLoyaltyPoints(subtotal);
+            message += `🎁 *LOYALTY POINTS*\n`;
+            message += `You earned ${pointsEarned} points from this order!\n`;
+            message += `Your total points: ${loyaltyPoints}\n\n`;
             
             message += '✅ Thank you for your order! We will contact you shortly to confirm the details and process payment.';
 
@@ -620,6 +549,7 @@ function initPage() {
     updateYear();
     setupMobileNav();
     updateCartDisplay();
+    updateLoyaltyDisplay();
 
     // Home page
     if (document.getElementById('featured-products')) {

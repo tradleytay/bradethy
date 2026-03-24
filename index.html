@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bradethy - Premium Packaging Solutions</title>
+    <meta name="description" content="Bradethy provides premium, industry-specific packaging solutions for hospitality, healthcare, retail, food service, manufacturing, and all sectors. Custom branding, eco-friendly options available.">
+    <meta name="keywords" content="premium packaging, custom packaging, industry packaging solutions, hospitality packaging, eco-friendly packaging, branded packaging">
+    <meta name="author" content="Bradethy">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="canonical" href="https://www.bradethy.com/">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Bradethy - Premium Packaging Solutions for All Industries">
+    <meta property="og:description" content="Discover premium packaging solutions tailored to your industry. Bradethy specializes in quality, durable, and eco-friendly packaging across all sectors.">
+    <meta property="og:type" content="business.business">
+    <meta property="og:url" content="https://www.bradethy.com/">
+    <meta property="og:image" content="https://www.bradethy.com/og-image.jpg">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bradethy - Premium Packaging Solutions">
+    <meta name="twitter:description" content="Industry-specific packaging solutions with custom branding and eco-friendly options.">
+    <meta name="twitter:image" content="https://www.bradethy.com/twitter-image.jpg">
+    
+    <title>Bradethy - Premium Packaging Solutions for All Industries</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -30,8 +49,8 @@
     <!-- Hero Section -->
     <section class="hero" style="background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=600&fit=crop') center/cover no-repeat; background-attachment: fixed;">
         <div class="hero-content">
-            <h1>Elegant Hospitality Packaging Solutions</h1>
-            <p>Premium packaging for condiments, amenities, and essentials that elevate the hospitality experience across hotels, restaurants, schools, and more</p>
+            <h1>Industry-Leading Packaging Solutions for All Sectors</h1>
+            <p>Premium packaging that meets the unique needs of every industry. From hospitality to healthcare, retail to manufacturing—we deliver quality solutions that protect your products and elevate your brand.</p>
             <a href="products.html" class="btn btn-primary">Explore Products</a>
         </div>
     </section>
@@ -40,7 +59,7 @@
     <section class="featured">
         <div class="container">
             <h2>Featured Products</h2>
-            <div class="products-grid" id="featured-products">
+            <div class="featured-grid" id="featured-products">
                 <!-- Products loaded by JavaScript -->
             </div>
         </div>
@@ -87,6 +106,76 @@
         </div>
     </section>
 
+    <!-- Industries Section -->
+    <section class="industries">
+        <div class="container">
+            <h2>Serving All Industries</h2>
+            <p class="section-subtitle">Bradethy provides premium packaging solutions across diverse sectors</p>
+            <div class="industries-grid">
+                <div class="industry-card" data-category="hospitality">
+                    <div class="industry-icon">🏨</div>
+                    <h3>Hospitality</h3>
+                    <p>Hotels, resorts, and restaurants</p>
+                </div>
+                <div class="industry-card" data-category="healthcare">
+                    <div class="industry-icon">🏥</div>
+                    <h3>Healthcare</h3>
+                    <p>Hospitals, clinics, and pharmacies</p>
+                </div>
+                <div class="industry-card" data-category="retail">
+                    <div class="industry-icon">🛒</div>
+                    <h3>Retail</h3>
+                    <p>Stores and e-commerce</p>
+                </div>
+                <div class="industry-card" data-category="food-service">
+                    <div class="industry-icon">🍔</div>
+                    <h3>Food Service</h3>
+                    <p>Restaurants and catering</p>
+                </div>
+                <div class="industry-card" data-category="manufacturing">
+                    <div class="industry-icon">🏭</div>
+                    <h3>Manufacturing</h3>
+                    <p>Industrial and production</p>
+                </div>
+                <div class="industry-card" data-category="aviation">
+                    <div class="industry-icon">✈️</div>
+                    <h3>Aviation</h3>
+                    <p>Airlines and travel</p>
+                </div>
+                <div class="industry-card" data-category="education">
+                    <div class="industry-icon">🎓</div>
+                    <h3>Education</h3>
+                    <p>Schools and institutions</p>
+                </div>
+                <div class="industry-card" data-category="eco-friendly">
+                    <div class="industry-icon">♻️</div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Sustainable solutions</p>
+                </div>
+                <div class="industry-card" data-category="agriculture">
+                    <div class="industry-icon">🌾</div>
+                    <h3>Agriculture</h3>
+                    <p>Farm products and produce</p>
+                </div>
+                <div class="industry-card" data-category="technology">
+                    <div class="industry-icon">💻</div>
+                    <h3>Technology</h3>
+                    <p>Electronics and gadgets</p>
+                </div>
+                <div class="industry-card" data-category="custom">
+                    <div class="industry-icon">📦</div>
+                    <h3>Custom Solutions</h3>
+                    <p>Your unique needs</p>
+                </div>
+                <div class="industry-card" data-category="all">
+                    <div class="industry-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>Future-ready packaging</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -94,6 +183,14 @@
                 <div class="footer-section">
                     <h4>Bradethy</h4>
                     <p>Your trusted partner for premium packaging solutions.</p>
+                    <div class="newsletter-signup">
+                        <h5>Subscribe to Our Newsletter</h5>
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit" class="btn-subscribe">Subscribe</button>
+                        </form>
+                        <p class="newsletter-note">Get updates on new products and special offers</p>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -114,11 +211,45 @@
             
             <div class="footer-bottom">
                 <p>&copy; <span id="year"></span> Bradethy. All rights reserved.</p>
+                <p class="footer-credit">Website created by <a href="https://www.digitalextravagance.com" target="_blank">Digital Extravagance</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="products.js"></script>
-    <script src="script.js"></script>
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bradethy",
+      "url": "https://www.bradethy.com",
+      "logo": "https://www.bradethy.com/logo.png",
+      "description": "Premium packaging solutions provider serving all industries",
+      "telephone": "+263-772-814-702",
+      "email": "bradethysales@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ZW"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/bradethy"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.bradethy.com/"
+      }]
+    }
+    </script>
+
+    <script src=\"script.js\"></script>
 </body>
 </html>

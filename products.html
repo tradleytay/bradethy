@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Bradethy</title>
+    <meta name="description" content="Browse Bradethy's complete range of premium packaging solutions. Custom packaging for hospitality, healthcare, retail, food service, manufacturing and all industries.">
+    <meta name="keywords" content="packaging products, custom packaging solutions, branded packaging, eco-friendly packaging, wholesale packaging, industrial packaging">
+    <meta name="author" content="Bradethy">
+    <meta name="theme-color" content="#2c3e50">
+    <link rel="canonical" href="https://www.bradethy.com/products.html">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Premium Packaging Products - Bradethy">
+    <meta property="og:description" content="Discover our extensive range of industry-specific packaging solutions. Custom branding, eco-friendly options, and competitive pricing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bradethy.com/products.html">
+    <meta property="og:image" content="https://www.bradethy.com/products-og-image.jpg">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Premium Packaging Products - Bradethy">
+    <meta name="twitter:description" content="Industry-specific packaging solutions with custom options.">
+    <meta name="twitter:image" content="https://www.bradethy.com/products-twitter-image.jpg">
+    
+    <title>Premium Packaging Products - Bradethy | Custom Solutions for All Industries</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,8 +48,8 @@
     <!-- Page Title -->
     <section class="page-title" style="background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7)), url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=400&fit=crop') center/cover no-repeat;">
         <div class="container">
-            <h1>Hotel Packaging Solutions</h1>
-            <p>Elegant packaging for condiments, amenities, and guest essentials</p>
+            <h1>Premium Packaging Solutions for All Industries</h1>
+            <p>Discover packaging tailored to your industry's unique requirements. Quality, durability, and design excellence across every sector.</p>
         </div>
     </section>
 
@@ -41,18 +60,24 @@
                 <h3>Categories</h3>
                 <ul class="category-filter">
                     <li><a href="#" data-category="all" class="active">All Products</a></li>
-                    <li><a href="#" data-category="condiments">Condiments</a></li>
+                    <li><a href="#" data-category="hospitality">Hospitality</a></li>
                     <li><a href="#" data-category="amenities">Amenities</a></li>
-                    <li><a href="#" data-category="boutique">Boutique Hotels</a></li>
-                    <li><a href="#" data-category="bulk">Bulk Packaging</a></li>
+                    <li><a href="#" data-category="food-service">Food Service</a></li>
+                    <li><a href="#" data-category="healthcare">Healthcare</a></li>
+                    <li><a href="#" data-category="retail">Retail</a></li>
+                    <li><a href="#" data-category="manufacturing">Manufacturing</a></li>
+                    <li><a href="#" data-category="agriculture">Agriculture</a></li>
+                    <li><a href="#" data-category="aviation">Aviation</a></li>
+                    <li><a href="#" data-category="technology">Technology</a></li>
+                    <li><a href="#" data-category="education">Education</a></li>
                     <li><a href="#" data-category="eco-friendly">Eco-Friendly</a></li>
                     <li><a href="#" data-category="custom">Custom Solutions</a></li>
                 </ul>
             </div>
             <div class="filter-section">
                 <h3>Price Range</h3>
-                <input type="range" id="price-range" min="0" max="500" value="500">
-                <p>Max: $<span id="price-value">500</span></p>
+                <input type="range" id="price-range" min="0" max="200" value="200">
+                <p>Max: $<span id="price-value">200</span></p>
             </div>
         </aside>
 
@@ -68,6 +93,9 @@
             <div class="products-grid" id="products-list">
                 <!-- Products loaded by JavaScript -->
             </div>
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons loaded by JavaScript -->
+            </div>
         </main>
     </div>
 
@@ -75,6 +103,18 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Bradethy</h4>
+                    <p>Your trusted partner for premium packaging solutions.</p>
+                    <div class="newsletter-signup">
+                        <h5>Subscribe to Our Newsletter</h5>
+                        <form id="newsletter-form" class="newsletter-form">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit" class="btn-subscribe">Subscribe</button>
+                        </form>
+                        <p class="newsletter-note">Get updates on new products and special offers</p>
+                    </div>
+                </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
@@ -85,17 +125,16 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p>Email: brasethysales@gmail.com</p>
+                    <p>Email: bradethysales@gmail.com</p>
                     <p>Phone: +263-772-814-702</p>
                     <p>Hours: Mon-Fri 9AM-6PM CAT</p>
                 </div>
+                
             </div>
-            <div class="footer-section">
-                    <h4>Bradethy</h4>
-                    <p>Your trusted partner for premium packaging solutions.</p>
-                </div>
+            
             <div class="footer-bottom">
                 <p>&copy; <span id="year"></span> Bradethy. All rights reserved.</p>
+                <p class="footer-credit">Website created by <a href="https://www.digitalextravagance.com" target="_blank">Digital Extravagance</a></p>
             </div>
         </div>
     </footer>
@@ -110,7 +149,26 @@
         </div>
     </div>
 
-    <script src="products.js"></script>
+    <!-- Schema.org Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.bradethy.com/"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Products",
+        "item": "https://www.bradethy.com/products.html"
+      }]
+    }
+    </script>
+
     <script src="script.js"></script>
+
 </body>
 </html>

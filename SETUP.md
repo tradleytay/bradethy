@@ -76,7 +76,7 @@ Replace `1234567890` with your actual WhatsApp number.
 ├── 📄 checkout.html       (Checkout with WhatsApp)
 ├── 📄 about.html          (About company)
 ├── 📄 contact.html        (Contact page)
-├── 📄 styles.css          (All styling)
+├── 📄 css/styles.css          (All styling)
 ├── 📄 script.js           (All functionality)
 └── 📄 SETUP.md            (This file)
 ```
@@ -119,7 +119,7 @@ Update these files with your company info:
 - `script.js` - WhatsApp number
 
 ### Customize Colors
-Edit `:root` variables in `styles.css`:
+Edit `:root` variables in `css/styles.css`:
 ```css
 :root {
     --primary-color: #2c3e50;

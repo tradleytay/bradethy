@@ -23,7 +23,7 @@
     <meta name="twitter:image" content="https://www.bradethy.com/products-twitter-image.jpg">
     
     <title>Premium Packaging Products - Bradethy | Custom Solutions for All Industries</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -60,24 +60,22 @@
                 <h3>Categories</h3>
                 <ul class="category-filter">
                     <li><a href="#" data-category="all" class="active">All Products</a></li>
-                    <li><a href="#" data-category="hospitality">Hospitality</a></li>
-                    <li><a href="#" data-category="amenities">Amenities</a></li>
-                    <li><a href="#" data-category="food-service">Food Service</a></li>
-                    <li><a href="#" data-category="healthcare">Healthcare</a></li>
-                    <li><a href="#" data-category="retail">Retail</a></li>
-                    <li><a href="#" data-category="manufacturing">Manufacturing</a></li>
-                    <li><a href="#" data-category="agriculture">Agriculture</a></li>
-                    <li><a href="#" data-category="aviation">Aviation</a></li>
-                    <li><a href="#" data-category="technology">Technology</a></li>
-                    <li><a href="#" data-category="education">Education</a></li>
-                    <li><a href="#" data-category="eco-friendly">Eco-Friendly</a></li>
-                    <li><a href="#" data-category="custom">Custom Solutions</a></li>
+                    <li><a href="#" data-category="condiments-table">Condiments &amp; Table Essentials</a></li>
+                    <li><a href="#" data-category="guest-amenities">Guest Amenities</a></li>
+                    <li><a href="#" data-category="cleaning-hygiene">Cleaning &amp; Hygiene Supplies</a></li>
+                    <li><a href="#" data-category="kitchen-food-service">Kitchen &amp; Food Service Supplies</a></li>
+                    <li><a href="#" data-category="beverages-drinks">Beverages &amp; Drink Supplies</a></li>
+                    <li><a href="#" data-category="packaging-takeaway">Packaging &amp; Takeaway Supplies</a></li>
+                    <li><a href="#" data-category="linen-room">Linen &amp; Room Supplies</a></li>
+                    <li><a href="#" data-category="furniture-fixtures">Furniture &amp; Fixtures</a></li>
+                    <li><a href="#" data-category="equipment-appliances">Equipment &amp; Appliances</a></li>
+                    <li><a href="#" data-category="operational-supplies">Operational Supplies</a></li>
                 </ul>
             </div>
             <div class="filter-section">
                 <h3>Price Range</h3>
-                <input type="range" id="price-range" min="0" max="200" value="200">
-                <p>Max: $<span id="price-value">200</span></p>
+                <input type="range" id="price-range" min="0" max="50" value="50">
+                <p>Max: $<span id="price-value">50</span></p>
             </div>
         </aside>
 
@@ -133,8 +131,8 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; <span id="year"></span> Bradethy. All rights reserved.</p>
-                <p class="footer-credit">Website created by <a href="https://www.digitalextravagance.com" target="_blank">Digital Extravagance</a></p>
+                <p><span id="year"></span> &copy; , Bradethy. All rights reserved.</p>
+                <p class="footer-credit">In Partnership With <a href="https://www.digitalextravagance.com" target="_blank">Digital Extravagance</a></p>
             </div>
         </div>
     </footer>
@@ -168,7 +166,9 @@
     }
     </script>
 
-    <script src="script.js"></script>
+    <!-- Load product data and main script -->
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>

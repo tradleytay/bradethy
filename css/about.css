@@ -1,0 +1,291 @@
+/* About page styling
+   Adds missing layout styles referenced by about.html.
+*/
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.section-head {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section-head h2 {
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.section-head p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--gray);
+}
+
+/* Hero */
+.about-hero {
+  padding: 6rem 0 3rem;
+  background: linear-gradient(135deg, rgba(11,18,32,1) 0%, rgba(37,99,235,1) 100%);
+  color: #fff;
+}
+
+.about-hero-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-hero-copy {
+  position: relative;
+}
+
+.about-hero-copy .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.about-hero-copy h1 {
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.about-hero-copy p {
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 1.75rem;
+}
+
+.about-hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.about-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.metric-card {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 16px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.metric-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.metric-label {
+  margin-top: 0.25rem;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.95rem;
+}
+
+.about-disclaimer {
+  margin-top: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+/* Hero visual */
+.about-hero-visual-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 22px;
+  padding: 1.5rem;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+}
+
+.about-hero-visual-top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+}
+
+.about-hero-visual-top i {
+  color: #10b981;
+}
+
+.about-hero-visual-bullets {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.visual-bullet {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.visual-bullet i {
+  color: #fbbf24;
+}
+
+.about-hero-visual-footer {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.visual-footer-title {
+  font-weight: 800;
+}
+
+.visual-footer-sub {
+  color: rgba(255,255,255,0.78);
+  margin-top: 0.15rem;
+  font-size: 0.95rem;
+}
+
+/* Core values */
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.value-card {
+  background: rgba(16,185,129,0.06);
+  border: 1px solid rgba(16,185,129,0.15);
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.value-icon {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.value-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.value-card p {
+  color: var(--gray);
+  font-size: 0.98rem;
+}
+
+/* How it works */
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.how-step {
+  background: rgba(96,165,250,0.06);
+  border: 1px solid rgba(96,165,250,0.18);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.how-step-index {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(96,165,250,0.12);
+  border: 1px solid rgba(96,165,250,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+.how-step-title {
+  font-weight: 800;
+  color: var(--dark);
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.how-step-title i {
+  color: var(--primary);
+}
+
+.how-step p {
+  color: var(--gray);
+  font-size: 0.98rem;
+}
+
+/* Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+/* FAQ */
+.about-faq .faq-item {
+  background: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .about-hero-inner { grid-template-columns: 1fr; }
+  .about-hero-metrics { grid-template-columns: 1fr; }
+  .about-values-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .how-steps { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .about-values-grid { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+}
+

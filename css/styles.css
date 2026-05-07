@@ -11,7 +11,7 @@
     --secondary: #60a5fa;      /* Blue 400 */
 
     --dark: #0b1220;           /* Deep navy */
-    --light: #ffffff;          /* Pure white */
+    --light: #f8fafc;          /* Smoke-white / very light gray */
     --gray: #64748b;           /* Slate gray */
 
     /* Accent/semantic colors that fit the theme */
@@ -188,7 +188,7 @@ body {
 }
 
 .product-card {
-    background: white;
+    background: rgb(235, 232, 232);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -256,7 +256,7 @@ body {
     width: 100%;
     padding: 0.75rem;
     background: var(--primary);
-    color: white;
+    color: rgb(233, 231, 231);
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -269,7 +269,7 @@ body {
 
 .about, .contact {
     padding: 4rem 0;
-    background: white;
+    background: rgb(190, 190, 190);
 }
 
 .about h2, .contact h2 {
@@ -656,7 +656,9 @@ body {
 
     .nav.active {
         left: 0;
+        display: flex;
     }
+
 
     .nav-link {
         font-size: 1.2rem;
@@ -1908,109 +1910,6 @@ body.dark-mode .details-warnings p {
     line-height: 1.6;
 }
 
-/* ========== NEWSLETTER ========== */
-.newsletter {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
-    color: white;
-    text-align: center;
-}
-
-.newsletter h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.newsletter p {
-    color: #94a3b8;
-    margin-bottom: 2rem;
-}
-
-.newsletter-form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.75rem;
-    max-width: 550px;
-    margin: 0 auto;
-}
-
-.newsletter-form input {
-    flex: 1;
-    min-width: 220px;
-    padding: 0.9rem 1.25rem;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    transition: all 0.3s ease;
-}
-
-.newsletter-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.newsletter-form input:focus {
-    border-color: var(--primary);
-    outline: none;
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
-}
-
-.newsletter-form .btn {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    padding: 0.9rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-    transition: all 0.3s ease;
-}
-
-.newsletter-form .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-}
-
-.newsletter-form .btn:active {
-    transform: translateY(0);
-}
-
-.newsletter-note {
-    font-size: 0.85rem;
-    color: #64748b;
-    margin-top: 1.25rem;
-}
-
-/* Newsletter Success Message */
-.newsletter-success {
-    display: none;
-    background: rgba(34, 197, 94, 0.15);
-    border: 1px solid var(--primary);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1rem auto;
-    max-width: 500px;
-}
-
-.newsletter-success.show {
-    display: block;
-    animation: fadeIn 0.3s ease;
-}
-
-.newsletter-success i {
-    color: var(--primary);
-    margin-right: 0.5rem;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 /* ========== TRUST BADGES ========== */
 .trust-badges {
     display: flex;
@@ -2562,10 +2461,7 @@ body.dark-mode .floating-wishlist-btn {
 }
 
 @media (max-width: 768px) {
-    .nav {
-        display: none;
-    }
-    
+    /* Keep mobile nav toggle functional (handled by the earlier .nav / .nav.active rules) */
     .hero h1 {
         font-size: 2rem;
     }
@@ -2575,6 +2471,7 @@ body.dark-mode .floating-wishlist-btn {
         right: -100%;
     }
 }
+
 
 /* ========== SCROLL ANIMATIONS ========== */
 .animate-on-scroll {
@@ -2706,160 +2603,3 @@ body.dark-mode .policy-content p {
     color: #94a3b8;
 }
 
-/* ========== ORDER TRACKING ========== */
-.order-tracking {
-    padding: 4rem 0;
-    background: var(--light);
-}
-
-.order-tracking h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.tracking-subtitle {
-    text-align: center;
-    color: var(--gray);
-    margin-bottom: 2rem;
-}
-
-.tracking-form {
-    display: flex;
-    gap: 1rem;
-    max-width: 500px;
-    margin: 0 auto 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.tracking-form input {
-    flex: 1;
-    min-width: 250px;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-.tracking-form input:focus {
-    border-color: var(--primary);
-    outline: none;
-}
-
-.tracking-result {
-    display: none;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.tracking-result.show {
-    display: block;
-    animation: fadeIn 0.3s ease;
-}
-
-.tracking-steps {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    margin: 2rem 0;
-}
-
-.tracking-steps::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #e2e8f0;
-    z-index: 0;
-}
-
-.tracking-step {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    flex: 1;
-}
-
-.tracking-step .step-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #e2e8f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray);
-    margin-bottom: 0.5rem;
-}
-
-.tracking-step.completed .step-icon {
-    background: var(--primary);
-    color: white;
-}
-
-.tracking-step.active .step-icon {
-    background: var(--secondary);
-    color: white;
-    animation: pulse 1s infinite;
-}
-
-.tracking-step .step-info {
-    text-align: center;
-}
-
-.tracking-step .step-info h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
-}
-
-.tracking-step .step-info p {
-    font-size: 0.75rem;
-    color: var(--gray);
-}
-
-.tracking-info {
-    text-align: center;
-    padding: 1rem;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.tracking-info p {
-    margin: 0.5rem 0;
-    color: var(--gray);
-}
-
-.help-text {
-    text-align: center;
-    margin-top: 1.5rem;
-    color: var(--gray);
-}
-
-.help-text a {
-    color: var(--primary);
-}
-
-body.dark-mode .order-tracking {
-    background: #0f172a;
-}
-
-body.dark-mode .tracking-form input {
-    background: #1e293b;
-    border-color: #334155;
-    color: #e2e8f0;
-}
-
-body.dark-mode .tracking-result,
-body.dark-mode .tracking-info {
-    background: #1e293b;
-}
-
-body.dark-mode .tracking-info p {
-    color: #94a3b8;
-}

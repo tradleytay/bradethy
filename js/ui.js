@@ -96,11 +96,21 @@ function loadWishlist() {
 // Toggle Mobile Nav
 function toggleMobileNav() {
     if (nav && hamburgerBtn) {
+        const willBeActive = !nav.classList.contains('active');
         nav.classList.toggle('active');
         hamburgerBtn.classList.toggle('active');
+
+        // Ensure links are visible once active (covers any CSS overrides)
+        if (willBeActive) {
+            nav.style.display = 'flex';
+        } else {
+            nav.style.display = '';
+        }
+
         hamburgerBtn.setAttribute('aria-expanded', nav.classList.contains('active'));
     }
 }
+
 
 // Dark Mode
 function toggleDarkMode() {

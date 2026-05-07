@@ -9,19 +9,25 @@
     <meta property="og:description" content="Premium  Bradethy delivered fast. Condiments, amenities & cleaning supplies.">
     <meta property="og:image" content="https://via.placeholder.com/1200x630/10b981/ffffff?text=Hotel+Essentials">
     <meta property="og:url" content="https:// bradethy.example.com">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="favicon.ico">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#2563eb">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content=" Bradethy">
-    <link rel="apple-touch-icon" href="images/icon-192.png">
+    
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
+
 <body>
     <!-- Cookie Consent Banner -->
     <div class="cookie-banner" id="cookieBanner">
@@ -34,36 +40,21 @@
         </div>
     </div>
 
-    <!-- Promotional Banner -->
-    <div class="promo-banner" id="promoBanner">
-        <div class="container">
-            <span>🎉 <strong>FREE shipping on orders over $50!</strong> <br>Use code: <span class="promo-code">HOTEL15</span> for 15% off!</span>
-            <button class="promo-close" id="promoClose" aria-label="Close promotion">&times;</button>
-        </div>
-    </div>
-
     <header class="header">
         <div class="container">
-            <div class="logo"> BRADETHY</div>
+            <div class="logo">BRADETHY</div>
 
             <nav class="nav" id="mainNav">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </nav>
+            
             <div class="header-actions">
                 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="wishlist-toggle" id="wishlistToggle" aria-label="Open wishlist" title="Wishlist">
-                    <i class="fas fa-heart"></i>
-                    <span class="wishlist-count" id="wishlistCount">0</span>
-                </button>
-                <div class="cart-icon" id="cartIcon" role="button" aria-label="Open shopping cart" tabindex="0">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount" aria-live="polite">0</span>
-                </div>
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
                     <span> </span>
                     <span> </span>
@@ -90,7 +81,7 @@
                             <span>Fast Delivery</span>
                         </div>
                         <div class="hero-trust-item">
-                            <i class="fas fa-badge-check" aria-hidden="true"></i>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
                             <span>Quality Assured</span>
                         </div>
                         <div class="hero-trust-item">
@@ -115,7 +106,7 @@
         <section class="about" id="about">
             <div class="container">
                 <div class="about-header">
-                    <h2>About  Bradethy</h2>
+                    <h2>About Bradethy</h2>
                     <p class="about-subtitle">Premium essentials for hospitality teams — built for fast re-stocking and dependable supply.</p>
                 </div>
 
@@ -127,7 +118,7 @@
                     </div>
 
                     <div class="about-card">
-                        <i class="fas fa-badge-check" aria-hidden="true"></i>
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
                         <h3>Quality Assured</h3>
                         <p>Curated, hotel-grade products with consistent quality across every order.</p>
                     </div>
@@ -241,7 +232,7 @@
                             <option value="beverages">Beverages</option>
                         </select>
                         <select id="priceSort" aria-label="Sort by price">
-                            <option value="">Sort by: Featured</option>
+                            <option value="">Sort by: Default</option>
                             <option value="price-low">Price: Low to High</option>
                             <option value="price-high">Price: High to Low</option>
                             <option value="name">Name: A-Z</option>
@@ -263,7 +254,7 @@
         
 
 
-        <!-- Testimonials Section -->
+        <!-- Testimonials Section 
         <section class="testimonials" id="testimonials">
             <div class="container">
                 <h2>What Our Customers Say</h2>
@@ -296,7 +287,6 @@
             </div>
         </section>
 
-        <!-- FAQ Section 
         <section class="faq" id="faq">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
@@ -416,7 +406,7 @@
             <div class="footer-content">
                 <!-- Company Info -->
                 <div class="footer-section footer-about">
-                    <h4> Bradethy</h4>
+                    <h4>BRADETHY</h4>
                     <p>Premium supplies for the hospitality industry since 2020. Trusted by hotels worldwide.</p>
                     <div class="footer-badges">
                         <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
@@ -436,7 +426,7 @@
                     </ul>
                 </div>
 
-                <!-- Services -->
+                <!-- Services 
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul class="footer-links">
@@ -446,13 +436,13 @@
                         <li><a href="#">Hotel Setup Packages</a></li>
                         <li><a href="#">Event Supplies</a></li>
                     </ul>
-                </div>
+                </div>-->
 
                 <!-- Contact Info -->
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <ul class="contact-list">
-                        <li><a href="mailto:info@ bradethy.com"><i class="fas fa-envelope"></i> info@ bradethy.com</a></li>
+                        <li><a href="mailto:info@ bradethy.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
                         <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
                         <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
                         <li><a href="#"><i class="fas fa-map-marker"></i> 11325 Hatcliffe, Harare, Zimbabwe</a></li>
@@ -499,7 +489,7 @@
                 <div class="footer-bottom-links">
                     <a href="privacy-policy.html">Privacy</a>
                     <a href="terms-of-service.html">Terms</a>
-                    <a href="faq.html">Faq</a>
+                    <a href="#">Faq</a>
                     <a href="#">Sitemap</a>
                 </div>
             </div>

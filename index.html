@@ -7,11 +7,14 @@
     <meta name="description" content="Premium condiments, guest amenities, and cleaning supplies for hotels. Fast delivery and bulk orders welcome.">
     <meta property="og:title" content=" Bradethy Store - Condiments, Amenities & Cleaning Supplies">
     <meta property="og:description" content="Premium  Bradethy delivered fast. Condiments, amenities & cleaning supplies.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/10b981/ffffff?text=Hotel+Essentials">
-    <meta property="og:url" content="https:// bradethy.example.com">
+    <meta property="og:image" content="https://bradethy.store/images/og-image.png">
+    <meta property="og:url" content="https://bradethy.store">
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <meta name="theme-color" content="#2563eb">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -26,6 +29,16 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YPDMQTKGX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5YPDMQTKGX');
+    </script>
 </head>
 
 <body>
@@ -56,9 +69,9 @@
                     <i class="fas fa-moon"></i>
                 </button>
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
-                    <span> </span>
-                    <span> </span>
-                    <span> </span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
@@ -225,7 +238,7 @@
                     </div>
                     <div class="filter-group">
                         <select id="categoryFilter" aria-label="Filter by category">
-                            <option value="">All Categories</option>
+                            <option value="">Categories</option>
                             <option value="amenities">Guest Amenities</option>
                             <option value="cleaning">Cleaning Supplies</option>
                             <option value="bedding">Bedding & Towels</option>
@@ -251,93 +264,6 @@
                 </div>
             </div>
         </section>
-        
-
-
-        <!-- Testimonials Section 
-        <section class="testimonials" id="testimonials">
-            <div class="container">
-                <h2>What Our Customers Say</h2>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p>"Outstanding quality and fast delivery. Our hotel guests love the amenities!"</p>
-                        <div class="testimonial-author">
-                            <strong>Sarah Johnson</strong>
-                            <span>Hotel Manager, Grand Plaza</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★★</div>
-                        <p>"Best supplier we've found. Bulk orders arrive perfectly packaged."</p>
-                        <div class="testimonial-author">
-                            <strong>Michael Chen</strong>
-                            <span>Operations Director, Luxe Stays</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">★★★★��</div>
-                        <p>"Excellent customer service and the products are always top quality."</p>
-                        <div class="testimonial-author">
-                            <strong>Emily Rodriguez</strong>
-                            <span>Owner, Boutique Inn</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="faq" id="faq">
-            <div class="container">
-                <h2>Frequently Asked Questions</h2>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>What is your minimum order quantity?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>We accept orders starting from just 10 units per item. For bulk orders (100+ units), we offer additional discounts. Contact us for custom quotes on large orders.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>How long does shipping take?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Standard shipping takes 3-5 business days. Express shipping (1-2 days) is available for an additional fee. Free shipping on orders over $50!</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Do you offer custom branding?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Yes! We offer custom logo printing on many of our amenities products. Minimum order of 500 units applies. Contact our sales team for details.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>What is your return policy?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>We offer a 30-day satisfaction guarantee. If you're not happy with your order, contact us for a full refund or replacement. Custom orders may have different terms.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question" aria-expanded="false">
-                            <span>Do you ship internationally?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Yes, we ship worldwide! International shipping times vary by location (typically 7-14 business days). Customs fees may apply and are the responsibility of the buyer.</p>
-                        </div>
-                </div>
-            </div>
-        </section>-->
 
         <section class="contact" id="contact">
             <div class="container">
@@ -380,7 +306,6 @@
         </div>
     </div>
 
-
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -407,7 +332,7 @@
                 <!-- Company Info -->
                 <div class="footer-section footer-about">
                     <h4>BRADETHY</h4>
-                    <p>Premium supplies for the hospitality industry since 2020. Trusted by hotels worldwide.</p>
+                    <p>Premium supplies for the hospitality industry since 2015. <br> Your needs, Out responsibilities.</p>
                     <div class="footer-badges">
                         <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
                         <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
@@ -419,9 +344,8 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#products">Products</a></li>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#products">Products</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -442,10 +366,10 @@
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <ul class="contact-list">
-                        <li><a href="mailto:info@ bradethy.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
+                        <li><a href="mailto:bradethysales@gmail.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
                         <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
                         <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker"></i> 11325 Hatcliffe, Harare, Zimbabwe</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
                     </ul>
                 </div>
 
@@ -486,6 +410,9 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
+                    Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
+                </p>
                 <div class="footer-bottom-links">
                     <a href="privacy-policy.html">Privacy</a>
                     <a href="terms-of-service.html">Terms</a>
@@ -495,6 +422,7 @@
             </div>
         </div>
     </footer>
+
 
     <script src="js/script.js"></script>
     <script src="js/cart.js"></script>

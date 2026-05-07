@@ -16,6 +16,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content=" Bradethy">
     <link rel="apple-touch-icon" href="images/icon-192.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YPDMQTKGX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5YPDMQTKGX');
+    </script>
 </head>
 <body>
     <!-- Cookie Consent Banner -->
@@ -26,14 +35,6 @@
                 <button class="btn-cookie btn-accept" id="cookieAccept">Accept</button>
                 <button class="btn-cookie btn-decline" id="cookieDecline">Decline</button>
             </div>
-        </div>
-    </div>
-
-    <!-- Promotional Banner -->
-    <div class="promo-banner" id="promoBanner">
-        <div class="container">
-            <span>🎉 <strong>FREE shipping on orders over $50!</strong> Use code: <span class="promo-code">HOTEL15</span> for 15% off!</span>
-            <button class="promo-close" id="promoClose" aria-label="Close promotion">&times;</button>
         </div>
     </div>
 
@@ -50,14 +51,6 @@
                 <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="wishlist-toggle" id="wishlistToggle" aria-label="Open wishlist" title="Wishlist">
-                    <i class="fas fa-heart"></i>
-                    <span class="wishlist-count" id="wishlistCount">0</span>
-                </button>
-                <div class="cart-icon" id="cartIcon" role="button" aria-label="Open shopping cart" tabindex="0">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount" aria-live="polite">0</span>
-                </div>
                 <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
                     <span></span>
                     <span></span>
@@ -68,8 +61,9 @@
     </header>
 
     <main>
+        <!-- Countdown Timer Banner -->
         <div class="countdown-banner" id="countdownBanner">
-            <div class="container">
+            <div class="countdown-container">
                 <span class="countdown-label"><i class="fas fa-fire"></i> Flash Sale Ends In:</span>
                 <div class="countdown-timer" id="countdownTimer">
                     <div class="countdown-unit">
@@ -90,7 +84,8 @@
                     <i class="fas fa-clock"></i> Sale Ended! New sale starts soon...
                 </div>
             </div>
-        </div>  
+        </div>
+          
         <!-- All Products Section -->
         <section class="products" id="products">
             <div class="container">
@@ -113,7 +108,7 @@
                     </div>
                     <div class="filter-group">
                         <select id="categoryFilter" aria-label="Filter by category">
-                            <option value="">All Categories</option>
+                            <option value="">Categories</option>
                             <option value="amenities">Guest Amenities</option>
                             <option value="cleaning">Cleaning Supplies</option>
                             <option value="bedding">Bedding & Towels</option>
@@ -124,7 +119,7 @@
                             <option value="kitchen">Kitchen Supplies</option>
                         </select>
                         <select id="priceSort" aria-label="Sort by price">
-                            <option value="">Sort by: Featured</option>
+                            <option value="">Sort by: Default</option>
                             <option value="price-low">Price: Low to High</option>
                             <option value="price-high">Price: High to Low</option>
                             <option value="name">Name: A-Z</option>
@@ -139,19 +134,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Newsletter Section
-        <section class="newsletter" id="newsletter">
-            <div class="container">
-                <h2>Subscribe to Our Newsletter</h2>
-                <p>Get exclusive offers, new product announcements, and hotel industry tips directly to your inbox!</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
-                <p class="newsletter-note">We respect your privacy. Unsubscribe at any time.</p>
-            </div>
-        </section> -->
     </main>
 
     <!-- Wishlist Modal -->
@@ -202,7 +184,7 @@
             <div class="footer-content">
                 <div class="footer-section footer-about">
                     <h4> Bradethy</h4>
-                    <p>Premium supplies for the hospitality industry since 2020. Trusted by hotels worldwide.</p>
+                    <p>Premium supplies for the hospitality industry since 2015. <br> Your needs, Out responsibilities.</p>
                     <div class="footer-badges">
                         <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
                         <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
@@ -212,10 +194,9 @@
                     <h4>Quick Links</h4>
                     <ul class="footer-links">
                         <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="#products">Products</a></li>
-                        <li><a href="index.html#about">About Us</a></li>
-                        <li><a href="index.html#testimonials">Reviews</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -228,22 +209,24 @@
                         <li><a href="#">Event Supplies</a></li>
                     </ul>
                 </div>
+                <!-- Contact Info -->
                 <div class="footer-section">
                     <h4>Contact Info</h4>
                     <ul class="contact-list">
-                        <li><a href="mailto:info@ bradethy.com"><i class="fas fa-envelope"></i> info@ bradethy.com</a></li>
-                        <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker"></i> 11325 Hatcliffe, Harare, Zimbabwe</a></li>
+                        <li><a href="mailto:bradethysales@gmail.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
+                        <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
+                        <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
                     </ul>
                 </div>
+
+                <!-- Follow Us -->
                 <div class="footer-section">
                     <h4>Follow Us</h4>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="YouTube" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
             </div>
@@ -269,13 +252,17 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
+                <p>&copy; <span id="currentYear"></span>Bradethy Store. All rights reserved.</p>
+                <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
+                    Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
+                </p>
                 <div class="footer-bottom-links">
                     <a href="privacy-policy.html">Privacy</a>
                     <a href="terms-of-service.html">Terms</a>
                     <a href="#">Sitemap</a>
                 </div>
             </div>
+
         </div>
     </footer>
 
@@ -283,5 +270,5 @@
     <script src="js/cart.js"></script>
     <script src="js/products.js"></script>
     <script src="js/ui.js"></script>
-<body class="full-catalog">
+</body>
 </html>

@@ -1,0 +1,28 @@
+{
+  "name": " Bradethy Store",
+  "short_name": " bradethy", 
+  "description": "Premium condiments, amenities & cleaning supplies for hotels",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "theme_color_dark": "#1d4ed8",
+
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "business"],
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

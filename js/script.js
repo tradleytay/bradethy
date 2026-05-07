@@ -1,1787 +1,2134 @@
-// ===== Newsletter Configuration =====
-
-// Fallback: inline product data so the site still works if js/products.js fails to load
-// This will only assign to window.products when it's not already defined (safe fallback).
-if (typeof window.products === 'undefined' || !Array.isArray(window.products)) {
-    window.products = [
-        {
-            id: 1,
-            name: 'Luxury Soap Packaging',
-            category: 'amenities',
-            price: 45.99,
-            image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Elegant packaging for premium hotel soaps. Combines functionality with sophisticated design.',
-            stock: true,
-            features: ['Waterproof materials', 'Luxury finish', 'Easy dispensing', 'Brand customizable']
-        },
-        {
-            id: 2,
-            name: 'Shampoo & Conditioner Bottles',
-            category: 'amenities',
-            price: 65.50,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Travel-size bottles for hotel toiletries with tamper-proof seals and branding options.',
-            stock: true,
-            features: ['Leak-proof caps', 'Eco-friendly plastic', 'Custom labeling', 'Compact design']
-        },
-        {
-            id: 3,
-            name: 'Mini Water Bottle Packaging',
-            category: 'hospitality',
-            price: 25.00,
-            image: 'https://images.unsplash.com/photo-1589873940921-3b3b3b3b3b3b?w=400&h=300&fit=crop',
-            description: 'Branded water bottles for hotels, lodges, and events. Perfect for guest rooms and conferences.',
-            stock: true,
-            features: ['PET recyclable material', 'Custom logo printing', 'Tamper-proof seal', 'Portable size']
-        },
-        {
-            id: 4,
-            name: 'Condiment Sachets',
-            category: 'food-service',
-            price: 15.75,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Single-serve sachets for sugar, salt, pepper, ketchup, and sauces in hotels and restaurants.',
-            stock: true,
-            features: ['Hygienic single-use', 'Custom branding', 'Eco-friendly film', 'Easy tear design']
-        },
-        {
-            id: 5,
-            name: 'Coffee & Tea Sachet Packaging',
-            category: 'hospitality',
-            price: 30.99,
-            image: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?w=400&h=300&fit=crop',
-            description: 'Branded sachets for coffee, tea, and sugar, ideal for hotel rooms and conference setups.',
-            stock: true,
-            features: ['Moisture-resistant', 'Custom branding', 'Eco-friendly paper', 'Compact size']
-        },
-        {
-            id: 6,
-            name: 'Room Service Packaging',
-            category: 'hospitality',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Elegant takeaway boxes and trays for hotel room service and catering.',
-            stock: true,
-            features: ['Heat-resistant', 'Luxury finish', 'Stackable design', 'Custom branding']
-        },
-        {
-            id: 7,
-            name: 'Guest Welcome Kit Packaging',
-            category: 'amenities',
-            price: 120.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Branded packaging for slippers, robes, and small gifts in hotels and resorts.',
-            stock: true,
-            features: ['Premium materials', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 8,
-            name: 'Event & Banquet Packaging',
-            category: 'hospitality',
-            price: 75.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Packaging solutions for cutlery packs, napkin wraps, and wine bottle bags at events.',
-            stock: true,
-            features: ['Durable materials', 'Custom branding', 'Elegant design', 'Eco-friendly options']
-        },
-        {
-            id: 9,
-            name: 'Eco-Friendly Toiletry Sachets',
-            category: 'amenities',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Biodegradable sachets for shampoo, lotion, and shower gel in hotels and lodges.',
-            stock: true,
-            features: ['Compostable film', 'Leak-proof', 'Custom branding', 'Travel-size']
-        },
-        {
-            id: 10,
-            name: 'Branded Napkin & Cutlery Wraps',
-            category: 'food-service',
-            price: 20.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Stylish wraps for napkins and cutlery used in restaurants, hotels, and catering services.',
-            stock: true,
-            features: ['Custom branding', 'Eco-friendly paper', 'Elegant finish', 'Easy to use']
-        },
-        {
-            id: 11,
-            name: 'Spa Product Packaging',
-            category: 'amenities',
-            price: 85.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for oils, scrubs, and spa essentials in resorts and wellness centers.',
-            stock: true,
-            features: ['Glass or eco-plastic', 'Custom branding', 'Leak-proof', 'Premium finish']
-        },
-        {
-            id: 12,
-            name: 'Housekeeping Supply Packaging',
-            category: 'hospitality',
-            price: 50.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Branded packaging for laundry bags, cleaning kits, and guest service items.',
-            stock: true,
-            features: ['Durable materials', 'Custom printing', 'Eco-friendly options', 'Functional design']
-        },
-        {
-            id: 13,
-            name: 'Mini Bar Snack Packaging',
-            category: 'hospitality',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Compact packaging for chocolates, nuts, and chips in hotel mini bars.',
-            stock: true,
-            features: ['Moisture-proof', 'Custom branding', 'Eco-friendly film', 'Portable size']
-        },
-        {
-            id: 14,
-            name: 'Wine & Beverage Gift Boxes',
-            category: 'hospitality',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Elegant packaging for wine bottles and premium beverages for events and hotel gifting.',
-            stock: true,
-            features: ['Luxury finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 15,
-            name: 'Conference Kit Packaging',
-            category: 'hospitality',
-            price: 110.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Branded packaging for pens, notepads, and stationery in hotel conferences and events.',
-            stock: true,
-            features: ['Durable materials', 'Custom branding', 'Compact design', 'Eco-friendly options']
-        },
-        {
-            id: 16,
-            name: 'Disposable Slipper Packaging',
-            category: 'amenities',
-            price: 60.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Protective packaging for hotel slippers, ensuring hygiene and presentation.',
-            stock: true,
-            features: ['Eco-friendly wrap', 'Custom branding', 'Compact design', 'Hygienic sealing']
-        },
-        {
-            id: 17,
-            name: 'Branded Tissue Box Packaging',
-            category: 'hospitality',
-            price: 25.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Custom-designed tissue box covers for hotel rooms, lobbies, and conference halls.',
-            stock: true,
-            features: ['Durable cardboard', 'Custom branding', 'Eco-friendly options', 'Elegant finish']
-        },
-        {
-            id: 18,
-            name: 'Toothbrush & Dental Kit Packaging',
-            category: 'amenities',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Compact packaging for hotel dental kits including toothbrush, toothpaste, and floss.',
-            stock: true,
-            features: ['Hygienic sealing', 'Custom branding', 'Eco-friendly wrap', 'Travel-size design']
-        },
-        {
-            id: 19,
-            name: 'Shaving Kit Packaging',
-            category: 'amenities',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Protective packaging for razors and shaving cream in hotel guest rooms.',
-            stock: true,
-            features: ['Waterproof film', 'Compact design', 'Custom branding', 'Hygienic sealing']
-        },
-        {
-            id: 20,
-            name: 'Branded Key Card Sleeves',
-            category: 'hospitality',
-            price: 15.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Custom-printed sleeves for hotel room key cards with branding and guest information.',
-            stock: true,
-            features: ['Durable paper', 'Custom printing', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 21,
-            name: 'Laundry Bag Packaging',
-            category: 'hospitality',
-            price: 28.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Branded laundry bags for guest clothing services in hotels and resorts.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Functional design']
-        },
-        {
-            id: 22,
-            name: 'Slippers & Robe Packaging',
-            category: 'amenities',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Protective packaging for hotel slippers and robes, ensuring hygiene and presentation.',
-            stock: true,
-            features: ['Eco-friendly wrap', 'Custom branding', 'Compact design', 'Hygienic sealing']
-        },
-        {
-            id: 23,
-            name: 'Banquet Cutlery Packs',
-            category: 'food-service',
-            price: 45.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Pre-packed cutlery sets for hotel banquets, conferences, and catering services.',
-            stock: true,
-            features: ['Durable wrap', 'Custom branding', 'Eco-friendly paper', 'Elegant finish']
-        },
-        {
-            id: 24,
-            name: 'Branded Coaster Packaging',
-            category: 'hospitality',
-            price: 18.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Custom-printed coasters for hotel bars, restaurants, and guest rooms.',
-            stock: true,
-            features: ['Waterproof material', 'Custom branding', 'Eco-friendly options', 'Elegant design']
-        },
-        {
-            id: 25,
-            name: 'Conference Folder Packaging',
-            category: 'hospitality',
-            price: 65.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Branded folders for hotel conferences and events, holding notepads, pens, and brochures.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Professional finish']
-        },
-        {
-            id: 26,
-            name: 'Branded Soap Wrapper',
-            category: 'amenities',
-            price: 22.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Eco-friendly wrappers for hotel soaps with custom branding and luxury finish.',
-            stock: true,
-            features: ['Biodegradable paper', 'Custom branding', 'Compact design', 'Elegant finish']
-        },
-        {
-            id: 27,
-            name: 'Hospitality Gift Bag Packaging',
-            category: 'hospitality',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Luxury gift bags for hotel guests, events, and corporate hospitality.',
-            stock: true,
-            features: ['Premium materials', 'Custom branding', 'Eco-friendly options', 'Elegant design']
-        },
-        {
-            id: 28,
-            name: 'Branded Amenity Box',
-            category: 'amenities',
-            price: 80.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Compact boxes for toiletries, vanity kits, and guest amenities in hotels.',
-            stock: true,
-            features: ['Durable cardboard', 'Custom branding', 'Eco-friendly options', 'Luxury finish']
-        },
-        {
-            id: 29,
-            name: 'Hospitality Event Tote Bags',
-            category: 'hospitality',
-            price: 70.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Reusable tote bags for hotel events, conferences, and guest gifting.',
-            stock: true,
-            features: ['Durable fabric', 'Custom branding', 'Eco-friendly material', 'Reusable design']
-        },
-        {
-            id: 30,
-            name: 'Branded Coffee Cup Packaging',
-            category: 'food-service',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Custom-printed coffee cups and lids for hotel cafés and restaurants.',
-            stock: true,
-            features: ['Heat-resistant', 'Custom branding', 'Eco-friendly options', 'Leak-proof design']
-        },
-        {
-            id: 31,
-            name: 'Branded Water Glass Covers',
-            category: 'hospitality',
-            price: 18.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Protective covers for guest room water glasses, ensuring hygiene and presentation.',
-            stock: true,
-            features: ['Eco-friendly paper', 'Custom branding', 'Hygienic sealing', 'Compact design']
-        },
-        {
-            id: 32,
-            name: 'Hotel Vanity Kit Packaging',
-            category: 'amenities',
-            price: 42.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Compact packaging for cotton buds, nail files, and other vanity essentials.',
-            stock: true,
-            features: ['Hygienic sealing', 'Custom branding', 'Eco-friendly wrap', 'Travel-size design']
-        },
-        {
-            id: 33,
-            name: 'Hospitality Shoe Shine Kit Packaging',
-            category: 'amenities',
-            price: 38.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Branded packaging for shoe polish and brushes in hotel guest rooms.',
-            stock: true,
-            features: ['Compact design', 'Custom branding', 'Eco-friendly options', 'Luxury finish']
-        },
-        {
-            id: 34,
-            name: 'Branded Buffet Food Covers',
-            category: 'food-service',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Protective covers for buffet trays and dishes in hotel restaurants.',
-            stock: true,
-            features: ['Heat-resistant', 'Custom branding', 'Eco-friendly material', 'Elegant finish']
-        },
-        {
-            id: 35,
-            name: 'Hospitality Amenity Tray Packaging',
-            category: 'hospitality',
-            price: 65.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Luxury trays for organizing toiletries and amenities in guest bathrooms.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Elegant design']
-        },
-        {
-            id: 36,
-            name: 'Branded Ice Bucket Liners',
-            category: 'hospitality',
-            price: 20.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Disposable liners for hotel ice buckets, ensuring hygiene and convenience.',
-            stock: true,
-            features: ['Waterproof material', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 37,
-            name: 'Hospitality Bathrobe Packaging',
-            category: 'amenities',
-            price: 75.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3c3f3f?w=400&h=300&fit=crop',
-            description: 'Protective and elegant packaging for hotel bathrobes in guest rooms and spas.',
-            stock: true,
-            features: ['Eco-friendly wrap', 'Custom branding', 'Luxury finish', 'Hygienic sealing']
-        },
-        {
-            id: 38,
-            name: 'Branded Hospitality Tray Liners',
-            category: 'hospitality',
-            price: 28.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Custom-printed liners for room service trays and banquet setups.',
-            stock: true,
-            features: ['Durable paper', 'Custom branding', 'Eco-friendly options', 'Elegant finish']
-        },
-        {
-            id: 39,
-            name: 'Hotel Sewing Kit Packaging',
-            category: 'amenities',
-            price: 32.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Compact packaging for sewing kits including needles, thread, and buttons.',
-            stock: true,
-            features: ['Hygienic sealing', 'Custom branding', 'Eco-friendly wrap', 'Travel-size design']
-        },
-        {
-            id: 40,
-            name: 'Hospitality Event Gift Box',
-            category: 'hospitality',
-            price: 120.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Luxury gift boxes for hotel events, weddings, and corporate hospitality.',
-            stock: true,
-            features: ['Premium materials', 'Custom branding', 'Eco-friendly options', 'Elegant design']
-        },
-        {
-            id: 41,
-            name: 'Medical Apron Packaging',
-            category: 'healthcare',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Protective packaging for disposable medical aprons used in hospitals and clinics.',
-            stock: true,
-            features: ['Sterile wrap', 'Eco-friendly material', 'Custom branding', 'Compact design']
-        },
-        {
-            id: 42,
-            name: 'Surgical Mask Packaging',
-            category: 'healthcare',
-            price: 30.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Hygienic packaging for surgical masks in healthcare facilities and pharmacies.',
-            stock: true,
-            features: ['Moisture-proof film', 'Sterile sealing', 'Custom branding', 'Eco-friendly options']
-        },
-        {
-            id: 43,
-            name: 'Pharmaceutical Blister Packs',
-            category: 'healthcare',
-            price: 85.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Secure blister packaging for tablets and capsules in hospitals and pharmacies.',
-            stock: true,
-            features: ['Tamper-proof design', 'Custom branding', 'Eco-friendly options', 'Durable material']
-        },
-        {
-            id: 44,
-            name: 'Retail Apparel Packaging',
-            category: 'retail',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Branded packaging for clothing items such as shirts, aprons, and uniforms.',
-            stock: true,
-            features: ['Durable wrap', 'Custom branding', 'Eco-friendly material', 'Elegant finish']
-        },
-        {
-            id: 45,
-            name: 'Industrial Safety Glove Packaging',
-            category: 'manufacturing',
-            price: 50.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Protective packaging for industrial gloves used in construction and manufacturing.',
-            stock: true,
-            features: ['Durable film', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 46,
-            name: 'Retail Electronics Packaging',
-            category: 'retail',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Secure packaging for small electronics such as headphones, chargers, and accessories.',
-            stock: true,
-            features: ['Shock-resistant', 'Custom branding', 'Eco-friendly options', 'Tamper-proof design']
-        },
-        {
-            id: 47,
-            name: 'Healthcare Disposable Glove Packaging',
-            category: 'healthcare',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Sterile packaging for disposable gloves used in hospitals, clinics, and labs.',
-            stock: true,
-            features: ['Sterile sealing', 'Custom branding', 'Eco-friendly film', 'Compact design']
-        },
-        {
-            id: 48,
-            name: 'Retail Cosmetic Packaging',
-            category: 'retail',
-            price: 70.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for cosmetics such as lipsticks, creams, and perfumes.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 49,
-            name: 'Food Industry Apron Packaging',
-            category: 'food-service',
-            price: 45.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Protective packaging for disposable aprons used in food processing and catering.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly wrap', 'Hygienic sealing']
-        },
-        {
-            id: 50,
-            name: 'Retail Gift Box Packaging',
-            category: 'retail',
-            price: 85.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Elegant gift boxes for retail stores, suitable for jewelry, accessories, and premium items.',
-            stock: true,
-            features: ['Luxury finish', 'Custom branding', 'Eco-friendly options', 'Durable design']
-        },
-        {
-            id: 51,
-            name: 'Hospital Gown Packaging',
-            category: 'healthcare',
-            price: 60.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Sterile packaging for disposable hospital gowns used in surgical and patient care settings.',
-            stock: true,
-            features: ['Sterile sealing', 'Eco-friendly wrap', 'Custom branding', 'Compact design']
-        },
-        {
-            id: 52,
-            name: 'Face Shield Packaging',
-            category: 'healthcare',
-            price: 45.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Protective packaging for face shields used in healthcare and industrial environments.',
-            stock: true,
-            features: ['Scratch-resistant film', 'Custom branding', 'Eco-friendly options', 'Hygienic sealing']
-        },
-        {
-            id: 53,
-            name: 'Retail Shoe Box Packaging',
-            category: 'retail',
-            price: 75.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Durable and stylish shoe boxes for retail stores with branding options.',
-            stock: true,
-            features: ['Durable cardboard', 'Custom branding', 'Eco-friendly options', 'Luxury finish']
-        },
-        {
-            id: 54,
-            name: 'Bakery Packaging Boxes',
-            category: 'food-service',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Eco-friendly boxes for cakes, pastries, and bread in bakeries and cafés.',
-            stock: true,
-            features: ['Moisture-resistant', 'Custom branding', 'Eco-friendly paper', 'Compact design']
-        },
-        {
-            id: 55,
-            name: 'Retail Jewelry Packaging',
-            category: 'retail',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Luxury boxes and pouches for jewelry items in retail stores.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 56,
-            name: 'Pharmacy Prescription Bag Packaging',
-            category: 'healthcare',
-            price: 25.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Branded paper and plastic bags for pharmacies to package prescriptions securely.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Tamper-proof design']
-        },
-        {
-            id: 57,
-            name: 'School Lunch Packaging',
-            category: 'education',
-            price: 20.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Eco-friendly packaging for school lunches, snacks, and beverages.',
-            stock: true,
-            features: ['Biodegradable material', 'Custom branding', 'Compact design', 'Safe for children']
-        },
-        {
-            id: 58,
-            name: 'Industrial Tool Packaging',
-            category: 'manufacturing',
-            price: 85.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Protective packaging for small tools and parts in manufacturing and construction.',
-            stock: true,
-            features: ['Shock-resistant', 'Custom branding', 'Eco-friendly options', 'Durable design']
-        },
-        {
-            id: 59,
-            name: 'Retail Perfume Packaging',
-            category: 'retail',
-            price: 110.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for perfumes and colognes in retail and hospitality gift shops.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 60,
-            name: 'Food Delivery Packaging',
-            category: 'food-service',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Durable and eco-friendly packaging for food delivery services and restaurants.',
-            stock: true,
-            features: ['Heat-resistant', 'Custom branding', 'Eco-friendly material', 'Leak-proof design']
-        },
-        {
-            id: 61,
-            name: 'Hospitality Spa Oil Bottles',
-            category: 'amenities',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for spa oils and massage essentials in hotels and resorts.',
-            stock: true,
-            features: ['Leak-proof design', 'Custom branding', 'Eco-friendly options', 'Premium finish']
-        },
-        {
-            id: 62,
-            name: 'Retail Book Packaging',
-            category: 'retail',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Protective and branded packaging for books and stationery in retail stores.',
-            stock: true,
-            features: ['Durable cardboard', 'Custom branding', 'Eco-friendly material', 'Compact design']
-        },
-        {
-            id: 63,
-            name: 'Hospitality Wine Glass Sleeves',
-            category: 'hospitality',
-            price: 25.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Disposable sleeves for wine glasses in hotel bars and banquet halls.',
-            stock: true,
-            features: ['Eco-friendly paper', 'Custom branding', 'Hygienic sealing', 'Compact design']
-        },
-        {
-            id: 64,
-            name: 'Retail Grocery Bag Packaging',
-            category: 'retail',
-            price: 15.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Durable and eco-friendly grocery bags for supermarkets and retail outlets.',
-            stock: true,
-            features: ['Reusable material', 'Custom branding', 'Eco-friendly options', 'Functional design']
-        },
-        {
-            id: 65,
-            name: 'Pharmaceutical Syringe Packaging',
-            category: 'healthcare',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Sterile packaging for syringes used in hospitals and clinics.',
-            stock: true,
-            features: ['Sterile sealing', 'Tamper-proof design', 'Custom branding', 'Eco-friendly options']
-        },
-        {
-            id: 66,
-            name: 'Hospitality Candle Packaging',
-            category: 'amenities',
-            price: 70.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for scented candles used in hotel rooms and spas.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 67,
-            name: 'Retail Toy Packaging',
-            category: 'retail',
-            price: 60.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3c3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Durable and safe packaging for toys and children’s products in retail stores.',
-            stock: true,
-            features: ['Child-safe material', 'Custom branding', 'Eco-friendly options', 'Durable design']
-        },
-        {
-            id: 68,
-            name: 'Hospitality Coffee Pod Packaging',
-            category: 'food-service',
-            price: 45.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Compact packaging for coffee pods used in hotel rooms and cafés.',
-            stock: true,
-            features: ['Moisture-proof', 'Custom branding', 'Eco-friendly film', 'Compact design']
-        },
-        {
-            id: 69,
-            name: 'Industrial Safety Helmet Packaging',
-            category: 'manufacturing',
-            price: 85.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Protective packaging for safety helmets used in construction and manufacturing.',
-            stock: true,
-            features: ['Shock-resistant', 'Custom branding', 'Eco-friendly options', 'Durable design']
-        },
-        {
-            id: 70,
-            name: 'Retail Sunglasses Packaging',
-            category: 'retail',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Luxury cases and boxes for sunglasses in retail and hospitality gift shops.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 71,
-            name: 'Hospitality Bath Salt Packaging',
-            category: 'amenities',
-            price: 50.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Eco-friendly sachets and jars for bath salts in hotel spas and guest rooms.',
-            stock: true,
-            features: ['Moisture-proof', 'Custom branding', 'Eco-friendly material', 'Compact design']
-        },
-        {
-            id: 72,
-            name: 'Retail Wine Bag Packaging',
-            category: 'retail',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Durable and stylish wine bags for retail stores and hospitality events.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Elegant finish']
-        },
-        {
-            id: 73,
-            name: 'Hospitality Soap Dispenser Packaging',
-            category: 'amenities',
-            price: 65.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Compact and branded packaging for refillable soap dispensers in hotels.',
-            stock: true,
-            features: ['Leak-proof design', 'Custom branding', 'Eco-friendly options', 'Luxury finish']
-        },
-        {
-            id: 74,
-            name: 'Retail Chocolate Box Packaging',
-            category: 'food-service',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Luxury boxes for chocolates and confectionery in retail and hospitality gifting.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 75,
-            name: 'Hospitality Hand Sanitizer Packaging',
-            category: 'amenities',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Compact bottles and sachets for hand sanitizers in hotels and restaurants.',
-            stock: true,
-            features: ['Leak-proof design', 'Custom branding', 'Eco-friendly options', 'Travel-size']
-        },
-        {
-            id: 76,
-            name: 'Hospitality Mini Bar Bottle Packaging',
-            category: 'hospitality',
-            price: 55.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Compact packaging for mini bar liquor bottles in hotels and resorts.',
-            stock: true,
-            features: ['Tamper-proof seal', 'Custom branding', 'Eco-friendly options', 'Portable size']
-        },
-        {
-            id: 77,
-            name: 'Retail Stationery Packaging',
-            category: 'retail',
-            price: 35.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Branded packaging for pens, notebooks, and office supplies in retail stores.',
-            stock: true,
-            features: ['Durable material', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 78,
-            name: 'Hospitality Bathrobe Gift Box',
-            category: 'amenities',
-            price: 95.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Luxury gift box packaging for bathrobes in hotels and spas.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 79,
-            name: 'Agricultural Seed Bag Packaging',
-            category: 'agriculture',
-            price: 65.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Durable and eco-friendly packaging for seeds in agriculture and farming.',
-            stock: true,
-            features: ['Moisture-proof', 'Custom branding', 'Eco-friendly material', 'Durable design']
-        },
-        {
-            id: 80,
-            name: 'Retail Cosmetic Pouch Packaging',
-            category: 'retail',
-            price: 50.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Compact pouches for cosmetics such as creams, powers, and skincare products.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Portable size']
-        },
-        {
-            id: 81,
-            name: 'Hospitality Slipper Bag Packaging',
-            category: 'amenities',
-            price: 40.00,
-            image: 'https://images.unsplash.com/photo-1588776814546-3c3c3c3c3c3c?w=400&h=300&fit=crop',
-            description: 'Protective bags for hotel slippers, ensuring hygiene and presentation.',
-            stock: true,
-            features: ['Eco-friendly wrap', 'Custom branding', 'Compact design', 'Hygienic sealing']
-        },
-        {
-            id: 82,
-            name: 'Aviation In-Flight Amenity Kit Packaging',
-            category: 'aviation',
-            price: 120.00,
-            image: 'https://images.unsplash.com/photo-1600180758895-3f3f3f3f3f?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for in-flight amenity kits including eye masks, socks, and toiletries.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 83,
-            name: 'Retail Electronics Charger Packaging',
-            category: 'retail',
-            price: 65.00,
-            image: 'https://images.unsplash.com/photo-1626228720-195a672e8a03?w=400&h=300&fit=crop',
-            description: 'Protective packaging for chargers and cables in retail electronics stores.',
-            stock: true,
-            features: ['Shock-resistant', 'Custom branding', 'Eco-friendly options', 'Compact design']
-        },
-        {
-            id: 84,
-            name: 'Hospitality Spa Kit Packaging',
-            category: 'amenities',
-            price: 110.00,
-            image: 'https://images.unsplash.com/photo-1616627455560-2b2b2b2b2b2b?w=400&h=300&fit=crop',
-            description: 'Luxury packaging for spa kits including oils, scrubs, and bath salts.',
-            stock: true,
-            features: ['Premium finish', 'Custom branding', 'Eco-friendly options', 'Protective design']
-        },
-        {
-            id: 85,
-            name: 'Agricultural Fertilizer Sack Packaging',
-            category: 'agriculture',
-            price: 75.00,
-            image: 'https://images.unsplash.com/photo-1604908177522-4c4c4c4c4c4c?w=400&h=300&fit=crop',
-            description: 'Heavy-duty sacks for fertilizers and soil enhancers in agriculture.'
+// Product Data - Original restored (no override)
+const products = [
+    // Existing products 1-6 unchanged...
+    {
+        id: 1,
+        name: "Shampoo 500ml",
+        price: 4.99,
+        originalPrice: 6.99,
+        image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=400&fit=crop",
+        icon: "🧴",
+        description: "Luxury hotel guest shampoo, pleasant scent",
+        category: "amenities",
+        onSale: true,
+        stock: 15,
+        details: {
+            brand: " Bradethy Pro",
+            sku: "SH-500ML",
+            weight: "500ml",
+            ingredients: "Aqua, Sodium Lauryl Sulfate, Cocamide DEA, Glycerin, Fragrance, Citric Acid",
+            features: ["pH balanced", "Paraben-free", "Luxury scent", "Large format for bulk use"],
+            usage: "Apply to damp hair, massage gently and rinse thoroughly. For external use only.",
+            warnings: "Avoid eye contact. If irritation occurs, discontinue use."
         }
-    ];
-}
-
-// ===== Category Configuration =====
-// New strategic, professional category slugs (ordered) and their display labels.
-const CATEGORY_ORDER = [
-    'condiments-table',
-    'guest-amenities',
-    'cleaning-hygiene',
-    'kitchen-food-service',
-    'beverages-drinks',
-    'packaging-takeaway',
-    'linen-room',
-    'furniture-fixtures',
-    'equipment-appliances',
-    'operational-supplies'
+    },
+    {
+        id: 2,
+        name: "Hand Soap Refill",
+        price: 2.99,
+        image: "https://images.unsplash.com/photo-1584305574647-0cc949a2bb9f?w=400&h=400&fit=crop",
+        icon: "🧼",
+        description: "Antibacterial hand soap for guest rooms",
+        category: "amenities",
+        onSale: false,
+        stock: 50,
+        details: {
+            brand: " Bradethy Pro",
+            sku: "HS-REFILL",
+            weight: "500ml",
+            ingredients: "Aqua, Triclosan, Sodium Laureth Sulfate, Aloe Vera, Vitamin E",
+            features: ["Antibacterial", "Moisturizing formula", "Refillable bottle", "Hotel-grade quality"],
+            usage: "Pump onto hands, lather and rinse with water.",
+            warnings: "For external use only. Keep out of reach of children."
+        }
+    },
+    {
+        id: 3,
+        name: "All-Purpose Cleaner",
+        price: 6.99,
+        originalPrice: 9.99,
+        image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=400&fit=crop",
+        icon: "🧽",
+        description: "Professional multi-surface cleaning spray",
+        category: "cleaning",
+        onSale: true,
+        stock: 8,
+        details: {
+            brand: " Bradethy Pro",
+            sku: "APC-750ML",
+            weight: "750ml",
+            ingredients: "Water, Isopropyl Alcohol, Surfactants, Degreaser Agents",
+            features: ["Multi-surface", "Streak-free", "Industrial strength", "Citrus scent"],
+            usage: "Spray directly on surface, wipe with clean cloth. No rinsing required.",
+            warnings: "Wear gloves. Do not mix with bleach or ammonia."
+        }
+    },
+    {
+        id: 4,
+        name: "Coffee Pods Box (20ct)",
+        price: 12.99,
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",
+        icon: "☕",
+        description: "Premium ground coffee pods for in-room service",
+        category: "beverages",
+        onSale: false,
+        stock: 35,
+        details: {
+            brand: "Premium Roast Co.",
+            sku: "CP-20CT",
+            weight: "200g",
+            ingredients: "100% Arabica Coffee",
+            features: ["Medium roast", "Compatible with major pod machines", "Freshly roasted", "Fair trade certified"],
+            usage: "Insert pod into compatible coffee machine and brew as directed.",
+            warnings: "Contains caffeine. Not for persons with coffee allergies."
+        }
+    },
+    {
+        id: 5,
+        name: "Bath Towel Set",
+        price: 19.99,
+        originalPrice: 24.99,
+        image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=400&h=400&fit=crop",
+        icon: "🛁",
+        description: "Soft 100% cotton bath towels, bulk pack",
+        category: "bedding",
+        onSale: true,
+        stock: 22,
+        details: {
+            brand: " Bradethy Pro",
+            sku: "BT-SET-2",
+            weight: "600g per towel",
+            material: "100% Egyptian Cotton",
+            features: ["600 GSM", "Machine washable", "Quick dry", "Hotel quality"],
+            usage: "Wash before first use. Machine wash cold with similar colors.",
+            warnings: "Do not use bleach. Tumble dry low."
+        }
+    },
+    {
+        id: 6,
+        name: "Disinfectant Wipes",
+        price: 8.99,
+        image: "https://images.unsplash.com/photo-1584712968850-eac9260b1f84?w=400&h=400&fit=crop",
+        icon: "🧻",
+        description: "Individually wrapped surface cleaning wipes",
+        category: "cleaning",
+        onSale: false,
+        stock: 0,
+        details: {
+            brand: " Bradethy Pro",
+            sku: "DW-80CT",
+            weight: "80 wipes",
+            ingredients: "Isopropyl Alcohol (70%), Aloe Vera, Vitamin E",
+            features: ["Kills 99.9% of bacteria", "Individually wrapped", "Moisture-lock packaging", "Hospital grade"],
+            usage: "Wipe surface and allow to dry. No rinsing needed.",
+            warnings: "Flammable. Keep away from heat sources. For external use only."
+        }
+    },
+    {
+        id: 7,
+        name: "Tomato Sauce Sachets (100pk)",
+        price: 2.50,
+        image: "https://images.unsplash.com/photo-1541599468178-7b7d8eb1ae0b?w=400&h=400&fit=crop",
+        icon: "🍅",
+        description: "Convenient single-serve tomato sauce sachets for restaurants",
+        category: "condiments",
+        onSale: false,
+        stock: 45,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "TSS-100",
+            weight: "100 sachets",
+            features: ["Perfect portion size", "Leak-proof packaging", "High quality tomatoes", "Restaurant grade"],
+            usage: "Tear top and squeeze onto food.",
+            warnings: "Keep in cool dry place."
+        }
+    },
+    {
+        id: 8,
+        name: "Vinegar Sachets (100pk)",
+        price: 2.00,
+        image: "https://images.unsplash.com/photo-1585414754515-1c2bccf749cd?w=400&h=400&fit=crop",
+        icon: "🍇",
+        description: "Malt vinegar sachets for fish & chips",
+        category: "condiments",
+        onSale: true,
+        originalPrice: 2.50,
+        stock: 60,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "VS-100",
+            weight: "100 sachets",
+            features: ["Classic malt vinegar", "Single serve", "No mess", "Authentic taste"],
+            usage: "Tear and pour over chips or salad.",
+            warnings: "Acidic - avoid eye contact."
+        }
+    },
+    {
+        id: 9,
+        name: "Salt Sachets (200pk)",
+        price: 1.50,
+        image: "https://images.unsplash.com/photo-1591117900482-c275f677c0d0?w=400&h=400&fit=crop",
+        icon: "🧂",
+        description: "Fine table salt in convenient sachets",
+        category: "condiments",
+        onSale: false,
+        stock: 80,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "SS-200",
+            weight: "200 sachets",
+            features: ["Iodized salt", "Fine grain", "Portion controlled", "Bulk pack"],
+            usage: "Tear open and sprinkle.",
+            warnings: "Use in moderation."
+        }
+    },
+    {
+        id: 10,
+        name: "Serviettes (1000pk)",
+        price: 8.99,
+        image: "https://images.unsplash.com/photo-1581637685570-0c420523f640?w=400&h=400&fit=crop",
+        icon: "🧻",
+        description: "2-ply white serviettes for table service",
+        category: "disposables",
+        onSale: false,
+        stock: 30,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "SERV-1000",
+            weight: "1000 sheets",
+            material: "Recycled paper",
+            features: ["2-ply strength", "Absorbent", "White color", "Standard size"],
+            usage: "Place on tables for guests.",
+            warnings: "Keep dry."
+        }
+    },
+    {
+        id: 11,
+        name: "Hair Nets (100pk)",
+        price: 3.50,
+        image: "https://images.unsplash.com/photo-1578662996441-03b7d4d5e6ea?w=400&h=400&fit=crop",
+        icon: "🎭",
+        description: "Disposable hair nets for kitchen staff",
+        category: "disposables",
+        onSale: false,
+        stock: 55,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "HN-100",
+            weight: "100 nets",
+            material: "Nylon mesh",
+            features: ["One size fits most", "Comfortable", "Effective coverage", "Food safe"],
+            usage: "Place over hair before food prep.",
+            warnings: "Single use only."
+        }
+    },
+    {
+        id: 12,
+        name: "Bin Liners (100pk)",
+        price: 12.50,
+        image: "https://images.unsplash.com/photo-1580910362090-8e3354e94f35?w=400&h=400&fit=crop",
+        icon: "🗑️",
+        description: "Heavy duty black bin bags 30L",
+        category: "disposables",
+        onSale: true,
+        originalPrice: 15.00,
+        stock: 25,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "BL-30L100",
+            weight: "100 bags",
+            material: "LDPE plastic",
+            features: ["30L capacity", "Heavy duty", "Black color", "Leak resistant"],
+            usage: "Line kitchen/restaurant bins.",
+            warnings: "Dispose responsibly."
+        }
+    },
+    {
+        id: 13,
+        name: "Khakhi Bags (500pk)",
+        price: 18.99,
+        image: "https://images.unsplash.com/photo-1587014611678-6fc3eb7ab5e3?w=400&h=400&fit=crop",
+        icon: "👜",
+        description: "Durable brown paper bags for takeaways",
+        category: "packaging",
+        onSale: false,
+        stock: 40,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "KB-500",
+            weight: "500 bags",
+            material: "Kraft paper",
+            features: ["Medium size", "Food safe", "Eco-friendly", "Strong handles"],
+            usage: "Pack takeaways and groceries.",
+            warnings: "Keep dry."
+        }
+    },
+    {   
+        id: 14, 
+        name: "kaylites", 
+        price: 4.99, 
+        image: "https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=400&h=400&fit=crop", 
+        icon: "🕯️", 
+        description: "Kaylites candles pack",
+        category: "packaging", 
+        stock: 35, 
+        details: {
+            brand: "Bradethy Supplies", 
+            sku: "KAYLITE", 
+            weight: "1000pk", 
+            features: ["Bulk", "White"], 
+            usage: "Tables", 
+            warnings: "Fire safety" 
+        } 
+    },
+    { 
+        id: 15, 
+        name: "plastic spoons", 
+        price: 5.50, 
+        image: "https://images.unsplash.com/photo-1622299606544-6b1051c2e41c?w=400&h=400&fit=crop", 
+        icon: "🥄", 
+        description: "Disposable plastic spoons bulk",
+        category: "disposables", 
+        stock: 70, 
+        details: { 
+            brand: "Bradethy Supplies", 
+            sku: "SPOON", 
+            weight: "1000pk", 
+            features: ["Food safe"], 
+            usage: "Serving", 
+            warnings: "Single use" 
+        } 
+    },
+    { 
+        id: 16, 
+        name: "plastic forks", 
+        price: 6.00, 
+        image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3133?w=400&h=400&fit=crop", 
+        icon: "🍴", 
+        description: "Disposable plastic forks bulk",
+        category: "disposables", 
+        stock: 65, 
+        details: { 
+            brand: "Bradethy Supplies", 
+            sku: "FORK", 
+            weight: "1000pk", 
+            features: ["Strong"], 
+            usage: "Meals", 
+            warnings: "Single use" 
+        } 
+    },
+    { 
+        id: 17, 
+        name: "plasticknives", 
+        price: 6.25, 
+        image: "https://images.unsplash.com/photo-1560807707-8cc77767d783?w=400&h=400&fit=crop", 
+        icon: "🔪", 
+        description: "Disposable plastic knives bulk",
+        category: "disposables", 
+        stock: 60, 
+        details: { 
+            brand: "Bradethy Supplies", 
+            sku: "KNIFE", 
+            weight: "1000pk", 
+            features: ["Serrated"], 
+            usage: "Cutting", 
+            warnings: "Careful"
+        } 
+    },
+    {  
+        id: 18,  
+        name: "clear cups",  
+        price: 4.99,  
+        image: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?w=400&h=400&fit=crop",  
+        icon: "🥤",  
+        description: "Disposable clear plastic cups bulk",  
+        category: "disposables",  
+        stock: 100,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CUPCLEAR",  
+            weight: "200pk",  
+            features: ["Transparent", "BPA-Free"],  
+            usage: "Cold drinks",  
+            warnings: "Not microwave safe"  
+        }  
+    },  
+    {  
+        id: 19,  
+        name: "coffee cups",  
+        price: 5.49,  
+        image: "https://images.unsplash.com/photo-1558857563-c0c3710a6a8b?w=400&h=400&fit=crop",  
+        icon: "☕",  
+        description: "Disposable hot beverage cups with lids",  
+        category: "disposables",  
+        stock: 90,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CUPCOFF",  
+            weight: "150pk",  
+            features: ["Insulated", "Leak-resistant"],  
+            usage: "Hot beverages",  
+            warnings: "Fill below rim"  
+        }  
+    },  
+    {  
+        id: 20,  
+        name: "toilet rolls",  
+        price: 8.99,  
+        image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=400&h=400&fit=crop",  
+        icon: "🧻",  
+        description: "Soft 2-ply toilet paper bulk pack",  
+        category: "paper products",  
+        stock: 75,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "TISSUE",  
+            weight: "24 rolls",  
+            features: ["2-Ply", "Septic-safe"],  
+            usage: "Bathroom",  
+            warnings: "Keep dry"  
+        }  
+    },  
+    {  
+        id: 21,  
+        name: "soft brooms",  
+        price: 3.99,  
+        image: "https://images.unsplash.com/photo-1585683642052-8c6c07c02222?w=400&h=400&fit=crop",  
+        icon: "🧹",  
+        description: "Soft bristle household brooms",  
+        category: "cleaning",  
+        stock: 50,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "BROOMSF",  
+            weight: "1 piece",  
+            features: ["Soft bristles", "Ergonomic handle"],  
+            usage: "Indoor sweeping",  
+            warnings: "Store upright"  
+        }  
+    },  
+    {  
+        id: 22,  
+        name: "mops",  
+        price: 5.99,  
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop",  
+        icon: "🪣",  
+        description: "Absorbent cotton mop with handle",  
+        category: "cleaning",  
+        stock: 45,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "MOPC",  
+            weight: "1 piece",  
+            features: ["Absorbent", "Machine washable"],  
+            usage: "Floor cleaning",  
+            warnings: "Wring before use"  
+        }  
+    },
+    {  
+        id: 23,  
+        name: "hard brooms",  
+        price: 4.49,  
+        image: "https://images.unsplash.com/photo-1585683642052-8c6c07c02222?w=400&h=400&fit=crop",  
+        icon: "🧹",  
+        description: "Stiff bristle outdoor brooms",  
+        category: "cleaning",  
+        stock: 50,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "BROOMH",  
+            weight: "1 piece",  
+            features: ["Stiff bristles", "Heavy duty"],  
+            usage: "Outdoor sweeping",  
+            warnings: "Not for indoor use"  
+        }  
+    },  
+    {  
+        id: 24,  
+        name: "cling wraps",  
+        price: 3.49,  
+        image: "https://images.unsplash.com/photo-1612966872813-f01d7b3de5a2?w=400&h=400&fit=crop",  
+        icon: "🫙",  
+        description: "Transparent plastic cling wrap rolls",  
+        category: "kitchen",  
+        stock: 80,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CLING",  
+            weight: "2 rolls",  
+            features: ["Self-adhesive", "Microwave safe"],  
+            usage: "Food wrapping",  
+            warnings: "Keep away from heat"  
+        }  
+    },  
+    {  
+        id: 25,  
+        name: "paper towels",  
+        price: 6.99,  
+        image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=400&fit=crop",  
+        icon: "🧻",  
+        description: "Strong absorbent paper towel rolls",  
+        category: "paper products",  
+        stock: 70,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "PAPERT",  
+            weight: "6 rolls",  
+            features: ["High absorbency", "Rip-perforated"],  
+            usage: "Cleaning spills",  
+            warnings: "Do not flush"  
+        }  
+    },  
+    {  
+        id: 26,  
+        name: "kebab sticks",  
+        price: 2.99,  
+        image: "https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&h=400&fit=crop",  
+        icon: "🥓",  
+        description: "Bamboo skewers for grilling",  
+        category: "disposables",  
+        stock: 100,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "KEBAB",  
+            weight: "300pk",  
+            features: ["Bamboo", "Splinter-free"],  
+            usage: "Grilling & catering",  
+            warnings: "Soak before grilling"  
+        }  
+    },  
+    {  
+        id: 27,  
+        name: "mutton cloths",  
+        price: 4.49,  
+        image: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=400&h=400&fit=crop",  
+        icon: "🧶",  
+        description: "Unbleached cotton mutton cloth bulk",  
+        category: "kitchen",  
+        stock: 65,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "MUTTON",  
+            weight: "10pk",  
+            features: ["Natural cotton", "Lint-free"],  
+            usage: "Straining & polishing",  
+            warnings: "Wash before first use"  
+        }  
+    },
+    {  
+        id: 28,  
+        name: "plastic carrier bags",  
+        price: 5.99,  
+        image: "https://images.unsplash.com/photo-1607083206869-4c7672e72d8a?w=400&h=400&fit=crop",  
+        icon: "🛍️",  
+        description: "Durable plastic shopping carrier bags",  
+        category: "disposables",  
+        stock: 200,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CARRIER",  
+            weight: "200pk",  
+            features: ["Heavy duty", "Handle cutouts"],  
+            usage: "Shopping & packaging",  
+            warnings: "Keep away from children"  
+        }  
+    },  
+    {  
+        id: 29,  
+        name: "paper plates",  
+        price: 3.99,  
+        image: "https://images.unsplash.com/photo-1610831903946-c8c5c6d4f287?w=400&h=400&fit=crop",  
+        icon: "🍽️",  
+        description: "Disposable paper plates bulk pack",  
+        category: "disposables",  
+        stock: 120,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "PPLATE",  
+            weight: "100pk",  
+            features: ["Soak-proof", "Microwave safe"],  
+            usage: "Serving food",  
+            warnings: "Not for heavy meals"  
+        }  
+    },  
+    {  
+        id: 30,  
+        name: "scouring powder",  
+        price: 2.49,  
+        image: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=400&h=400&fit=crop",  
+        icon: "🧼",  
+        description: "Multi-purpose scouring cleaning powder",  
+        category: "cleaning",  
+        stock: 85,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "SCOUR",  
+            weight: "500g",  
+            features: ["Abrasive", "Degreasing"],  
+            usage: "Surface scrubbing",  
+            warnings: "Wear gloves"  
+        }  
+    },  
+    {  
+        id: 31,  
+        name: "toothpicks",  
+        price: 1.49,  
+        image: "https://images.unsplash.com/photo-1612966872813-f01d7b3de5a2?w=400&h=400&fit=crop",  
+        icon: "🪥",  
+        description: "Wooden toothpicks box pack",  
+        category: "disposables",  
+        stock: 150,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "PICKS",  
+            weight: "500pk",  
+            features: ["Wooden", "Double-pointed"],  
+            usage: "Dental & catering",  
+            warnings: "Keep out of reach of children"  
+        }  
+    },  
+    {  
+        id: 32,  
+        name: "cremora satchets",  
+        price: 0.99,  
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=400&fit=crop",  
+        icon: "🥛",  
+        description: "Non-dairy creamer single serve satchets",  
+        category: "food & beverages",  
+        stock: 300,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CREMORA",  
+            weight: "100pk",  
+            features: ["Non-dairy", "Single serve"],  
+            usage: "Coffee & tea",  
+            warnings: "Store in cool dry place"  
+        }  
+    },
+    {  
+        id: 33,  
+        name: "sugar sachets",  
+        price: 0.99,  
+        image: "https://images.unsplash.com/photo-1581791538309-1552a5c5cbd1?w=400&h=400&fit=crop",  
+        icon: "🍚",  
+        description: "White sugar single serve satchets",  
+        category: "food & beverages",  
+        stock: 300,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "SUGAR",  
+            weight: "100pk",  
+            features: ["Fine grain", "Single serve"],  
+            usage: "Sweetening beverages",  
+            warnings: "Store in cool dry place"  
+        }  
+    },  
+    {  
+        id: 34,  
+        name: "pepper sachets",  
+        price: 0.99,  
+        image: "https://images.unsplash.com/photo-1596097635026-3c0c3c8b0b8b?w=400&h=400&fit=crop",  
+        icon: "🌶️",  
+        description: "Black pepper single serve satchets",  
+        category: "food & beverages",  
+        stock: 280,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "PEPPER",  
+            weight: "100pk",  
+            features: ["Fine ground", "Single serve"],  
+            usage: "Seasoning",  
+            warnings: "Store in cool dry place"  
+        }  
+    },  
+    {  
+        id: 35,  
+        name: "oil sachets",  
+        price: 1.49,  
+        image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=400&fit=crop",  
+        icon: "🫒",  
+        description: "Cooking oil single serve satchets",  
+        category: "food & beverages",  
+        stock: 250,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "OIL",  
+            weight: "50pk",  
+            features: ["Vegetable oil", "Single serve"],  
+            usage: "Cooking & frying",  
+            warnings: "Keep away from heat"  
+        }  
+    },  
+    {  
+        id: 36,  
+        name: "butter",  
+        price: 3.99,  
+        image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=400&fit=crop",  
+        icon: "🧈",  
+        description: "Salted dairy butter block",  
+        category: "food & beverages",  
+        stock: 60,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "BUTTER",  
+            weight: "500g",  
+            features: ["Salted", "Creamy"],  
+            usage: "Spreading & baking",  
+            warnings: "Refrigerate after opening"  
+        }  
+    },  
+    {  
+        id: 37,  
+        name: "jam",  
+        price: 2.99,  
+        image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop",  
+        icon: "🍓",  
+        description: "Mixed fruit jam jar",  
+        category: "food & beverages",  
+        stock: 55,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "JAM",  
+            weight: "400g",  
+            features: ["Mixed fruit", "No artificial colors"],  
+            usage: "Spreading on bread",  
+            warnings: "Refrigerate after opening"  
+        }  
+    },
+    {  
+        id: 38,  
+        name: "honey",  
+        price: 4.49,  
+        image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",  
+        icon: "🍯",  
+        description: "Pure natural honey jar",  
+        category: "food & beverages",  
+        stock: 50,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "HONEY",  
+            weight: "500g",  
+            features: ["Natural", "No additives"],  
+            usage: "Spreading & sweetening",  
+            warnings: "Not suitable for infants under 12 months"  
+        }  
+    },  
+    {  
+        id: 39,  
+        name: "peanut butter",  
+        price: 3.49,  
+        image: "https://images.unsplash.com/photo-1590075891028-5a5d2f5c9b2e?w=400&h=400&fit=crop",  
+        icon: "🥜",  
+        description: "Smooth peanut butter jar",  
+        category: "food & beverages",  
+        stock: 55,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "PNTBUT",  
+            weight: "400g",  
+            features: ["Smooth", "High protein"],  
+            usage: "Spreading & baking",  
+            warnings: "Contains nuts"  
+        }  
+    },  
+    {  
+        id: 40,  
+        name: "cereal packets",  
+        price: 5.99,  
+        image: "https://images.unsplash.com/photo-1530634924474-0e3295409a53?w=400&h=400&fit=crop",  
+        icon: "🥣",  
+        description: "Breakfast cereal family pack",  
+        category: "food & beverages",  
+        stock: 40,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "CEREAL",  
+            weight: "750g",  
+            features: ["Fortified", "Whole grain"],  
+            usage: "Breakfast",  
+            warnings: "Store in airtight container"  
+        }  
+    },  
+    {  
+        id: 41,  
+        name: "milk sachets",  
+        price: 1.29,  
+        image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop",  
+        icon: "🥛",  
+        description: "Long-life milk single serve satchets",  
+        category: "food & beverages",  
+        stock: 200,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "MILK",  
+            weight: "50pk",  
+            features: ["UHT treated", "Single serve"],  
+            usage: "Beverages & cereal",  
+            warnings: "Refrigerate after opening"  
+        }  
+    },  
+    {  
+        id: 42,  
+        name: "tea bags",  
+        price: 3.99,  
+        image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=400&fit=crop",  
+        icon: "🫖",  
+        description: "Premium black tea bags bulk pack",  
+        category: "food & beverages",  
+        stock: 90,  
+        details: {  
+            brand: "Bradethy Supplies",  
+            sku: "TEA",  
+            weight: "100pk",  
+            features: ["Black tea", "Individual wrapped"],  
+            usage: "Hot tea brewing",  
+            warnings: "Store in cool dry place"  
+        }  
+    },
+    {
+        id: 43,
+        name: "glass cleaner",
+        price: 4.49,
+        image: "https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=400&h=400&fit=crop",
+        icon: "🧴",
+        description: "Streak-free ammonia glass cleaner spray",
+        category: "cleaning supplies",
+        stock: 120,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "GLS-CLN",
+            weight: "32 fl oz",
+            features: ["Streak-free", "Ammonia-based", "Spray bottle"],
+            usage: "Spray on glass surfaces and wipe clean",
+            warnings: "Avoid contact with eyes. Use in well-ventilated area."
+        }
+    },
+    {
+        id: 44,
+        name: "air freshener",
+        price: 3.29,
+        image: "https://images.unsplash.com/photo-1602928298849-325cec8771c0?w=400&h=400&fit=crop",
+        icon: "🌸",
+        description: "Continuous aerosol air freshener, lavender scent",
+        category: "cleaning supplies",
+        stock: 200,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "AIR-FRSH",
+            weight: "8 oz",
+            features: ["Continuous spray", "Lavender scent", "Long-lasting"],
+            usage: "Place in room for continuous freshness",
+            warnings: "Flammable. Do not puncture. Keep away from heat."
+        }
+    },
+    {
+        id: 45,
+        name: "tissue boxes",
+        price: 2.99,
+        image: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&h=400&fit=crop",
+        icon: "📦",
+        description: "Premium 3-ply facial tissues, 100-count box",
+        category: "paper products",
+        stock: 300,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "TISS-BOX",
+            weight: "100 tissues per box",
+            features: ["3-ply", "Hypoallergenic", "Lotion-infused"],
+            usage: "Facial tissue for everyday use",
+            warnings: "Do not flush. Dispose in trash."
+        }
+    },
+    {
+        id: 46,
+        name: "face towels",
+        price: 6.99,
+        image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=400&h=400&fit=crop",
+        icon: "🧻",
+        description: "Soft microfiber face towels, set of 6",
+        category: "bath & linens",
+        stock: 80,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "FACE-TWL",
+            weight: "12 oz (set)",
+            features: ["Microfiber", "Quick-dry", "Set of 6"],
+            usage: "Gentle facial cleansing and drying",
+            warnings: "Machine wash cold. Do not use fabric softener."
+        }
+    },
+    {
+        id: 47,
+        name: "hand towels",
+        price: 8.49,
+        image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=400&h=400&fit=crop",
+        icon: "🧣",
+        description: "Premium cotton hand towels, set of 4",
+        category: "bath & linens",
+        stock: 60,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "HAND-TWL",
+            weight: "16 oz (set)",
+            features: ["100% Cotton", "Absorbent", "Set of 4", "Ring-spun"],
+            usage: "Hand drying in bathroom or kitchen",
+            warnings: "Machine wash warm. Tumble dry low."
+        }
+    },
+    {
+        id: 48,
+        name: "bed sheets",
+        price: 24.99,
+        image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=400&fit=crop",
+        icon: "🛏️",
+        description: "Queen-size microfiber bed sheet set, 4-piece",
+        category: "bath & linens",
+        stock: 45,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "BED-SHT",
+            weight: "2.5 lbs",
+            features: ["Microfiber", "Queen size", "4-piece set", "Wrinkle-resistant"],
+            usage: "Bedding for queen-size mattress",
+            warnings: "Machine wash cold. Do not bleach."
+        }
+    },
+    {
+        id: 49,
+        name: "pillow cases",
+        price: 8.99,
+        image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&h=400&fit=crop",
+        icon: "🛌",
+        description: "Soft cotton pillow cases, standard size, pack of 2",
+        category: "bath & linens",
+        stock: 110,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "PILLOW-CS",
+            weight: "8 oz (pack)",
+            features: ["100% Cotton", "Standard size", "Pack of 2", "Envelope closure"],
+            usage: "Pillow covering for standard pillows",
+            warnings: "Machine wash warm. Iron on medium if needed."
+        }
+    },
+    {
+        id: 50,
+        name: "mattress protectors",
+        price: 19.99,
+        image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&h=400&fit=crop",
+        icon: "🛡️",
+        description: "Waterproof queen-size mattress protector",
+        category: "bath & linens",
+        stock: 35,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "MATTR-PRT",
+            weight: "1.2 lbs",
+            features: ["Waterproof", "Breathable", "Queen size", "Deep pocket"],
+            usage: "Place over mattress for protection",
+            warnings: "Machine wash cold. Do not iron. Do not dry clean."
+        }
+    },
+    {
+        id: 51,
+        name: "ice bags",
+        price: 2.49,
+        image: "https://images.unsplash.com/photo-1563865436914-44f18c8015e6?w=400&h=400&fit=crop",
+        icon: "🧊",
+        description: "Heavy-duty ice cube bags, pack of 50",
+        category: "kitchen & dining",
+        stock: 250,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "ICE-BAG",
+            weight: "10 oz (pack)",
+            features: ["Heavy-duty", "Self-sealing", "Pack of 50"],
+            usage: "Fill with water, seal, and freeze for ice cubes",
+            warnings: "For food use only. Do not reuse for hot liquids."
+        }
+    },
+    {
+        id: 52,
+        name: "cooler boxes",
+        price: 34.99,
+        image: "https://images.unsplash.com/photo-1609342129163-f58f9c3eb0b8?w=400&h=400&fit=crop",
+        icon: "🧳",
+        description: "Insulated hard-shell cooler box, 25-liter capacity",
+        category: "kitchen & dining",
+        stock: 25,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "COOL-BOX",
+            weight: "4.5 lbs",
+            features: ["Insulated", "Hard-shell", "25L capacity", "Carry handle"],
+            usage: "Keeps food and drinks cold during transport",
+            warnings: "Hand wash only. Do not microwave. Not dishwasher safe."
+        }
+    },
+    {
+        id: 53,
+        name: "serving trays",
+        price: 12.99,
+        image: "https://images.unsplash.com/photo-1603888611513-0b829337de30?w=400&h=400&fit=crop",
+        icon: "🍽️",
+        description: "Plastic serving trays, set of 4, assorted colors",
+        category: "kitchen & dining",
+        stock: 70,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "SERV-TRAY",
+            weight: "1.5 lbs (set)",
+            features: ["BPA-free", "Lightweight", "Set of 4", "Dishwasher safe"],
+            usage: "Serving food and drinks to guests",
+            warnings: "Microwave safe in 30-second intervals only."
+        }
+    },
+    {
+        id: 54,
+        name: "cutlery trays",
+        price: 9.99,
+        image: "https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?w=400&h=400&fit=crop",
+        icon: "🔪",
+        description: "Expandable bamboo cutlery organizer tray",
+        category: "kitchen & dining",
+        stock: 40,
+        details: {
+            brand: "Bradethy Supplies",
+            sku: "CUTL-TRAY",
+            weight: "1 lb",
+            features: ["Bamboo", "Expandable design", "Multiple compartments", "Non-slip base"],
+            usage: "Organize forks, knives, spoons, and utensils in drawers",
+            warnings: "Wipe clean with damp cloth. Do not submerge in water."
+        }
+    }
 ];
 
-const CATEGORY_LABELS = {
-    'condiments-table': 'Condiments & Table Essentials',
-    'guest-amenities': 'Guest Amenities',
-    'cleaning-hygiene': 'Cleaning & Hygiene Supplies',
-    'kitchen-food-service': 'Kitchen & Food Service Supplies',
-    'beverages-drinks': 'Beverages & Drink Supplies',
-    'packaging-takeaway': 'Packaging & Takeaway Supplies',
-    'linen-room': 'Linen & Room Supplies',
-    'furniture-fixtures': 'Furniture & Fixtures',
-    'equipment-appliances': 'Equipment & Appliances',
-    'operational-supplies': 'Operational Supplies',
-    'all': 'All Products'
-};
+// Cart State
+let cart = [];
 
-// Alias map: maps legacy categories (from products.js) to the new category slugs
-const CATEGORY_ALIAS = {
-    'food-service': 'kitchen-food-service',
-    'amenities': 'guest-amenities',
-    'hospitality': 'guest-amenities',
-    'retail': 'packaging-takeaway',
-    'healthcare': 'operational-supplies',
-    'manufacturing': 'operational-supplies',
-    'aviation': 'operational-supplies',
-    'education': 'operational-supplies',
-    'technology': 'equipment-appliances',
-    'agriculture': 'operational-supplies',
-    'eco-friendly': 'operational-supplies',
-    'custom': 'operational-supplies'
-};
+// Wishlist State
+let wishlist = [];
 
-function mapCategory(input) {
-    // Accept either a product object or a legacy category string
-    if (!input) return 'operational-supplies';
-    let cat = typeof input === 'string' ? input : (input.category || '');
-    // If input is already one of our new slugs, return it
-    if (CATEGORY_ORDER.includes(cat)) return cat;
-    // Normalize legacy categories via alias map
-    const lower = String(cat).toLowerCase();
-    return CATEGORY_ALIAS[lower] || lower;
+// All products for filtering
+let filteredProducts = [...products];
+
+// DOM Elements
+const productGrid = document.getElementById('productGrid');
+const cartCount = document.getElementById('cartCount');
+const cartIcon = document.getElementById('cartIcon');
+const cartModal = document.getElementById('cartModal');
+const cartItems = document.getElementById('cartItems');
+const cartTotal = document.getElementById('cartTotal');
+const closeCart = document.getElementById('closeCart');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const contactForm = document.getElementById('contactForm');
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const nav = document.querySelector('.nav');
+const productSearch = document.getElementById('productSearch');
+const categoryFilter = document.getElementById('categoryFilter');
+const priceSort = document.getElementById('priceSort');
+const searchBtn = document.getElementById('searchBtn');
+const wishlistToggle = document.getElementById('wishlistToggle');
+const wishlistModal = document.getElementById('wishlistModal');
+const wishlistItems = document.getElementById('wishlistItems');
+const closeWishlist = document.getElementById('closeWishlist');
+const wishlistCount = document.getElementById('wishlistCount');
+const darkModeToggle = document.getElementById('darkModeToggle');
+const promoBanner = document.getElementById('promoBanner');
+const promoClose = document.getElementById('promoClose');
+const backToTop = document.getElementById('backToTop');
+const newsletterForm = document.getElementById('newsletterForm');
+const floatingCart = document.getElementById('floatingCart');
+const floatingCartCount = document.getElementById('floatingCartCount');
+const floatingWishlist = document.getElementById('floatingWishlist');
+const floatingWishlistCount = document.getElementById('floatingWishlistCount');
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    showLoading();
+    setTimeout(() => {
+
+        if (typeof initProducts === 'function') {
+            initProducts();
+        } else {
+            renderProducts();
+        }
+
+        hideLoading();
+        loadCart();
+        loadWishlist();
+        loadDarkMode();
+        checkPromoBanner();
+        if (typeof loadFilters === 'function') loadFilters();
+        setupEventListeners();
+        startCountdown();
+        initScrollAnimations();
+        registerSW();
+        
+    }, 800);
+});
+
+async function registerSW() {
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register('/sw.js');
+      console.log('PWA SW registered:', registration.scope);
+      
+      // Update available
+      registration.addEventListener('updatefound', () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed') {
+            if (navigator.serviceWorker.controller) {
+              showNotification('New update available! Refresh to get latest features.');
+            }
+          }
+        });
+      });
+    } catch (error) {
+      console.error('PWA SW registration failed:', error);
+    }
+  }
 }
 
-function setupNewsletterSignup() {
-    const forms = document.querySelectorAll('#newsletter-form');
-    forms.forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = form.querySelector('input[type="email"]').value;
-            
-            // Store email in localStorage
-            let subscribers = JSON.parse(localStorage.getItem('newsletter-subscribers') || '[]');
-            if (!subscribers.includes(email)) {
-                subscribers.push(email);
-                localStorage.setItem('newsletter-subscribers', JSON.stringify(subscribers));
-            }
-            
-            // Reset form and show confirmation
-            form.reset();
-            alert('Thank you for subscribing! Check your email for updates.');
+// Render Products
+function renderProducts() {
+    const isHomePage = location.pathname.endsWith('index.html') || location.pathname === '/';
+    const limit = isHomePage ? 6 : filteredProducts.length;
+    const productsToRender = filteredProducts.slice(0, limit);
+
+    productGrid.innerHTML = productsToRender.map(product => {
+        const isInWishlist = wishlist.some(item => item.id === product.id);
+        const discount = product.originalPrice ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
+        
+        // Stock status
+        let stockStatus = 'in-stock';
+        let stockText = 'In Stock';
+        if (product.stock === 0) {
+            stockStatus = 'out-of-stock';
+            stockText = 'Out of Stock';
+        } else if (product.stock <= 10) {
+            stockStatus = 'low-stock';
+            stockText = `Only ${product.stock} left`;
+        }
+        
+return `
+        <div class="product-card" role="listitem">
+            ${product.onSale ? `<span class="sale-badge">-${discount}%</span>` : ''}
+            <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" data-id="${product.id}" aria-label="Add ${product.name} to wishlist">
+                <i class="fas fa-heart"></i>
+            </button>
+            <div class="product-image" aria-label="${product.name} image">
+                <img src="${product.image}" alt="${product.name}" onerror="this.style.display='none';this.parentNode.textContent='${product.icon}'">
+            </div>
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <div class="stock-status ${stockStatus}">
+                    <span class="stock-dot"></span>
+                    <span>${stockText}</span>
+                </div>
+                <div class="price" aria-label="Price">
+                    ${product.originalPrice ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                    $${product.price.toFixed(2)}
+                </div>
+                <div class="product-actions">
+                    <button class="view-details" data-id="${product.id}" aria-label="View details for ${product.name}">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                    <button class="add-to-cart" data-id="${product.id}" aria-label="Add ${product.name} to cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    `}).join('');
+
+// Add event listeners to buttons
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            addToCart(productId);
+        });
+    });
+
+    // Add wishlist button listeners
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.closest('.wishlist-btn').dataset.id);
+            toggleWishlist(productId);
+        });
+    });
+    
+// View Details button listeners
+    document.querySelectorAll('.view-details').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.closest('.view-details').dataset.id);
+            openProductDetails(productId);
         });
     });
 }
 
-// ===== WhatsApp Configuration =====
-const WHATSAPP_NUMBER = '263772814702'; // Replace with your WhatsApp Business number (country code + number, no + or spaces)
-const WHATSAPP_API = 'https://api.whatsapp.com/send';
-
-// ===== Loyalty Configuration =====
-const POINTS_PER_DOLLAR = 0.05; // 1 point for every $20 spent
-let loyaltyPoints = parseInt(localStorage.getItem('loyaltyPoints') || '0', 10);
-
-function updateLoyaltyDisplay() {
-    const loyaltyEl = document.getElementById('loyalty-points');
-    if (loyaltyEl) {
-        loyaltyEl.textContent = `(${loyaltyPoints})`;
+// Open Product Details Modal
+function openProductDetails(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product || !product.details) return;
+    
+    // Create modal if not exists
+    let modal = document.getElementById('productDetailsModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'productDetailsModal';
+        modal.className = 'product-details-modal';
+        document.body.appendChild(modal);
     }
-}
-
-function addLoyaltyPoints(orderSubtotal) {
-    const pointsEarned = Math.floor(orderSubtotal * POINTS_PER_DOLLAR);
-    loyaltyPoints += pointsEarned;
-    localStorage.setItem('loyaltyPoints', loyaltyPoints);
-    updateLoyaltyDisplay();
-    return pointsEarned;
-}
-
-// ===== Cart Management =====
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function updateCartDisplay() {
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountElements = document.querySelectorAll('#cart-count');
-    cartCountElements.forEach(el => {
-        el.textContent = `(${cartCount})`;
+    
+    // Stock status
+    let stockStatus = 'in-stock';
+    let stockText = 'In Stock';
+    if (product.stock === 0) {
+        stockStatus = 'out-of-stock';
+        stockText = 'Out of Stock';
+    } else if (product.stock <= 10) {
+        stockStatus = 'low-stock';
+        stockText = `Only ${product.stock} left`;
+    }
+    
+    // Build features list
+    const featuresList = product.details.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('');
+    
+modal.innerHTML = `
+        <div class="details-modal-content">
+            <button class="details-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="details-image">
+                <img src="${product.image}" alt="${product.name}" style="width:100%;max-width:200px;border-radius:8px;" onerror="this.style.display='none';this.parentNode.innerHTML='${product.icon}'">
+            </div>
+            <div class="details-info">
+                <span class="details-category">${product.category}</span>
+                <h2>${product.name}</h2>
+                <div class="stock-status ${stockStatus}">
+                    <span class="stock-dot"></span>
+                    <span>${stockText}</span>
+                </div>
+                <div class="details-price">
+                    ${product.originalPrice ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                    $${product.price.toFixed(2)}
+                </div>
+                <p class="details-description">${product.description}</p>
+                
+                <div class="details-specs">
+                    <h4><i class="fas fa-box"></i> Product Details</h4>
+                    <ul>
+                        <li><strong>Brand:</strong> ${product.details.brand}</li>
+                        <li><strong>SKU:</strong> ${product.details.sku}</li>
+                        <li><strong>Weight:</strong> ${product.details.weight}</li>
+                        ${product.details.material ? `<li><strong>Material:</strong> ${product.details.material}</li>` : ''}
+                    </ul>
+                </div>
+                
+                <div class="details-specs">
+                    <h4><i class="fas fa-list"></i> Features</h4>
+                    <ul class="features-list">${featuresList}</ul>
+                </div>
+                
+                <div class="details-specs">
+                    <h4><i class="fas fa-flask"></i> Ingredients</h4>
+                    <p class="ingredients">${product.details.ingredients}</p>
+                </div>
+                
+                <div class="details-specs">
+                    <h4><i class="fas fa-directions"></i> Usage</h4>
+                    <p>${product.details.usage}</p>
+                </div>
+                
+                <div class="details-warnings">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Warnings</h4>
+                    <p>${product.details.warnings}</p>
+                </div>
+                
+                <div class="details-actions">
+                    <button class="add-to-cart details-add-cart" data-id="${product.id}">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    
+    // Close button
+    modal.querySelector('.details-close').addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+    
+    // Close on outside click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+    
+    // Add to cart from modal
+    modal.querySelector('.details-add-cart')?.addEventListener('click', (e) => {
+        const productId = parseInt(e.target.dataset.id);
+        addToCart(productId);
+        modal.classList.remove('active');
     });
 }
 
-function addToCart(productId, quantity = 1) {
+// Add to Cart
+function addToCart(productId) {
     const product = products.find(p => p.id === productId);
     const existingItem = cart.find(item => item.id === productId);
 
     if (existingItem) {
-        existingItem.quantity += quantity;
+        existingItem.quantity++;
     } else {
-        cart.push({ ...product, quantity });
+        cart.push({ ...product, quantity: 1 });
     }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartDisplay();
-    alert('Product added to cart!');
+    updateCart();
+    saveCart();
+    showNotification(`${product.name} added to cart!`);
 }
 
+// Remove from Cart
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    // Re-render cart UI without reloading the page
-    updateCartDisplay();
-    if (document.getElementById('cart-content')) displayCart();
+    updateCart();
+    saveCart();
 }
 
-function updateQuantity(productId, quantity) {
-    const item = cart.find(item => item.id === productId);
+// Update Cart UI
+function updateCart() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+    // Update floating cart button count
+    if (floatingCartCount) {
+        floatingCartCount.textContent = totalItems;
+    }
+
+    cartItems.innerHTML = cart.length === 0
+        ? '<p class="empty-cart">Your cart is empty</p>'
+        : cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <span>$${item.price.toFixed(2)}</span>
+                    <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                        <span class="quantity-display">${item.quantity}</span>
+                        <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" data-id="${item.id}">Remove</button>
+            </div>
+        `).join('');
+
+    // Update total
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = `$${total.toFixed(2)}`;
+
+    // Add quantity control listeners
+    document.querySelectorAll('.quantity-btn.decrease').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            decreaseQuantity(productId);
+        });
+    });
+
+    document.querySelectorAll('.quantity-btn.increase').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            increaseQuantity(productId);
+        });
+    });
+
+    // Add remove listeners
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            removeFromCart(productId);
+        });
+    });
+}
+
+// Increase Quantity
+function increaseQuantity(productId) {
+    const item = cart.find(i => i.id === productId);
     if (item) {
-        const qty = Math.max(1, parseInt(quantity, 10) || 1);
-        item.quantity = qty;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        // Update UI in-place
-        updateCartDisplay();
-        if (document.getElementById('cart-content')) displayCart();
+        item.quantity++;
+        updateCart();
+        saveCart();
     }
 }
 
-// ===== Cart Page Functions =====
-function displayCart() {
-    const cartContainer = document.getElementById('cart-content');
-    const emptyCart = document.getElementById('empty-cart');
-    const cartItems = document.getElementById('cart-items');
-    const subtotalEl = document.getElementById('subtotal');
-    const shippingEl = document.getElementById('shipping');
-    const taxEl = document.getElementById('tax');
-    const totalEl = document.getElementById('total');
-
-    if (cart.length === 0) {
-        cartContainer.style.display = 'none';
-        emptyCart.style.display = 'block';
-        return;
-    }
-
-    cartContainer.style.display = 'grid';
-    emptyCart.style.display = 'none';
-
-    cartItems.innerHTML = '';
-    let subtotal = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>
-                <strong>${item.name}</strong>
-                <br><small>${item.category}</small>
-            </td>
-            <td>$${item.price.toFixed(2)}</td>
-            <td>
-                <div class="quantity-control">
-                    <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
-                    <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${item.id}, this.value)">
-                    <button onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-                </div>
-            </td>
-            <td>$${itemTotal.toFixed(2)}</td>
-            <td><button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button></td>
-        `;
-        cartItems.appendChild(row);
-    });
-
-    const shipping = 0;
-    const tax = (subtotal * 0.1);
-    const total = subtotal + shipping + tax;
-
-    subtotalEl.textContent = '$' + subtotal.toFixed(2);
-    shippingEl.textContent = '$' + shipping.toFixed(2);
-    taxEl.textContent = '$' + tax.toFixed(2);
-    totalEl.textContent = '$' + total.toFixed(2);
-}
-
-// ===== Lazy Loading Images =====
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const images = document.querySelectorAll('img[data-lazy]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.lazy;
-                    img.removeAttribute('data-lazy');
-                    observer.unobserve(img);
-                }
-            });
-        });
-        images.forEach(img => imageObserver.observe(img));
+// Decrease Quantity
+function decreaseQuantity(productId) {
+    const item = cart.find(i => i.id === productId);
+    if (item && item.quantity > 1) {
+        item.quantity--;
+        updateCart();
+        saveCart();
+    } else if (item && item.quantity === 1) {
+        removeFromCart(productId);
     }
 }
 
-// ===== Products Page Functions =====
-function displayProducts(productsToShow = products, containerId = 'products-list') {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    if (productsToShow.length === 0) {
-            // Diagnostic help: show whether the global `products` array is present and its length
-            const totalProducts = (typeof products !== 'undefined' && Array.isArray(products)) ? products.length : 'not defined';
-            const activeLink = document.querySelector('.category-filter a.active');
-            const activeCategory = activeLink ? activeLink.dataset.category : 'none';
-            container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No products found matching your criteria.<br><small>Total products source: ${totalProducts}. Active category: ${activeCategory}.</small></p>`;
-        return;
-    }
-
-    productsToShow.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        const mappedKey = mapCategory(product.category);
-        const displayCategory = CATEGORY_LABELS[mappedKey] || (product.category || '').toUpperCase();
-        productCard.innerHTML = `
-            <div class=\"product-image\"><img src=\"${product.image}\" data-lazy=\"${product.image}\" alt=\"${product.name} - Premium packaging solution\" loading=\"lazy\" onerror=\"this.onerror=null;this.src='https://picsum.photos/400/300?random=${product.id}'\" style=\"width: 100%; height: 100%; object-fit: cover;\"></div>
-            <div class=\"product-info\">
-                <div class=\"product-category\">${displayCategory}</div>
-                <h3 class=\"product-name\">${product.name}</h3>
-                <p class=\"product-description\">${product.description.substring(0, 60)}...</p>
-                <div class=\"product-price\" itemProp=\"price\">$${product.price.toFixed(2)}</div>
-                <div class=\"product-stock\">${product.stock ? '✓ In Stock' : '✗ Out of Stock'}</div>
-                <div class=\"product-actions\">
-                    <button class=\"btn-view\" onclick=\"showProductdetail(${product.id})\">View Details</button>
-                    <button class=\"btn-add\" onclick=\"addToCart(${product.id})\">Add to Cart</button>
-                </div>
-            </div>
-        `;
-        container.appendChild(productCard);
-    });
-
-    // Initialize lazy loading after DOM update
-    initLazyLoading();
-
-    const productCount = document.getElementById('product-count');
-    if (productCount) {
-        productCount.textContent = `Showing ${productsToShow.length} products`;
+// Save Cart to localStorage
+function saveCart() {
+    try {
+        localStorage.setItem(' bradethyCart', JSON.stringify(cart));
+    } catch (e) {
+        console.error('Failed to save cart:', e);
+        showNotification('Warning: Cart not saved locally');
     }
 }
 
-function displayFeaturedProducts() {
-    // Show hospitality-focused featured items first
-    if (typeof products === 'undefined' || !Array.isArray(products)) {
-        const containerErr = document.getElementById('featured-products') || document.querySelector('.featured-grid');
-        if (containerErr) containerErr.innerHTML = '<p style="padding: 20px; text-align: center; color: #555;">Product data not loaded. Check that <code>js/products.js</code> is included before <code>js/script.js</code>.</p>';
-        return;
-    }
-    const featured = products.filter(p => mapCategory(p) === 'guest-amenities').slice(0, 4);
-    const container = document.getElementById('featured-products') || document.querySelector('.featured-grid');
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    if (featured.length === 0) {
-        container.innerHTML = '<p style="padding: 20px; text-align: center; color: #555;">No featured products found at the moment.</p>';
-        return;
-    }
-
-    featured.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card featured-product';
-        productCard.itemScope = 'itemscope';
-        productCard.itemType = 'https://schema.org/Product';
-    const mappedKey = mapCategory(product.category);
-    const displayCategory = CATEGORY_LABELS[mappedKey] || (product.category || '').toUpperCase();
-    productCard.innerHTML = `
-            <div class=\"featured-badge\">★ Featured</div>
-            <div class=\"product-image\"><img src=\"${product.image}\" data-lazy=\"${product.image}\" alt=\"${product.name} - Featured premium packaging solution\" loading=\"lazy\" itemProp=\"image\" onerror=\"this.onerror=null;this.src='https://picsum.photos/400/300?random=${product.id}'\" style=\"width: 100%; height: 100%; object-fit: cover;\"></div>
-            <div class=\"product-info\">
-                <div class=\"product-category\">${displayCategory}</div>
-                <h3 class=\"product-name\" itemProp=\"name\">${product.name}</h3>
-                <p class=\"product-description\" itemProp=\"description\">${product.description.substring(0, 60)}...</p>
-                <div class=\"product-price\" itemProp=\"price\">$${product.price.toFixed(2)}</div>
-                <div itemProp=\"priceCurrency\" style=\"display:none;\">USD</div>
-                <div class=\"product-stock\">${product.stock ? '✓ In Stock' : '✗ Out of Stock'}</div>
-                <div class=\"product-actions\">
-                    <button class=\"btn-view\" onclick=\"showProductdetail(${product.id})\">View Details</button>
-                    <button class=\"btn-add\" onclick=\"addToCart(${product.id})\">Add to Cart</button>
-                </div>
-            </div>
-        `;
-        container.appendChild(productCard);
-    });
-
-    // Initialize lazy loading after DOM update
-    initLazyLoading();
-}
-
-// ===== Pagination =====
-let currentPage = 1;
-const productsPerPage = 8;
-let currentFilteredProducts = [];
-
-function calculateTotalPages() {
-    return Math.ceil(currentFilteredProducts.length / productsPerPage);
-}
-
-function getProductsForPage(pageNumber) {
-    const startIndex = (pageNumber - 1) * productsPerPage;
-    const endIndex = startIndex + productsPerPage;
-    return currentFilteredProducts.slice(startIndex, endIndex);
-}
-
-function renderPaginationButtons() {
-    const paginationContainer = document.getElementById('pagination');
-    if (!paginationContainer) return;
-    
-    paginationContainer.innerHTML = '';
-    const totalPages = calculateTotalPages();
-    
-    if (totalPages <= 1) {
-        paginationContainer.style.display = 'none';
-        return;
-    }
-    
-    paginationContainer.style.display = 'flex';
-    
-    for (let i = 1; i <= totalPages; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
-        button.className = i === currentPage ? 'active' : '';
-        button.onclick = () => {
-            currentPage = i;
-            renderProductsForCurrentPage();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-        paginationContainer.appendChild(button);
-    }
-}
-
-function renderProductsForCurrentPage() {
-    const productsForPage = getProductsForPage(currentPage);
-    displayProducts(productsForPage, 'products-list');
-}
-
-function activateCategoryFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const category = params.get('category');
-    if (!category) return;
-
-    const categoryLinks = document.querySelectorAll('.category-filter a');
-    if (!categoryLinks || categoryLinks.length === 0) return;
-
-    categoryLinks.forEach(link => link.classList.remove('active'));
-    const target = Array.from(categoryLinks).find(link => link.dataset.category === category);
-    if (target) {
-        target.classList.add('active');
-    }
-}
-
-function setupHomeCategoryCards() {
-    const industryCards = document.querySelectorAll('.industry-card[data-category]');
-    industryCards.forEach(card => {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => {
-            const category = card.dataset.category || 'all';
-            const href = category === 'all' ? 'products.html' : `products.html?category=${encodeURIComponent(category)}`;
-            window.location.href = href;
-        });
-    });
-}
-
-// Call once DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Guard: ensure products data is loaded before referencing it
-    if (typeof products === 'undefined' || !Array.isArray(products)) {
-        console.warn('products data not available when initializing default category - aborting this init block.');
-        return;
-    }
-    // Default to hospitality category on initial load (unless ?category=... is provided)
-    const params = new URLSearchParams(window.location.search);
-    const categoryParam = params.get('category');
-
-    if (categoryParam) {
-        const mappedParam = mapCategory(categoryParam);
-        currentFilteredProducts = products.filter(p => mapCategory(p) === mappedParam);
-        // activate corresponding category link if present (use mapped slug)
-        const targetLink = document.querySelector(`.category-filter a[data-category="${mappedParam}"]`);
-        if (targetLink) {
-            document.querySelectorAll('.category-filter a').forEach(l => l.classList.remove('active'));
-            targetLink.classList.add('active');
+// Load Cart from localStorage
+function loadCart() {
+    try {
+        const saved = localStorage.getItem(' bradethyCart');
+        if (saved) {
+            cart = JSON.parse(saved);
+            updateCart();
         }
-    } else {
-        // No category in URL — focus the site on Guest Amenities first
-        const hospitalityLink = document.querySelector('.category-filter a[data-category="guest-amenities"]');
-        if (hospitalityLink) {
-            document.querySelectorAll('.category-filter a').forEach(l => l.classList.remove('active'));
-            hospitalityLink.classList.add('active');
-            currentFilteredProducts = products.filter(p => mapCategory(p) === 'guest-amenities');
-        } else {
-            currentFilteredProducts = [...products];
-        }
-    }
-
-    currentPage = 1;
-    renderProductsForCurrentPage();
-    renderPaginationButtons();
-    displayFeaturedProducts();   // show featured section (hospitality items)
-    setupHomeCategoryCards();
-});
-
-// ===== Filtering Functions =====
-function filterProducts() {
-    let filtered = [...products];
-
-    // Category filter
-    const activeLink = document.querySelector('.category-filter a.active');
-    let activeCategory = activeLink ? activeLink.dataset.category : 'all';
-
-    if (activeCategory !== 'all') {
-        filtered = filtered.filter(p => mapCategory(p) === activeCategory);
-    }
-
-    // Price filter
-    const priceRange = document.getElementById('price-range');
-    const priceValue = document.getElementById('price-value');
-
-    if (priceRange) {
-        const maxPrice = parseInt(priceRange.value);
-        if (priceValue) priceValue.textContent = maxPrice;
-        filtered = filtered.filter(p => p.price <= maxPrice);
-    }
-
-    // Sorting
-    const sortSelect = document.getElementById('sort-select');
-    if (sortSelect) {
-        const sortBy = sortSelect.value;
-        if (sortBy === 'name') {
-            filtered.sort((a, b) => a.name.localeCompare(b.name));
-        } else if (sortBy === 'price-low') {
-            filtered.sort((a, b) => a.price - b.price);
-        } else if (sortBy === 'price-high') {
-            filtered.sort((a, b) => b.price - a.price);
-        }
-    }
-
-    currentFilteredProducts = filtered;
-    currentPage = 1;
-    renderProductsForCurrentPage();
-    renderPaginationButtons();
-}
-
-// Attach listeners once
-document.addEventListener('DOMContentLoaded', () => {
-    // Guard: if products isn't loaded yet, avoid running filterProducts which references it
-    if (typeof products === 'undefined' || !Array.isArray(products)) {
-        console.warn('products data not available when attaching filters - aborting this init block.');
-        return;
-    }
-    activateCategoryFromUrl();
-    const categoryLinks = document.querySelectorAll('.category-filter a');
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            e.preventDefault();
-            categoryLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            filterProducts();
-        });
-    });
-
-    const priceRange = document.getElementById('price-range');
-    if (priceRange) {
-        priceRange.addEventListener('input', e => {
-            document.getElementById('price-value').textContent = e.target.value;
-            filterProducts();
-        });
-    }
-
-    const sortSelect = document.getElementById('sort-select');
-    if (sortSelect) {
-        sortSelect.addEventListener('change', () => filterProducts());
-    }
-
-    // Initial load
-    filterProducts();
-});
-
-// ===== Checkout Page Functions =====
-function displayCheckoutSummary() {
-    const itemsContainer = document.getElementById('checkout-items');
-    const subtotalEl = document.getElementById('checkout-subtotal');
-    const shippingEl = document.getElementById('checkout-shipping');
-    const taxEl = document.getElementById('checkout-tax');
-    const totalEl = document.getElementById('checkout-total');
-    const paymentEl = document.getElementById('checkout-payment');
-    const form = document.getElementById('checkout-form');
-
-    if (!itemsContainer) return;
-
-    itemsContainer.innerHTML = '';
-    let subtotal = 0;
-
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'checkout-item';
-        itemDiv.innerHTML = `
-            <span>${item.name} x${item.quantity}</span>
-            <span>$${itemTotal.toFixed(2)}</span>
-        `;
-        itemsContainer.appendChild(itemDiv);
-    });
-
-    function updateCheckoutTotal() {
-        const shippingRadios = document.querySelectorAll('input[name="shipping"]');
-        let selectedShipping = 10;
-        shippingRadios.forEach(radio => {
-            if (radio.checked) {
-                if (radio.value === 'standard') selectedShipping = 10;
-                if (radio.value === 'express') selectedShipping = 25;
-                if (radio.value === 'overnight') selectedShipping = 50;
-            }
-        });
-
-        const paymentRadios = document.querySelectorAll('input[name="payment"]');
-        let selectedPayment = 'Cash on Delivery';
-        paymentRadios.forEach(radio => {
-            if (radio.checked) {
-                if (radio.value === 'cash_on_delivery') selectedPayment = 'Cash on Delivery';
-                if (radio.value === 'mobile_money') selectedPayment = 'Mobile Money / Bank Transfer';
-            }
-        });
-
-        const tax = (subtotal * 0.1);
-        const total = subtotal + selectedShipping + tax;
-
-        if (subtotalEl) subtotalEl.textContent = '$' + subtotal.toFixed(2);
-        if (shippingEl) shippingEl.textContent = '$' + selectedShipping.toFixed(2);
-        if (taxEl) taxEl.textContent = '$' + tax.toFixed(2);
-        if (paymentEl) paymentEl.textContent = selectedPayment;
-        if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
-    }
-
-    updateCheckoutTotal();
-
-    // Payment method change handler
-    const paymentRadios = document.querySelectorAll('input[name="payment"]');
-    const mobilePaymentDetails = document.getElementById('mobile-payment-details');
-    paymentRadios.forEach(radio => {
-        radio.addEventListener('change', () => {
-            if (radio.value === 'mobile_money') {
-                mobilePaymentDetails.style.display = 'block';
-            } else {
-                mobilePaymentDetails.style.display = 'none';
-            }
-            updateCheckoutTotal();
-        });
-    });
-
-    // Shipping method change handler
-    const shippingRadios = document.querySelectorAll('input[name="shipping"]');
-    shippingRadios.forEach(radio => {
-        radio.addEventListener('change', updateCheckoutTotal);
-    });
-
-    // Form submission
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Collect form data
-            const buyerName = document.getElementById('name').value;
-            const buyerCompany = document.getElementById('company').value;
-            const buyerEmail = document.getElementById('email').value;
-            const buyerPhone = document.getElementById('phone').value;
-            
-            // Shipping method
-            const shippingRadios = document.querySelectorAll('input[name="shipping"]');
-            let selectedShipping = 'standard';
-            let shippingCost = 10;
-            shippingRadios.forEach(radio => {
-                if (radio.checked) {
-                    selectedShipping = radio.value;
-                    if (radio.value === 'standard') shippingCost = 10;
-                    if (radio.value === 'express') shippingCost = 25;
-                    if (radio.value === 'overnight') shippingCost = 50;
-                }
-            });
-            
-            // Payment method
-            const paymentRadios = document.querySelectorAll('input[name="payment"]');
-            let selectedPayment = 'cash_on_delivery';
-            paymentRadios.forEach(radio => {
-                if (radio.checked) {
-                    selectedPayment = radio.value;
-                }
-            });
-            
-            // Build WhatsApp message
-            let message = '🛍️ *NEW ORDER FROM BRADETHY*\n\n';
-            
-            message += '👤 *BUYER INFORMATION*\n';
-            message += `Name: ${buyerName}\n`;
-            if (buyerCompany) {
-                message += `Company: ${buyerCompany}\n`;
-            }
-            message += `Email: ${buyerEmail}\n`;
-            message += `Phone: ${buyerPhone}\n`;
-            
-            const address = document.getElementById('address') ? document.getElementById('address').value.trim() : '';
-            const city = document.getElementById('city') ? document.getElementById('city').value.trim() : '';
-            const state = document.getElementById('state') ? document.getElementById('state').value.trim() : '';
-            const zip = document.getElementById('zip') ? document.getElementById('zip').value.trim() : '';
-            const country = document.getElementById('country') ? document.getElementById('country').value.trim() : '';
-
-            if (address || city || state || zip || country) {
-                message += '\n📍 *SHIPPING ADDRESS*\n';
-                if (address) message += `${address}\n`;
-                if (city || state || zip) message += `${city}${city && (state||zip)?', ': ''}${state}${(state && zip)?' ':''}${zip ? zip : ''}\n`;
-                if (country) message += `${country}\n`;
-            }
-
-            message += `\n🚚 *SHIPPING METHOD*\n`;
-            message += `${selectedShipping.charAt(0).toUpperCase() + selectedShipping.slice(1)} Shipping ($${shippingCost.toFixed(2)})\n`;
-            
-            message += `\n💳 *PAYMENT METHOD*\n`;
-            if (selectedPayment === 'cash_on_delivery') {
-                message += 'Cash on Delivery\n';
-            } else {
-                message += 'Mobile Money / Bank Transfer\n';
-                const mobileNetwork = document.getElementById('mobile-network').value;
-                const accountNumber = document.getElementById('account-number').value;
-                const accountName = document.getElementById('account-name').value;
-                if (mobileNetwork) message += `Network/Bank: ${mobileNetwork}\n`;
-                if (accountNumber) message += `Account/Phone: ${accountNumber}\n`;
-                if (accountName) message += `Account Name: ${accountName}\n`;
-            }
-            
-            message += '\n📦 *ORDER ITEMS*\n';
-            let subtotal = 0;
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                subtotal += itemTotal;
-                message += `${item.name} x${item.quantity} = $${itemTotal.toFixed(2)}\n`;
-            });
-            
-            message += `\n💰 *ORDER SUMMARY*\n`;
-            message += `Subtotal: $${subtotal.toFixed(2)}\n`;
-            message += `Delivery: $${shippingCost.toFixed(2)}\n`;
-            const tax = (subtotal * 0.1);
-            message += `Tax (10%): $${tax.toFixed(2)}\n`;
-            const total = subtotal + shippingCost + tax;
-            message += `*TOTAL: $${total.toFixed(2)}*\n\n`;
-            
-            // Add loyalty points for this purchase
-            const pointsEarned = addLoyaltyPoints(subtotal);
-            message += `🎁 *LOYALTY POINTS*\n`;
-            message += `You earned ${pointsEarned} points from this order!\n`;
-            message += `Your total points: ${loyaltyPoints}\n\n`;
-            
-            message += '✅ Thank you for your order! We will contact you shortly to confirm the details and process payment.';
-
-            // Send to WhatsApp
-            sendToWhatsApp(message);
-        });
+    } catch (e) {
+        console.error('Failed to load cart:', e);
     }
 }
 
-function sendToWhatsApp(message) {
-    // Encode message for URL
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `${WHATSAPP_API}?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
-    
-    // Open WhatsApp in new tab
-    window.open(whatsappUrl, '_blank');
-    
-    // Clear cart and redirect after delay
-    setTimeout(() => {
-        alert('Thank you for your order! Our team will contact you shortly via WhatsApp to confirm your order and process payment.');
-        cart = [];
-        localStorage.setItem('cart', JSON.stringify(cart));
-        window.location.href = 'index.html';
-    }, 1000);
-}
-
-// ===== Contact Form =====
-function setupContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = document.getElementById('contact-name').value;
-        const email = document.getElementById('contact-email').value;
-        const message = document.getElementById('contact-message').value;
-        const subject = document.getElementById('contact-subject').value;
-
-        // Validate form
-        if (!name || !email || !subject || !message) {
-            showMessage('Please fill in all required fields.', 'error');
-            return;
-        }
-
-        // Show success message
-        showMessage('Thank you for contacting us! We will get back to you soon.', 'success');
-        form.reset();
-    });
-
-    function showMessage(msg, type) {
-        const messageEl = document.getElementById('form-message');
-        messageEl.textContent = msg;
-        messageEl.className = `form-message ${type}`;
-        messageEl.style.display = 'block';
-        setTimeout(() => {
-            messageEl.style.display = 'none';
-        }, 5000);
-    }
-}
-
-// ===== Product Detail Modal =====
-function showProductdetail(productId) {
+// Wishlist Functions
+function toggleWishlist(productId) {
     const product = products.find(p => p.id === productId);
-    if (!product) return;
-
-    const modalBody = document.getElementById('modal-body');
-    const mappedKey = mapCategory(product.category);
-    const displayCategory = CATEGORY_LABELS[mappedKey] || (product.category || '').toUpperCase();
-    modalBody.innerHTML = `
-        <div class="product-modal">
-            <div class="product-modal-image">
-                <img src="${product.image}" alt="${product.name}">
-            </div>
-            <div class="product-modal-details">
-                <h2>${product.name}</h2>
-                <div class="product-modal-category">${displayCategory}</div>
-                <p class="product-modal-description">${product.description}</p>
-                <div class="product-modal-price">$${product.price.toFixed(2)}</div>
-                <div class="product-modal-stock">${product.stock ? '✓ In Stock' : '✗ Out of Stock'}</div>
-                
-                <div class="product-modal-features">
-                    <h4>Features:</h4>
-                    <ul>
-                        ${product.features.map(feature => `<li>${feature}</li>`).join('')}
-                    </ul>
-                </div>
-                
-                <div class="product-modal-quantity">
-                    <label for="qty-input">Quantity:</label>
-                    <input type="number" id="qty-input" min="1" value="1">
-                </div>
-                
-                <button class="btn btn-primary" onclick="addToCart(${product.id}, parseInt(document.getElementById('qty-input').value))">Add to Cart</button>
-            </div>
-        </div>
-    `;
-
-    const modal = document.getElementById('modal');
-    modal.classList.add('active');
+    const exists = wishlist.find(item => item.id === productId);
+    
+    if (exists) {
+        wishlist = wishlist.filter(item => item.id !== productId);
+        showNotification(`${product.name} removed from wishlist`);
+    } else {
+        wishlist.push(product);
+        showNotification(`${product.name} added to wishlist!`);
+    }
+    
+    updateWishlistDisplay();
+    saveWishlist();
+    renderProducts();
 }
 
-// ===== Modal Close Handler =====
-function setupModal() {
-    const modal = document.getElementById('modal');
-    const closeBtn = document.querySelector('.close');
-
-    if (modal && closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
+function updateWishlistDisplay() {
+    wishlistCount.textContent = wishlist.length;
+    // Update floating wishlist button count
+    if (floatingWishlistCount) {
+        floatingWishlistCount.textContent = wishlist.length;
+    }
+    
+    wishlistItems.innerHTML = wishlist.length === 0
+        ? '<p class="empty-wishlist">Your wishlist is empty</p>'
+        : wishlist.map(item => `
+            <div class="wishlist-item">
+                <div class="wishlist-item-info">
+                    <h4>${item.name}</h4>
+                    <span>$${item.price.toFixed(2)}</span>
+                </div>
+                <div>
+                    <button class="btn-add-to-cart" data-id="${item.id}">Add to Cart</button>
+                    <button class="remove-wishlist" data-id="${item.id}">Remove</button>
+                </div>
+            </div>
+        `).join('');
+    
+    // Add add to cart listeners
+    document.querySelectorAll('.btn-add-to-cart').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            addToCart(productId);
+            toggleWishlist(productId);
         });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
+    });
+    
+    // Add remove listeners
+    document.querySelectorAll('.remove-wishlist').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const productId = parseInt(e.target.dataset.id);
+            toggleWishlist(productId);
         });
+    });
+}
+
+function saveWishlist() {
+    try {
+        localStorage.setItem(' bradethyWishlist', JSON.stringify(wishlist));
+    } catch (e) {
+        console.error('Failed to save wishlist:', e);
     }
 }
 
-// ===== Initialize Page =====
-// Ensure products.js is loaded. If not present, attempt to load it dynamically.
-function ensureProductsLoaded() {
-    return new Promise((resolve, reject) => {
-        if (typeof products !== 'undefined' && Array.isArray(products)) return resolve();
+function loadWishlist() {
+    try {
+        const saved = localStorage.getItem(' bradethyWishlist');
+        if (saved) {
+            wishlist = JSON.parse(saved);
+            updateWishlistDisplay();
+        }
+    } catch (e) {
+        console.error('Failed to load wishlist:', e);
+    }
+}
 
-        // If a dynamic loader is already present, listen for its events
-        const existing = document.querySelector('script[data-products-dynamic]');
-        if (existing) {
-            existing.addEventListener('load', () => resolve());
-            existing.addEventListener('error', () => reject(new Error('Failed to load products.js')));
+// Search and Filter Functions
+function filterProducts() {
+    const searchTerm = productSearch.value.toLowerCase();
+    const category = categoryFilter.value;
+    const sort = priceSort.value;
+    
+    filteredProducts = products.filter(product => {
+        const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                            product.description.toLowerCase().includes(searchTerm);
+        const matchesCategory = !category || product.category === category;
+        return matchesSearch && matchesCategory;
+    });
+    
+    // Sort
+    if (sort === 'price-low') {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (sort === 'price-high') {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    } else if (sort === 'name') {
+        filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    
+    renderProducts();
+}
+
+function saveFilters() {
+    try {
+        localStorage.setItem(' bradethyFilters', JSON.stringify({
+            search: productSearch.value,
+            category: categoryFilter.value,
+            sort: priceSort.value
+        }));
+    } catch (e) {
+        console.error('Failed to save filters:', e);
+    }
+}
+
+function loadFilters() {
+    try {
+        const saved = localStorage.getItem(' bradethyFilters');
+        if (saved) {
+            const filters = JSON.parse(saved);
+            productSearch.value = filters.search || '';
+            categoryFilter.value = filters.category || '';
+            priceSort.value = filters.sort || '';
+            filterProducts();
+        }
+    } catch (e) {
+        console.error('Failed to load filters:', e);
+    }
+}
+
+// Dark Mode Functions
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    const icon = darkModeToggle.querySelector('i');
+    if (isDark) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+    
+    saveDarkMode();
+}
+
+function saveDarkMode() {
+    try {
+        localStorage.setItem(' bradethyDarkMode', document.body.classList.contains('dark-mode'));
+    } catch (e) {
+        console.error('Failed to save dark mode:', e);
+    }
+}
+
+function loadDarkMode() {
+    try {
+        const saved = localStorage.getItem(' bradethyDarkMode');
+        if (saved === 'true') {
+            document.body.classList.add('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    } catch (e) {
+        console.error('Failed to load dark mode:', e);
+    }
+}
+
+// Promotional Banner Functions
+function closePromoBanner() {
+    promoBanner.style.display = 'none';
+    try {
+        localStorage.setItem(' bradethyPromoDismissed', 'true');
+    } catch (e) {
+        console.error('Failed to save promo dismissal:', e);
+    }
+}
+
+function checkPromoBanner() {
+    try {
+        const dismissed = localStorage.getItem(' bradethyPromoDismissed');
+        if (dismissed === 'true') {
+            promoBanner.style.display = 'none';
+        }
+    } catch (e) {
+        console.error('Failed to check promo:', e);
+    }
+}
+
+// Back to Top Functions
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleScroll() {
+    if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+}
+
+// Newsletter Functions
+function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('newsletterEmail').value;
+    
+    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showNotification('Thank you for subscribing!');
+        document.getElementById('newsletterEmail').value = '';
+    } else {
+        showNotification('Please enter a valid email address');
+    }
+}
+
+// FAQ Accordion Functions
+function setupFAQAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.faq-item');
+            const isActive = item.classList.contains('active');
+            
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
+
+// Generate Cart Summary for WhatsApp
+function generateCartSummary(name, phone, address) {
+    let summary = `*Bradethy Order*\n\n`;
+    summary += `Customer: ${name}\n`;
+    if (phone) summary += `Phone: ${phone}\n`;
+    if (address) summary += `Shipping: ${address}\n\n`;
+    summary += `*Cart Summary:*\n`;
+
+    cart.forEach(item => {
+        summary += `${item.icon} ${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    summary += `\n*Total: $${total.toFixed(2)}*\n\n`;
+    summary += `Thank you for shopping at Bradethy! 🚀`;
+
+    return summary;
+}
+
+// Show Notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
+
+// Event Listeners
+function setupEventListeners() {
+    // Keyboard support for cart icon and hamburger
+    const toggleCart = () => {
+        cartModal.classList.toggle('active');
+        cartModal.setAttribute('aria-hidden', !cartModal.classList.contains('active'));
+        if (cartModal.classList.contains('active')) {
+            trapFocus(cartModal);
+        }
+    };
+
+    cartIcon.addEventListener('click', toggleCart);
+    cartIcon.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleCart();
+        }
+    });
+
+    const toggleMobileNav = () => {
+        nav.classList.toggle('active');
+        hamburgerBtn.classList.toggle('active');
+        hamburgerBtn.setAttribute('aria-expanded', nav.classList.contains('active'));
+    };
+
+    hamburgerBtn.addEventListener('click', toggleMobileNav);
+    hamburgerBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMobileNav();
+        }
+    });
+
+// Close cart
+    closeCart.addEventListener('click', () => {
+        cartModal.classList.remove('active');
+    });
+
+    // Wishlist modal
+    wishlistToggle.addEventListener('click', () => {
+        wishlistModal.classList.toggle('active');
+        wishlistModal.setAttribute('aria-hidden', !wishlistModal.classList.contains('active'));
+    });
+
+    wishlistToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            wishlistModal.classList.toggle('active');
+        }
+    });
+
+    closeWishlist.addEventListener('click', () => {
+        wishlistModal.classList.remove('active');
+    });
+
+    // Floating buttons - Cart
+    if (floatingCart) {
+        floatingCart.addEventListener('click', () => {
+            cartModal.classList.toggle('active');
+            cartModal.setAttribute('aria-hidden', !cartModal.classList.contains('active'));
+            if (cartModal.classList.contains('active')) {
+                trapFocus(cartModal);
+            }
+        });
+    }
+
+    // Floating buttons - Wishlist
+    if (floatingWishlist) {
+        floatingWishlist.addEventListener('click', () => {
+            wishlistModal.classList.toggle('active');
+            wishlistModal.setAttribute('aria-hidden', !wishlistModal.classList.contains('active'));
+        });
+    }
+
+    // Search and filter
+    productSearch.addEventListener('input', filterProducts);
+    categoryFilter.addEventListener('change', filterProducts);
+    priceSort.addEventListener('change', filterProducts);
+    searchBtn.addEventListener('click', filterProducts);
+
+    // Dark mode toggle
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    // Promo banner close
+    promoClose.addEventListener('click', closePromoBanner);
+
+    // Back to top button
+    window.addEventListener('scroll', handleScroll);
+    backToTop.addEventListener('click', scrollToTop);
+
+    // Newsletter form
+    newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+
+    // FAQ accordion
+    setupFAQAccordion();
+
+// Checkout - Send cart summary to WhatsApp
+    checkoutBtn.addEventListener('click', async () => {
+        if (cart.length === 0) {
+            showNotification('Your cart is empty!');
             return;
         }
 
-        const s = document.createElement('script');
-        s.src = 'js/products.js';
-        s.async = false;
-        s.setAttribute('data-products-dynamic', '1');
-        s.onload = () => resolve();
-        s.onerror = () => {
-            // Primary dynamic script injection failed; attempt a fetch+eval fallback
-            fetch(s.src).then(resp => {
-                if (!resp.ok) throw new Error('Fetch failed: ' + resp.status);
-                return resp.text();
-            }).then(code => {
-                try {
-                    // Evaluate the file contents to define `products` in this scope
-                    (0, eval)(code);
-                    if (typeof products !== 'undefined' && Array.isArray(products)) {
-                        resolve();
-                    } else {
-                        throw new Error('products not defined after eval');
-                    }
-                } catch (e) {
-                    reject(new Error('Eval fallback failed: ' + e.message));
-                }
-            }).catch(err => reject(new Error('Fallback fetch failed: ' + err.message)));
-        };
-        document.head.appendChild(s);
-    });
-}
+        // Set loading state
+        const originalText = checkoutBtn.textContent;
+        checkoutBtn.disabled = true;
+        checkoutBtn.textContent = 'Processing...';
+        showNotification('Preparing your order...');
 
-function updateYear() {
-    const yearElement = document.getElementById('year');
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
-}
+        // Simulate brief processing
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-function setupMobileNav() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+        try {
+            // Prompt for customer details
+            const customerName = prompt('Please enter your name:') || 'Customer';
+            const customerPhone = prompt('Please enter your phone number (optional):') || '';
+            const shippingAddress = prompt('Please enter your shipping address (optional):') || '';
 
-    if (!navToggle || !navMenu) return;
+            // Generate cart summary
+            const summary = generateCartSummary(customerName, customerPhone, shippingAddress);
 
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
+            // WhatsApp URL
+            const whatsappNumber = '260760678894';
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(summary)}`;
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (event) => {
-        if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
-            navMenu.classList.remove('active');
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Clear cart after sending
+            cart = [];
+            updateCart();
+            saveCart();
+            cartModal.classList.remove('active');
+            showNotification('Order sent to WhatsApp! Check your phone for confirmation.');
+        } catch (e) {
+            showNotification('Checkout interrupted. Please try again.');
+        } finally {
+            checkoutBtn.disabled = false;
+            checkoutBtn.textContent = originalText;
         }
     });
+
+    // Contact form with validation
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (validateContactForm()) {
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+            contactForm.querySelectorAll('.error').forEach(el => el.remove());
+        }
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(link.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
 }
 
-function initPage() {
-    updateYear();
-    setupMobileNav();
-    updateCartDisplay();
-    updateLoyaltyDisplay();
-    setupNewsletterSignup();
+// Add notification styles dynamically
+const style = document.createElement('style');
+style.textContent = '.notification {' +
+    'position: fixed;' +
+    'bottom: 20px;' +
+    'left: 50%;' +
+    'transform: translateX(-50%) translateY(100px);' +
+    'background: linear-gradient(135deg, var(--primary), var(--secondary));' +
+    'color: white;' +
+    'padding: 1rem 2rem;' +
+    'border-radius: 50px;' +
+    'box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);' +
+    'z-index: 2000;' +
+    'transition: transform 0.3s ease;' +
+'}' +
+'.notification.show {' +
+    'transform: translateX(-50%) translateY(0);' +
+'}' +
+'.empty-cart {' +
+    'text-align: center;' +
+    'color: var(--gray);' +
+    'padding: 2rem;' +
+'}' +
+'.error {' +
+    'color: #ef4444;' +
+    'font-size: 0.875rem;' +
+    'margin-top: 0.25rem;' +
+'}';
+document.head.appendChild(style);
 
-    // Home page
-    if (document.getElementById('featured-products')) {
-        ensureProductsLoaded().then(() => displayFeaturedProducts()).catch(() => {
-            const containerErr = document.getElementById('featured-products') || document.querySelector('.featured-grid');
-            if (containerErr) containerErr.innerHTML = '<p style="padding: 20px; text-align: center; color: #555;">Product data not loaded. Please ensure <code>js/products.js</code> is available.</p>';
-        });
+// Utility functions for validation and accessibility
+function validateContactForm() {
+    // Add name, email, message fields to form if not exist
+    let nameField = contactForm.querySelector('input[type="text"]');
+    let emailField = contactForm.querySelector('input[type="email"]');
+    let messageField = contactForm.querySelector('textarea');
+
+    const name = nameField.value.trim();
+    const email = emailField.value.trim();
+    const message = messageField.value.trim();
+
+    let isValid = true;
+
+    // Name validation
+    if (!name || name.length < 2) {
+        showFieldError(nameField, 'Name must be at least 2 characters');
+        isValid = false;
     }
 
-    // Products page
-    if (document.getElementById('products-list')) {
-        ensureProductsLoaded().then(() => filterProducts()).catch(() => {
-            const container = document.getElementById('products-list');
-            if (container) container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Product data not loaded. Please ensure <code>js/products.js</code> is included.</p>';
-        });
+    // Email validation
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showFieldError(emailField, 'Please enter a valid email');
+        isValid = false;
     }
 
-    // Cart page
-    if (document.getElementById('cart-content')) {
-        displayCart();
+    // Message validation
+    if (!message || message.length < 10) {
+        showFieldError(messageField, 'Message must be at least 10 characters');
+        isValid = false;
     }
 
-    // Checkout page
-    if (document.getElementById('checkout-items')) {
-        displayCheckoutSummary();
-    }
-
-    // Contact page
-    setupContactForm();
-
-    // Modal
-    setupModal();
+    return isValid;
 }
 
-// Run on page load
-document.addEventListener('DOMContentLoaded', initPage);
+function showFieldError(field, message) {
+    let error = field.parentNode.querySelector('.error');
+    if (error) error.remove();
+    error = document.createElement('div');
+    error.className = 'error';
+    error.textContent = message;
+    field.parentNode.appendChild(error);
+}
 
-// Fallback: if product data isn't available at DOMContentLoaded (script order issues),
-// poll briefly and initialize product views once `products` becomes available.
-(function waitForProducts() {
-    if (typeof products !== 'undefined' && Array.isArray(products)) return;
-    let waited = 0;
-    const interval = setInterval(() => {
-        if (typeof products !== 'undefined' && Array.isArray(products)) {
-            clearInterval(interval);
-            // Initialize product sections if present
-            if (document.getElementById('featured-products')) displayFeaturedProducts();
-            if (document.getElementById('products-list')) {
-                // Ensure filters are attached and products rendered
-                try { activateCategoryFromUrl(); } catch (e) { /* ignore */ }
-                try { filterProducts(); } catch (e) { /* ignore */ }
+function trapFocus(element) {
+    const focusable = element.querySelectorAll('button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (!first) return;
+
+    element.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                last.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === last) {
+                first.focus();
+                e.preventDefault();
             }
         }
-        waited += 100;
-        if (waited > 3000) {
-            clearInterval(interval);
-            console.warn('waitForProducts: products not available after 3s');
+    });
+}
+
+// Global event listeners for closing modals/nav
+document.addEventListener('click', (e) => {
+    if (e.target === cartModal) {
+        cartModal.classList.remove('active');
+        cartModal.setAttribute('aria-hidden', 'true');
+    }
+    if (e.target === wishlistModal) {
+        wishlistModal.classList.remove('active');
+        wishlistModal.setAttribute('aria-hidden', 'true');
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        cartModal.classList.remove('active');
+        cartModal.setAttribute('aria-hidden', 'true');
+        wishlistModal.classList.remove('active');
+        wishlistModal.setAttribute('aria-hidden', 'true');
+        nav.classList.remove('active');
+        hamburgerBtn.classList.remove('active');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+});
+
+function showLoading() {
+    if (loadingSpinner) loadingSpinner.classList.add('active');
+}
+
+function hideLoading() {
+    if (loadingSpinner) loadingSpinner.classList.remove('active');
+}
+
+// Dynamic current year
+document.addEventListener('DOMContentLoaded', () => {
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});
+
+// Order Tracking (Demo without backend)
+const orderInput = document.getElementById('orderInput');
+const trackBtn = document.getElementById('trackBtn');
+const trackingResult = document.getElementById('trackingResult');
+
+if (trackBtn && orderInput) {
+    trackBtn.addEventListener('click', () => {
+        const orderNum = orderInput.value.trim();
+        if (orderNum.length < 3) {
+            showNotification('Please enter a valid order number');
+            return;
         }
-    }, 100);
-})();
+        
+        // Demo: Show tracking steps based on random progress (simulates backend)
+        trackingResult.classList.add('show');
+        
+        // Random progress for demo (1-4)
+        const currentStep = Math.floor(Math.random() * 4) + 1;
+        const steps = trackingResult.querySelectorAll('.tracking-step');
+        
+        steps.forEach((step, index) => {
+            step.classList.remove('completed', 'active');
+            if (index + 1 < currentStep) {
+                step.classList.add('completed');
+            } else if (index + 1 === currentStep) {
+                step.classList.add('active');
+            }
+        });
+        
+        // Update carrier and delivery info
+        const carriers = ['UPS', 'FedEx', 'DHL', 'USPS'];
+        const carrierInfo = document.getElementById('carrierInfo');
+        if (carrierInfo) {
+            carrierInfo.textContent = carriers[Math.floor(Math.random() * carriers.length)];
+        }
+        
+        const deliveryDate = document.getElementById('deliveryDate');
+        if (deliveryDate) {
+            const days = Math.floor(Math.random() * 3) + 2;
+            deliveryDate.textContent = `${days}-${days + 2} business days`;
+        }
+        
+        showNotification(`Tracking order: ${orderNum}`);
+    });
+}
+
+// ========== COUNTDOWN TIMER ==========
+function startCountdown() {
+    const bannerEl = document.getElementById('countdownBanner');
+    const timerEl = document.getElementById('countdownTimer');
+    const expiryEl = document.getElementById('countdownExpiry');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    if (!bannerEl || !hoursEl || !minutesEl || !secondsEl) return;
+    
+    const STORAGE_KEY = 'flashSaleEndTime';
+    const SALE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
+    
+    let countdownInterval;
+    let isPaused = false;
+    
+    function updateDisplay(timeLeft) {
+        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        hoursEl.textContent = hours.toString().padStart(2, '0');
+        minutesEl.textContent = minutes.toString().padStart(2, '0');
+        secondsEl.textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    function handleExpiry() {
+        timerEl.style.display = 'none';
+        expiryEl.style.display = 'block';
+        bannerEl.classList.add('expired');
+        localStorage.removeItem(STORAGE_KEY);
+        
+        // Auto restart new sale in 30 seconds
+        setTimeout(() => {
+            startNewSale();
+        }, 30000);
+    }
+    
+    function startNewSale() {
+        const now = Date.now();
+        const endTime = now + SALE_DURATION;
+        localStorage.setItem(STORAGE_KEY, endTime.toString());
+        
+        expiryEl.style.display = 'none';
+        timerEl.style.display = 'flex';
+        bannerEl.classList.remove('expired');
+        
+        updateDisplay(SALE_DURATION);
+    }
+    
+    function getTimeLeft() {
+        const endTimeStr = localStorage.getItem(STORAGE_KEY);
+        if (!endTimeStr) {
+            // No existing sale, start new one
+            startNewSale();
+            return SALE_DURATION;
+        }
+        
+        const endTime = parseInt(endTimeStr);
+        const now = Date.now();
+        const timeLeft = endTime - now;
+        
+        if (timeLeft <= 0) {
+            handleExpiry();
+            return 0;
+        }
+        
+        return timeLeft;
+    }
+    
+    // Page Visibility API - pause when tab hidden
+    document.addEventListener('visibilitychange', () => {
+        isPaused = document.hidden;
+    });
+    
+    // Main countdown loop
+    function tick() {
+        if (isPaused) return;
+        
+        const timeLeft = getTimeLeft();
+        if (timeLeft > 0) {
+            updateDisplay(timeLeft);
+        }
+    }
+    
+    // Start timer
+    tick(); // Initial display
+    countdownInterval = setInterval(tick, 1000);
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        clearInterval(countdownInterval);
+    });
+}
+
+// ========== SCROLL ANIMATIONS ==========
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.testimonial-card, .faq-item, .trust-badge, .recently-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    animatedElements.forEach(el => {
+        el.classList.add('animate-on-scroll');
+        observer.observe(el);
+    });
+}

@@ -3,247 +3,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bradethy provides premium, industry-specific packaging solutions for hospitality, healthcare, retail, food service, manufacturing, and all sectors. Custom branding, eco-friendly options available.">
-    <meta name="keywords" content="premium packaging, custom packaging, industry packaging solutions, hospitality packaging, eco-friendly packaging, branded packaging">
-    <meta name="author" content="Bradethy">
-    <meta name="theme-color" content="#2c3e50">
-    <link rel="canonical" href="https://www.bradethy.com/">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Bradethy - Premium Packaging Solutions for All Industries">
-    <meta property="og:description" content="Discover premium packaging solutions tailored to your industry. Bradethy specializes in quality, durable, and eco-friendly packaging across all sectors.">
-    <meta property="og:type" content="business.business">
-    <meta property="og:url" content="https://www.bradethy.com/">
-    <meta property="og:image" content="https://www.bradethy.com/og-image.jpg">
-    
-    <!-- Twitter Card Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bradethy - Premium Packaging Solutions">
-    <meta name="twitter:description" content="Industry-specific packaging solutions with custom branding and eco-friendly options.">
-    <meta name="twitter:image" content="https://www.bradethy.com/twitter-image.jpg">
-    
-        <title>Bradethy - Hospitality Packaging Solutions</title>
+    <title> Bradethy Store - Condiments, Amenities & Cleaning Supplies</title>
+    <meta name="description" content="Premium condiments, guest amenities, and cleaning supplies for hotels. Fast delivery and bulk orders welcome.">
+    <meta property="og:title" content=" Bradethy Store - Condiments, Amenities & Cleaning Supplies">
+    <meta property="og:description" content="Premium  Bradethy delivered fast. Condiments, amenities & cleaning supplies.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/10b981/ffffff?text=Hotel+Essentials">
+    <meta property="og:url" content="https:// bradethy.example.com">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content=" Bradethy">
+    <link rel="apple-touch-icon" href="images/icon-192.png">
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">BRADETHY</div>            
-            <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>            
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html" class="cart-link">Cart <span id="cart-count">(0)</span></a></li>
-                <li><a href="#" class="loyalty-link">Points <span id="loyalty-points">(0)</span></a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" style="background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(52, 152, 219, 0.7)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&h=600&fit=crop') center/cover no-repeat; background-attachment: fixed;">
-        <div class="hero-content">
-                <h1>Hospitality-Focused Packaging, Designed for Hotels & Restaurants</h1>
-                <p>Specialised packaging solutions tailored to the hospitality sector — from guest amenities to event and room-service packaging. High quality, branded, and sustainable options to elevate guest experience.</p>
-                <a href="products.html" class="btn btn-primary">Explore Hospitality Products</a>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="featured">
-        <div class="container">
-            <h2>Featured Products</h2>
-            <div class="featured-grid" id="featured-products">
-                <!-- Products loaded by JavaScript -->
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <p>We use cookies to enhance your shopping experience and analyze site traffic. <a href="#">Learn more</a></p>
+            <div class="cookie-buttons">
+                <button class="btn-cookie btn-accept" id="cookieAccept">Accept</button>
+                <button class="btn-cookie btn-decline" id="cookieDecline">Decline</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Promotional Banner -->
+    <div class="promo-banner" id="promoBanner">
         <div class="container">
-            <h2>Why Businesses Choose Bradethy Packaging</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Cross-Industry Expertise</h3>
-                    <p>Comprehensive knowledge of packaging needs across retail, manufacturing, healthcare, food & beverage, and more.</p>
+            <span>🎉 <strong>FREE shipping on orders over $50!</strong> <br>Use code: <span class="promo-code">HOTEL15</span> for 15% off!</span>
+            <button class="promo-close" id="promoClose" aria-label="Close promotion">&times;</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo"> BRADETHY</div>
+
+            <nav class="nav" id="mainNav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="header-actions">
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="wishlist-toggle" id="wishlistToggle" aria-label="Open wishlist" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count" id="wishlistCount">0</span>
+                </button>
+                <div class="cart-icon" id="cartIcon" role="button" aria-label="Open shopping cart" tabindex="0">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount" aria-live="polite">0</span>
                 </div>
-                <div class="feature-card">
-                    <h3>Premium Quality Materials</h3>
-                    <p>Durable, high-performance materials that protect products while enhancing brand appeal.</p>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
+                    <span> </span>
+                    <span> </span>
+                    <span> </span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <h1>Premium  Bradethy</h1>
+                    <p>Condiments, Amenities & Cleaning Supplies for Hotels</p>
+                    <div class="hero-cta">
+                        <a href="#products" class="btn">Shop Now</a>
+                        <a href="products.html" class="btn btn-ghost">View All</a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <div class="hero-trust-item">
+                            <i class="fas fa-truck-fast" aria-hidden="true"></i>
+                            <span>Fast Delivery</span>
+                        </div>
+                        <div class="hero-trust-item">
+                            <i class="fas fa-badge-check" aria-hidden="true"></i>
+                            <span>Quality Assured</span>
+                        </div>
+                        <div class="hero-trust-item">
+                            <i class="fas fa-people-carry" aria-hidden="true"></i>
+                            <span>Bulk Orders Welcome</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>Custom Branding Solutions</h3>
-                    <p>Tailored packaging designs that reflect your brand identity and resonate with your customers.</p>
+
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hero-visual-frame">
+                        <img src="images/back.png" alt="" loading="eager" decoding="async" onload="this.closest('.hero-visual-frame')?.classList.add('loaded');" />
+                    </div>
+                    <div class="hero-visual-badge">
+                        <span><i class="fas fa-sparkles" aria-hidden="true"></i> Stay-ready in hours, not days or weeks</span>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>Eco-Friendly Options</h3>
-                    <p>Sustainable packaging alternatives that reduce environmental impact and support corporate responsibility goals.</p>
+            </div>
+        </section>
+
+        
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-header">
+                    <h2>About  Bradethy</h2>
+                    <p class="about-subtitle">Premium essentials for hospitality teams — built for fast re-stocking and dependable supply.</p>
                 </div>
-                <div class="feature-card">
-                    <h3>Functional Excellence</h3>
-                    <p>Smart, practical designs that balance usability, protection, and visual presentation.</p>
+
+                <div class="about-grid">
+                    <div class="about-card">
+                        <i class="fas fa-truck-fast" aria-hidden="true"></i>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick fulfillment so you can keep guest rooms and kitchens running without delays.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <i class="fas fa-badge-check" aria-hidden="true"></i>
+                        <h3>Quality Assured</h3>
+                        <p>Curated, hotel-grade products with consistent quality across every order.</p>
+                    </div>
+
+                    <div class="about-card">
+                        <i class="fas fa-people-carry" aria-hidden="true"></i>
+                        <h3>Bulk-Friendly</h3>
+                        <p>Order in volume with competitive pricing—perfect for hotels, lodges, and restaurants.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <h3>Reliable Supply Chain</h3>
-                    <p>Consistent quality and timely delivery to keep your business operations running smoothly.</p>
+
+                <div class="about-hero-actions">
+                    <a class="btn btn-contact" href="about.html"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn more</a>
+                    <a class="btn btn-ghost" href="products.html"><i class="fas fa-bag-shopping" aria-hidden="true"></i> Shop supplies</a>
                 </div>
-                <div class="feature-card">
-                    <h3>Innovative Design Support</h3>
-                    <p>Creative packaging concepts backed by industry trends and consumer insights to help you stand out.</p>
+            </div>
+        </section>
+
+        <!-- Order Tracking Section 
+        <section class="order-tracking" id="order-tracking">
+            <div class="container">
+                <h2>Track Your Order</h2>
+                <p class="tracking-subtitle">Enter your order number to track shipment status</p>
+                <div class="tracking-form">
+                    <input type="text" id="orderInput" placeholder="Enter Order Number (e.g., HE-12345)" required>
+                    <button type="button" class="btn" id="trackBtn">Track Order</button>
                 </div>
-                <div class="feature-card">
-                    <h3>Scalable Solutions</h3>
-                    <p>Flexible packaging options that grow with your business, from startups to global enterprises.</p>
+                <div class="tracking-result" id="trackingResult">
+                    <div class="tracking-steps">
+                        <div class="tracking-step" data-step="1">
+                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                            <div class="step-info">
+                                <h4>Order Placed</h4>
+                                <p>Your order has been received</p>
+                            </div>
+                        </div>
+                        <div class="tracking-step" data-step="2">
+                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                            <div class="step-info">
+                                <h4>Processing</h4>
+                                <p>Preparing your items</p>
+                            </div>
+                        </div>
+                        <div class="tracking-step" data-step="3">
+                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                            <div class="step-info">
+                                <h4>Shipped</h4>
+                                <p>On the way</p>
+                            </div>
+                        </div>
+                        <div class="tracking-step" data-step="4">
+                            <div class="step-icon"><i class="fas fa-check"></i></div>
+                            <div class="step-info">
+                                <h4>Delivered</h4>
+                                <p>Package delivered</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tracking-info">
+                        <p><strong>Carrier:</strong> <span id="carrierInfo">UPS</span></p>
+                        <p><strong>Estimated Delivery:</strong> <span id="deliveryDate">3-5 business days</span></p>
+                    </div>
+                </div>
+                <div class="help-text">
+                    <p><i class="fas fa-info-circle"></i> Need help? <a href="#contact">Contact our support team</a></p>
+                </div>
+            </div>
+        </section>-->
+
+        <!-- Countdown Timer Banner -->
+        <div class="countdown-banner" id="countdownBanner">
+            <div class="countdown-container">
+                <span class="countdown-label"><i class="fas fa-fire"></i> Flash Sale Ends In:</span>
+                <div class="countdown-timer" id="countdownTimer">
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="hours">24</span>
+                        <span class="countdown-text">Hours</span>
+                    </div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                    <div class="countdown-unit">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-text">Seconds</span>
+                    </div>
+                </div>
+                <span class="countdown-code">Use code: <strong>HOTEL20</strong> for 20% off!</span>
+                <div class="countdown-expiry" id="countdownExpiry" style="display: none;">
+                    <i class="fas fa-clock"></i> Sale Ended! New sale starts soon...
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Industries Section -->
-    <section class="industries">
-        <div class="container">
-                <h2>Serving the Hospitality Sector</h2>
-                <p class="section-subtitle">Currently focusing on hospitality — hotels, resorts, restaurants and event catering. We're tailoring our range to this sector first and will expand to other industries soon.</p>
-            <div class="industries-grid">
-                <div class="industry-card" data-category="condiments-table">
-                    <div class="industry-icon">�️</div>
-                    <h3>Condiments &amp; Table</h3>
-                    <p>Napkins, sachets, cutlery wraps &amp; table essentials</p>
+        <section class="products" id="products">
+            <div class="container">
+                <h2>Our Products</h2>
+                
+                <!-- Search and Filter Bar -->
+                <div class="search-filter-bar">
+                    <div class="search-box">
+                        <input type="text" id="productSearch" placeholder="Search products..." aria-label="Search products">
+                        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filter-group">
+                        <select id="categoryFilter" aria-label="Filter by category">
+                            <option value="">All Categories</option>
+                            <option value="amenities">Guest Amenities</option>
+                            <option value="cleaning">Cleaning Supplies</option>
+                            <option value="bedding">Bedding & Towels</option>
+                            <option value="beverages">Beverages</option>
+                        </select>
+                        <select id="priceSort" aria-label="Sort by price">
+                            <option value="">Sort by: Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A-Z</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="industry-card" data-category="guest-amenities">
-                    <div class="industry-icon">🛎️</div>
-                    <h3>Guest Amenities</h3>
-                    <p>Guest toiletry kits, welcome packs &amp; in-room items</p>
+                
+                <div class="product-grid" id="productGrid" role="list" aria-live="polite">
+                    <div class="loading-spinner" id="loadingSpinner" aria-label="Loading products">
+                        <div class="spinner"></div>
+                    </div>
                 </div>
-                <div class="industry-card" data-category="cleaning-hygiene">
-                    <div class="industry-icon">🧼</div>
-                    <h3>Cleaning &amp; Hygiene</h3>
-                    <p>Cleansers, disposables and janitorial supplies</p>
-                </div>
-                <div class="industry-card" data-category="kitchen-food-service">
-                    <div class="industry-icon">�</div>
-                    <h3>Kitchen &amp; Food Service</h3>
-                    <p>Food packaging, serving solutions &amp; kitchen essentials</p>
-                </div>
-                <div class="industry-card" data-category="beverages-drinks">
-                    <div class="industry-icon">🥤</div>
-                    <h3>Beverages &amp; Drinks</h3>
-                    <p>Bottles, cups, sachets and beverage presentation</p>
-                </div>
-                <div class="industry-card" data-category="packaging-takeaway">
-                    <div class="industry-icon">📦</div>
-                    <h3>Packaging &amp; Takeaway</h3>
-                    <p>Boxes, bags and takeaway containers</p>
-                </div>
-                <div class="industry-card" data-category="linen-room">
-                    <div class="industry-icon">🛏️</div>
-                    <h3>Linen &amp; Room Supplies</h3>
-                    <p>Towels, linens, robes and room accessories</p>
-                </div>
-                <div class="industry-card" data-category="furniture-fixtures">
-                    <div class="industry-icon">🪑</div>
-                    <h3>Furniture &amp; Fixtures</h3>
-                    <p>Small furniture, fixtures and display items</p>
-                </div>
-                <div class="industry-card" data-category="equipment-appliances">
-                    <div class="industry-icon">�</div>
-                    <h3>Equipment &amp; Appliances</h3>
-                    <p>Kitchen and property equipment, small appliances</p>
-                </div>
-                <div class="industry-card" data-category="operational-supplies">
-                    <div class="industry-icon">�️</div>
-                    <h3>Operational Supplies</h3>
-                    <p>Back-of-house, safety and operational essentials</p>
+                
+                <div style="text-align: center; margin: 3rem 0;">
+                    <a href="products.html" class="btn" style="font-size: 1.2rem; padding: 1rem 3rem;">View All Products</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
 
-    <!-- Footer -->
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2>What Our Customers Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p>"Outstanding quality and fast delivery. Our hotel guests love the amenities!"</p>
+                        <div class="testimonial-author">
+                            <strong>Sarah Johnson</strong>
+                            <span>Hotel Manager, Grand Plaza</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p>"Best supplier we've found. Bulk orders arrive perfectly packaged."</p>
+                        <div class="testimonial-author">
+                            <strong>Michael Chen</strong>
+                            <span>Operations Director, Luxe Stays</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★��</div>
+                        <p>"Excellent customer service and the products are always top quality."</p>
+                        <div class="testimonial-author">
+                            <strong>Emily Rodriguez</strong>
+                            <span>Owner, Boutique Inn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section 
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is your minimum order quantity?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We accept orders starting from just 10 units per item. For bulk orders (100+ units), we offer additional discounts. Contact us for custom quotes on large orders.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How long does shipping take?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Standard shipping takes 3-5 business days. Express shipping (1-2 days) is available for an additional fee. Free shipping on orders over $50!</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Do you offer custom branding?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We offer custom logo printing on many of our amenities products. Minimum order of 500 units applies. Contact our sales team for details.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is your return policy?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We offer a 30-day satisfaction guarantee. If you're not happy with your order, contact us for a full refund or replacement. Custom orders may have different terms.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Do you ship internationally?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, we ship worldwide! International shipping times vary by location (typically 7-14 business days). Customs fees may apply and are the responsibility of the buyer.</p>
+                        </div>
+                </div>
+            </div>
+        </section>-->
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Wishlist Modal -->
+    <div class="wishlist-modal" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistTitle" aria-hidden="true">
+        <div class="wishlist-content">
+            <h3 id="wishlistTitle">My Wishlist</h3>
+            <div class="wishlist-items" id="wishlistItems"></div>
+            <button class="close-wishlist" id="closeWishlist">Close</button>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+        <div class="cart-content">
+            <h3 id="cartTitle">Shopping Cart</h3>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+
+            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+              <button class="btn" type="button" onclick="window.open('cart-quote.html','_blank')">Download Cart (PDF)</button>
+              <button class="btn" id="checkoutBtn">Checkout</button>
+            </div>
+            <button class="close-cart" id="closeCart">Close</button>
+        </div>
+    </div>
+
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Floating Cart & Wishlist Buttons -->
+    <div class="floating-actions">
+        <a href="https://wa.me/260760678894" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
+            <i class="fas fa-heart"></i>
+            <span class="wishlist-count" id="floatingWishlistCount">0</span>
+        </button>
+        <button class="floating-cart-btn" id="floatingCart" aria-label="Open shopping cart" title="Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="floatingCartCount">0</span>
+        </button>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Bradethy</h4>
-                    <p>Your trusted partner for premium packaging solutions.</p>
-                    <div class="newsletter-signup">
-                        <h5>Subscribe to Our Newsletter</h5>
-                        <form id="newsletter-form" class="newsletter-form">
-                            <input type="email" placeholder="Enter your email" required>
-                            <button type="submit" class="btn-subscribe">Subscribe</button>
-                        </form>
-                        <p class="newsletter-note">Get updates on new products and special offers</p>
+                <!-- Company Info -->
+                <div class="footer-section footer-about">
+                    <h4> Bradethy</h4>
+                    <p>Premium supplies for the hospitality industry since 2020. Trusted by hotels worldwide.</p>
+                    <div class="footer-badges">
+                        <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
                     </div>
                 </div>
+
+                <!-- Quick Links -->
                 <div class="footer-section">
                     <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="products.html">Products</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+
+                <!-- Services -->
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Bulk Orders</a></li>
+                        <li><a href="#">Custom Branding</a></li>
+                        <li><a href="#">White Label</a></li>
+                        <li><a href="#">Hotel Setup Packages</a></li>
+                        <li><a href="#">Event Supplies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
                 <div class="footer-section">
                     <h4>Contact Info</h4>
-                    <p>Email: bradethysales@gmail.com</p>
-                    <p>Phone: +263-772-814-702</p>
-                    <p>Hours: Mon-Fri 9AM-6PM CAT</p>
+                    <ul class="contact-list">
+                        <li><a href="mailto:info@ bradethy.com"><i class="fas fa-envelope"></i> info@ bradethy.com</a></li>
+                        <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
+                        <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker"></i> 11325 Hatcliffe, Harare, Zimbabwe</a></li>
+                    </ul>
                 </div>
-                
+
+                <!-- Follow Us -->
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
             </div>
-            
+
+            <!-- Footer Middle Bar: Payment & Policies -->
+            <div class="footer-middle">
+                <div class="payment-methods">
+                    <h5>We Accept</h5>
+                    <div class="payment-icons">
+                        <span><i class="fab fa-cc-visa"></i> Visa</span>
+                        <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
+                        <span><i class="fab fa-cc-amex"></i> Amex</span>
+                        <span><i class="fab fa-cc-paypal"></i> PayPal</span>
+                    </div>
+                </div>
+                <div class="policies">
+                    <h5>Policies</h5>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                        <li><a href="return-policy.html">Return Policy</a></li>
+                        <li><a href="refund-policy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p><span id="year"></span> &copy; , Bradethy. All rights reserved.</p>
-                <p class="footer-credit">In Partnership With <a href="https://www.digitalextravagance.com" target="_blank">Digital Extravagance</a></p>
+                <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms-of-service.html">Terms</a>
+                    <a href="faq.html">Faq</a>
+                    <a href="#">Sitemap</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Bradethy",
-        "url": "https://www.bradethy.com",
-        "logo": "https://www.bradethy.com/logo.png",
-        "description": "Premium packaging solutions provider serving hospitality and related sectors",
-        "telephone": "+263-772-814-702",
-        "email": "bradethysales@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressCountry": "ZW"
-        },
-        "sameAs": [
-           "https://www.linkedin.com/company/bradethy"
-        ]
-    }
-    </script>
-    
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.bradethy.com/"
-       }]
-    }
-    </script>
-
-    <!-- Load product data and main script -->
-    <script src="js/products.js"></script>
     <script src="js/script.js"></script>
-
-</body>
+    <script src="js/cart.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/ui.js"></script>
+<body>
 </html>

@@ -42,6 +42,42 @@
 </head>
 
 <body>
+
+  <div id="comingSoonOverlay" class="coming-soon-overlay" aria-live="polite" role="dialog" aria-modal="true">
+      <div class="coming-soon-card" id="comingSoonCard">
+        <div class="coming-soon-eyebrow"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Coming soon</div>
+        <div class="coming-soon-logo" aria-hidden="true">
+            <img src="images/logo.png" alt="BRADETHY LOGO"/>
+        </div>
+        <h2 class="coming-soon-title">Bradethy Online Store <br> is launching soon</h2>
+        
+        <p class="coming-soon-subtitle">Launch date: <strong>1 June 2026</strong></p>
+
+
+        <div class="coming-soon-actions">
+          <div class="coming-soon-pill" role="group" aria-label="Promo code">
+            <span class="label">Promo code</span>
+            <span class="value" id="comingSoonPromoCodeValue">LAUNCH@11</span>
+          </div>
+          <button class="coming-soon-btn" type="button" id="copyLaunchCode" aria-controls="comingSoonCard">
+            <i class="fas fa-copy" aria-hidden="true"></i> Copy code
+          </button>
+        </div>
+        <p class="coming-soon-note">Use <strong>LAUNCH@11</strong> when the site goes live.</p>
+
+        <div class="coming-soon-actions">
+          <a class="coming-soon-btn" href="https://wa.me/263772814702?text=" target="_blank" rel="noopener noreferrer" id="comingSoonWhatsAppBtn" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+          </a>
+          <a class="coming-soon-btn" href="contact.html" id="comingSoonContactBtn">
+            <i class="fas fa-headset" aria-hidden="true"></i> Contact
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  <div id="siteContent" class="coming-soon-bg">
   <!-- Cookie Consent Banner -->
   <div class="cookie-banner" id="cookieBanner">
     <div class="cookie-content">
@@ -346,11 +382,43 @@
       </div>
     </div>
   </footer>
+  </div>
+
+
 
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/products.js"></script>
+
   <script src="js/ui.js"></script>
+
+  <script>
+
+    // Coming soon overlay (enabled on this page)
+    (function(){
+      const overlay = document.getElementById('comingSoonOverlay');
+      const cardBg = document.getElementById('siteContent');
+      const copyBtn = document.getElementById('copyLaunchCode');
+
+      if (overlay && cardBg) {
+        overlay.style.display = 'flex';
+        cardBg.classList.add('coming-soon-bg-blur');
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async () => {
+          const code = 'LAUNCH@11';
+          try {
+            await navigator.clipboard.writeText(code);
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => (copyBtn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy code'), 1400);
+          } catch (e) {
+            alert('Copy this promo code: ' + code);
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
 

@@ -1062,7 +1062,6 @@ document.addEventListener('DOMContentLoaded', () => {
         checkPromoBanner();
         if (typeof loadFilters === 'function') loadFilters();
         setupEventListeners();
-        startCountdown();
         initScrollAnimations();
         registerSW();
         
@@ -2020,104 +2019,8 @@ if (trackBtn && orderInput) {
     });
 }
 
-// ========== COUNTDOWN TIMER ==========
-function startCountdown() {
-    const bannerEl = document.getElementById('countdownBanner');
-    const timerEl = document.getElementById('countdownTimer');
-    const expiryEl = document.getElementById('countdownExpiry');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
-    
-    if (!bannerEl || !hoursEl || !minutesEl || !secondsEl) return;
-    
-    const STORAGE_KEY = 'flashSaleEndTime';
-    const SALE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
-    
-    let countdownInterval;
-    let isPaused = false;
-    
-    function updateDisplay(timeLeft) {
-        const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-        
-        hoursEl.textContent = hours.toString().padStart(2, '0');
-        minutesEl.textContent = minutes.toString().padStart(2, '0');
-        secondsEl.textContent = seconds.toString().padStart(2, '0');
-    }
-    
-    function handleExpiry() {
-        timerEl.style.display = 'none';
-        expiryEl.style.display = 'block';
-        bannerEl.classList.add('expired');
-        localStorage.removeItem(STORAGE_KEY);
-        
-        // Auto restart new sale in 30 seconds
-        setTimeout(() => {
-            startNewSale();
-        }, 30000);
-    }
-    
-    function startNewSale() {
-        const now = Date.now();
-        const endTime = now + SALE_DURATION;
-        localStorage.setItem(STORAGE_KEY, endTime.toString());
-        
-        expiryEl.style.display = 'none';
-        timerEl.style.display = 'flex';
-        bannerEl.classList.remove('expired');
-        
-        updateDisplay(SALE_DURATION);
-    }
-    
-    function getTimeLeft() {
-        const endTimeStr = localStorage.getItem(STORAGE_KEY);
-        if (!endTimeStr) {
-            // No existing sale, start new one
-            startNewSale();
-            return SALE_DURATION;
-        }
-        
-        const endTime = parseInt(endTimeStr);
-        const now = Date.now();
-        const timeLeft = endTime - now;
-        
-        if (timeLeft <= 0) {
-            handleExpiry();
-            return 0;
-        }
-        
-        return timeLeft;
-    }
-    
-    // Page Visibility API - pause when tab hidden
-    document.addEventListener('visibilitychange', () => {
-        isPaused = document.hidden;
-    });
-    
-    // Main countdown loop
-    function tick() {
-        if (isPaused) return;
-        
-        const timeLeft = getTimeLeft();
-        if (timeLeft > 0) {
-            updateDisplay(timeLeft);
-        }
-    }
-    
-    // Start timer
-    tick(); // Initial display
-    countdownInterval = setInterval(tick, 1000);
-    
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-        clearInterval(countdownInterval);
-    });
-}
 
 // ========== SCROLL ANIMATIONS ==========
-function initScrollAnimations() {
     const animatedElements = document.querySelectorAll('.testimonial-card, .faq-item, .trust-badge, .recently-item');
     
     const observer = new IntersectionObserver((entries) => {
@@ -2131,4 +2034,3 @@ function initScrollAnimations() {
         el.classList.add('animate-on-scroll');
         observer.observe(el);
     });
-}

@@ -104,7 +104,7 @@ function updateCart() {
 // Save Cart
 function saveCart() {
     try {
-        localStorage.setItem(' bradethyCart', JSON.stringify(cart));
+        localStorage.setItem('bradethyCart', JSON.stringify(cart));
     } catch (e) {
         console.error('Failed to save cart:', e);
     }
@@ -113,7 +113,7 @@ function saveCart() {
 // Load Cart
 function loadCart() {
     try {
-        const saved = localStorage.getItem(' bradethyCart');
+        const saved = localStorage.getItem('bradethyCart');
         if (saved) {
             cart = JSON.parse(saved);
             updateCart();
@@ -185,11 +185,16 @@ async function checkout() {
 
 // Toggle Cart Modal
 function toggleCart() {
+    const overlay = document.getElementById('comingSoonOverlay');
+    // If coming-soon overlay is visible, don't open the cart behind it.
+    if (overlay && overlay.style.display !== 'none') return;
+
     if (cartModal) {
         cartModal.classList.toggle('active');
         cartModal.setAttribute('aria-hidden', !cartModal.classList.contains('active'));
     }
 }
+
 
 // Initialize Cart
 function initCart() {

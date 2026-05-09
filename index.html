@@ -78,291 +78,232 @@
 </header>
 
     <div id="comingSoonOverlay" class="coming-soon-overlay" aria-live="polite" role="dialog" aria-modal="true">
-      <div class="coming-soon-card" id="comingSoonCard">
-        <div class="coming-soon-eyebrow"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Coming soon</div>
-        <div class="coming-soon-logo" aria-hidden="true">
-            <img src="images/logo.png" alt="BRADETHY LOGO"/>
-        </div>
-        <h2 class="coming-soon-title">Bradethy Online Store <br> is launching soon</h2>
+        <div class="coming-soon-card" id="comingSoonCard">
+            <div class="coming-soon-eyebrow"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Coming soon</div>
+            <div class="coming-soon-logo" aria-hidden="true">
+                <img src="images/logo.png" alt="BRADETHY LOGO"/>
+            </div>
+            <h2 class="coming-soon-title">Bradethy Online Store <br> is launching soon</h2>
         
-        <p class="coming-soon-subtitle">Launch date: <strong>20 June 2026</strong></p>
+            <p class="coming-soon-subtitle">Launch date: <strong>20 June 2026</strong></p>
 
+            <div class="coming-soon-actions">
+                <div class="coming-soon-pill" role="group" aria-label="Promo code">
+                    <span class="label">Promo code</span>
+                    <span class="value" id="comingSoonPromoCodeValue">LAUNCH@11</span>
+                </div>
+            
+                <button class="coming-soon-btn" type="button" id="copyLaunchCode" aria-controls="comingSoonCard">
+                    <i class="fas fa-copy" aria-hidden="true"></i> Copy code
+                </button>
+            </div>
+        
+            <p class="coming-soon-note">Use <strong>LAUNCH@11</strong> when the site goes live.</p>
 
-        <div class="coming-soon-actions">
-          <div class="coming-soon-pill" role="group" aria-label="Promo code">
-            <span class="label">Promo code</span>
-            <span class="value" id="comingSoonPromoCodeValue">LAUNCH@11</span>
-          </div>
-          <button class="coming-soon-btn" type="button" id="copyLaunchCode" aria-controls="comingSoonCard">
-            <i class="fas fa-copy" aria-hidden="true"></i> Copy code
-          </button>
+            <div class="coming-soon-actions">
+                <a class="coming-soon-btn" href="https://wa.me/263772814702?text=" target="_blank" rel="noopener noreferrer" id="comingSoonWhatsAppBtn" aria-label="Chat on WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+                </a>
+                <a class="coming-soon-btn" href="contact.html" id="comingSoonContactBtn">
+                    <i class="fas fa-headset" aria-hidden="true"></i> Contact Us
+                </a>
+            </div>
         </div>
-        <p class="coming-soon-note">Use <strong>LAUNCH@11</strong> when the site goes live.</p>
-
-        <div class="coming-soon-actions">
-          <a class="coming-soon-btn" href="https://wa.me/263772814702?text=" target="_blank" rel="noopener noreferrer" id="comingSoonWhatsAppBtn" aria-label="Chat on WhatsApp">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
-          </a>
-          <a class="coming-soon-btn" href="contact.html" id="comingSoonContactBtn">
-            <i class="fas fa-headset" aria-hidden="true"></i> Contact Us
-          </a>
-        </div>
-
-      </div>
     </div>
 
     <div id="siteContent" class="coming-soon-bg">
-    <main>
-        <section class="hero" id="home">
-            <div class="container hero-inner">
-                <div class="hero-copy">
-                    <h1>Premium  Bradethy</h1>
-                    <p>Condiments, Amenities & Cleaning Supplies for Hotels</p>
-                    <div class="hero-cta">
-                        <a href="#products" class="btn">Shop Now</a>
-                        <a href="products.html" class="btn btn-ghost">View All</a>
+        <main>
+            <section class="hero" id="home">
+                <div class="container hero-inner">
+                    <div class="hero-copy">
+                        <h1>Premium  Bradethy</h1>
+                        <p>Condiments, Amenities & Cleaning Supplies for Hotels</p>
+                        <div class="hero-cta">
+                            <a href="#products" class="btn">Shop Now</a>
+                            <a href="products.html" class="btn btn-ghost">View All</a>
+                        </div>
+
+                        <div class="hero-trust">
+                            <div class="hero-trust-item">
+                                <i class="fas fa-truck-fast" aria-hidden="true"></i>
+                                <span>Fast Delivery</span>
+                            </div>
+                            <div class="hero-trust-item">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                <span>Quality Assured</span>
+                            </div>
+                            <div class="hero-trust-item">
+                                <i class="fas fa-people-carry" aria-hidden="true"></i>
+                                <span>Bulk Orders Welcome</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="hero-trust">
-                        <div class="hero-trust-item">
+                    <div class="hero-visual" aria-hidden="true">
+                        <div class="hero-visual-frame">
+                            <img src="images/back.png" alt="" loading="eager" decoding="async" onload="this.closest('.hero-visual-frame')?.classList.add('loaded');" />
+                        </div>
+                        <div class="hero-visual-badge">
+                            <span><i class="fas fa-sparkles" aria-hidden="true"></i> Stay-ready in hours, not days or weeks</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about" id="about">
+                <div class="container">
+                    <div class="about-header">
+                        <h2>About Bradethy</h2>
+                        <p class="about-subtitle">Premium essentials for hospitality teams — built for fast re-stocking and dependable supply.</p>
+                    </div>
+
+                    <div class="about-grid">
+                        <div class="about-card">
                             <i class="fas fa-truck-fast" aria-hidden="true"></i>
-                            <span>Fast Delivery</span>
+                            <h3>Fast Delivery</h3>
+                            <p>Quick fulfillment so you can keep guest rooms and kitchens running without delays.</p>
                         </div>
-                        <div class="hero-trust-item">
+
+                        <div class="about-card">
                             <i class="fas fa-check-circle" aria-hidden="true"></i>
-                            <span>Quality Assured</span>
+                            <h3>Quality Assured</h3>
+                            <p>Curated, hotel-grade products with consistent quality across every order.</p>
                         </div>
-                        <div class="hero-trust-item">
+
+                        <div class="about-card">
                             <i class="fas fa-people-carry" aria-hidden="true"></i>
-                            <span>Bulk Orders Welcome</span>
+                            <h3>Bulk-Friendly</h3>
+                            <p>Order in volume with competitive pricing—perfect for hotels, lodges, and restaurants.</p>
                         </div>
                     </div>
-                </div>
 
-                <div class="hero-visual" aria-hidden="true">
-                    <div class="hero-visual-frame">
-                        <img src="images/back.png" alt="" loading="eager" decoding="async" onload="this.closest('.hero-visual-frame')?.classList.add('loaded');" />
-                    </div>
-                    <div class="hero-visual-badge">
-                        <span><i class="fas fa-sparkles" aria-hidden="true"></i> Stay-ready in hours, not days or weeks</span>
+                    <div class="about-hero-actions">
+                        <a class="btn btn-contact" href="about.html"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn more</a>
+                        <a class="btn btn-ghost" href="products.html"><i class="fas fa-bag-shopping" aria-hidden="true"></i> Shop supplies</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        
-        <section class="about" id="about">
-            <div class="container">
-                <div class="about-header">
-                    <h2>About Bradethy</h2>
-                    <p class="about-subtitle">Premium essentials for hospitality teams — built for fast re-stocking and dependable supply.</p>
-                </div>
-
-                <div class="about-grid">
-                    <div class="about-card">
-                        <i class="fas fa-truck-fast" aria-hidden="true"></i>
-                        <h3>Fast Delivery</h3>
-                        <p>Quick fulfillment so you can keep guest rooms and kitchens running without delays.</p>
-                    </div>
-
-                    <div class="about-card">
-                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                        <h3>Quality Assured</h3>
-                        <p>Curated, hotel-grade products with consistent quality across every order.</p>
-                    </div>
-
-                    <div class="about-card">
-                        <i class="fas fa-people-carry" aria-hidden="true"></i>
-                        <h3>Bulk-Friendly</h3>
-                        <p>Order in volume with competitive pricing—perfect for hotels, lodges, and restaurants.</p>
-                    </div>
-                </div>
-
-                <div class="about-hero-actions">
-                    <a class="btn btn-contact" href="about.html"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn more</a>
-                    <a class="btn btn-ghost" href="products.html"><i class="fas fa-bag-shopping" aria-hidden="true"></i> Shop supplies</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Order Tracking Section 
-        <section class="order-tracking" id="order-tracking">
-            <div class="container">
-                <h2>Track Your Order</h2>
-                <p class="tracking-subtitle">Enter your order number to track shipment status</p>
-                <div class="tracking-form">
-                    <input type="text" id="orderInput" placeholder="Enter Order Number (e.g., HE-12345)" required>
-                    <button type="button" class="btn" id="trackBtn">Track Order</button>
-                </div>
-                <div class="tracking-result" id="trackingResult">
-                    <div class="tracking-steps">
-                        <div class="tracking-step" data-step="1">
-                            <div class="step-icon"><i class="fas fa-check"></i></div>
-                            <div class="step-info">
-                                <h4>Order Placed</h4>
-                                <p>Your order has been received</p>
-                            </div>
-                        </div>
-                        <div class="tracking-step" data-step="2">
-                            <div class="step-icon"><i class="fas fa-check"></i></div>
-                            <div class="step-info">
-                                <h4>Processing</h4>
-                                <p>Preparing your items</p>
-                            </div>
-                        </div>
-                        <div class="tracking-step" data-step="3">
-                            <div class="step-icon"><i class="fas fa-check"></i></div>
-                            <div class="step-info">
-                                <h4>Shipped</h4>
-                                <p>On the way</p>
-                            </div>
-                        </div>
-                        <div class="tracking-step" data-step="4">
-                            <div class="step-icon"><i class="fas fa-check"></i></div>
-                            <div class="step-info">
-                                <h4>Delivered</h4>
-                                <p>Package delivered</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tracking-info">
-                        <p><strong>Carrier:</strong> <span id="carrierInfo">UPS</span></p>
-                        <p><strong>Estimated Delivery:</strong> <span id="deliveryDate">3-5 business days</span></p>
-                    </div>
-                </div>
-                <div class="help-text">
-                    <p><i class="fas fa-info-circle"></i> Need help? <a href="#contact">Contact our support team</a></p>
-                </div>
-            </div>
-        </section>-->
-
-        
-
-
-
-        <section class="products" id="products">
-            <div class="container">
-                <h2>Our Products</h2>
+            <section class="products" id="products">
+                <div class="container">
+                    <h2>Our Products</h2>
                 
-                <!-- Search and Filter Bar -->
-                <div class="search-filter-bar">
-                    <div class="search-box">
-                        <input type="text" id="productSearch" placeholder="Search products..." aria-label="Search products">
-                        <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <!-- Search and Filter Bar -->
+                    <div class="search-filter-bar">
+                        <div class="search-box">
+                            <input type="text" id="productSearch" placeholder="Search products..." aria-label="Search products">
+                            <button id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
+                        </div>
+                        <div class="filter-group">
+                            <select id="categoryFilter" aria-label="Filter by category">
+                                <option value="">Categories</option>
+                                <option value="amenities">Guest Amenities</option>
+                                <option value="cleaning">Cleaning Supplies</option>
+                                <option value="bedding">Bedding & Towels</option>
+                                <option value="beverages">Beverages</option>
+                            </select>
+                            <select id="priceSort" aria-label="Sort by price">
+                                <option value="">Sort by: Default</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name: A-Z</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="filter-group">
-                        <select id="categoryFilter" aria-label="Filter by category">
-                            <option value="">Categories</option>
-                            <option value="amenities">Guest Amenities</option>
-                            <option value="cleaning">Cleaning Supplies</option>
-                            <option value="bedding">Bedding & Towels</option>
-                            <option value="beverages">Beverages</option>
-                        </select>
-                        <select id="priceSort" aria-label="Sort by price">
-                            <option value="">Sort by: Default</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="name">Name: A-Z</option>
-                        </select>
-                    </div>
-                </div>
                 
-                <div class="product-grid" id="productGrid" role="list" aria-live="polite">
-                    <div class="loading-spinner" id="loadingSpinner" aria-label="Loading products">
-                        <div class="spinner"></div>
+                    <div class="product-grid" id="productGrid" role="list" aria-live="polite">
+                        <div class="loading-spinner" id="loadingSpinner" aria-label="Loading products">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                
+                    <div style="text-align: center; margin: 3rem 0;">
+                        <a href="products.html" class="btn" style="font-size: 1.2rem; padding: 1rem 3rem;">View All Products</a>
                     </div>
                 </div>
-                
-                <div style="text-align: center; margin: 3rem 0;">
-                    <a href="products.html" class="btn" style="font-size: 1.2rem; padding: 1rem 3rem;">View All Products</a>
+            </section>
+
+            <section class="contact" id="contact">
+                <div class="container">
+                    <h2>Contact Us</h2>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
                 </div>
+            </section>
+
+        </main>
+
+        <!-- Wishlist Modal -->
+        <div class="wishlist-modal" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistTitle" aria-hidden="true">
+            <div class="wishlist-content">
+                <h3 id="wishlistTitle">My Wishlist</h3>
+                <div class="wishlist-items" id="wishlistItems"></div>
+                <button class="close-wishlist" id="closeWishlist">Close</button>
             </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <form class="contact-form" id="contactForm">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Wishlist Modal -->
-    <div class="wishlist-modal" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistTitle" aria-hidden="true">
-        <div class="wishlist-content">
-            <h3 id="wishlistTitle">My Wishlist</h3>
-            <div class="wishlist-items" id="wishlistItems"></div>
-            <button class="close-wishlist" id="closeWishlist">Close</button>
         </div>
-    </div>
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
-        <div class="cart-content">
-            <h3 id="cartTitle">Shopping Cart</h3>
-            <div class="cart-items" id="cartItems"></div>
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">$0.00</span>
+        <!-- Cart Modal -->
+        <div class="cart-modal" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+            <div class="cart-content">
+                <h3 id="cartTitle">Shopping Cart</h3>
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+                <button class="btn" type="button" onclick="window.open('cart-quote.html','_blank')">Download Cart (PDF)</button>
+                <button class="btn" id="checkoutBtn">Checkout</button>
+                <button class="close-cart" id="closeCart">Close</button>
             </div>
-
-            <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
-              <button class="btn" type="button" onclick="window.open('cart-quote.html','_blank')">Download Cart (PDF)</button>
-              <button class="btn" id="checkoutBtn">Checkout</button>
-            </div>
-            <button class="close-cart" id="closeCart">Close</button>
         </div>
-    </div>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Floating Cart & Wishlist Buttons -->
-    <div class="floating-actions">
-        <a href="https://wa.me/260760678894" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
-            <i class="fas fa-heart"></i>
-            <span class="wishlist-count" id="floatingWishlistCount">0</span>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+            <i class="fas fa-arrow-up"></i>
         </button>
-        <button class="floating-cart-btn" id="floatingCart" aria-label="Open shopping cart" title="Cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" id="floatingCartCount">0</span>
-        </button>
-    </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- Company Info -->
-                <div class="footer-section footer-about">
-                    <h4>BRADETHY</h4>
-                    <p>Premium supplies for the hospitality industry since 2015. <br> Your needs, Out responsibilities.</p>
-                    <div class="footer-badges">
-                        <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
-                        <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
+        <!-- Floating Cart & Wishlist Buttons -->
+        <div class="floating-actions">
+            <a href="https://wa.me/260760678894" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
+                <i class="fas fa-heart"></i>
+                <span class="wishlist-count" id="floatingWishlistCount">0</span>
+            </button>
+            <button class="floating-cart-btn" id="floatingCart" aria-label="Open shopping cart" title="Cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="floatingCartCount">0</span>
+            </button>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <!-- Company Info -->
+                    <div class="footer-section footer-about">
+                        <h4>BRADETHY</h4>
+                        <p>Premium supplies for the hospitality industry since 2015. Your Needs, Our Responsibilities.</p>
+                        <div class="footer-badges">
+                            <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
+                            <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
+                    <!-- Quick Links -->
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#products">Products</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
 
                 <!-- Services 
                 <div class="footer-section">
@@ -376,67 +317,68 @@
                     </ul>
                 </div>-->
 
-                <!-- Contact Info -->
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-list">
-                        <li><a href="mailto:bradethysales@gmail.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
-                        <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
-                        <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
-                        <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
-                    </ul>
+                    <!-- Contact Info -->
+                    <div class="footer-section">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-list">
+                            <li><a href="mailto:bradethysales@gmail.com"><i class="fas fa-envelope"></i>bradethysales@gmail.com</a></li>
+                            <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
+                            <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Follow Us -->
+                    <div class="footer-section">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Follow Us -->
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <!-- Footer Middle Bar: Payment & Policies -->
+                <div class="footer-middle">
+                    <div class="payment-methods">
+                        <h5>We Accept</h5>
+                        <div class="payment-icons">
+                            <span><i class="fab fa-cc-visa"></i> Visa</span>
+                            <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
+                            <span><i class="fab fa-cc-amex"></i> Amex</span>
+                            <span><i class="fab fa-cc-paypal"></i> PayPal</span>
+                        </div>
+                    </div>
+                    <div class="policies">
+                        <h5>Policies</h5>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                            <li><a href="return-policy.html">Return Policy</a></li>
+                            <li><a href="refund-policy.html">Refund Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
+                        Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
+                    </p>
+                    <div class="footer-bottom-links">
+                        <a href="privacy-policy.html">Privacy</a>
+                        <a href="terms-of-service.html">Terms</a>
+                        <a href="#">Faq</a>
+                        <a href="#">Sitemap</a>
                     </div>
                 </div>
             </div>
+        </footer>
+    </div>
 
-            <!-- Footer Middle Bar: Payment & Policies -->
-            <div class="footer-middle">
-                <div class="payment-methods">
-                    <h5>We Accept</h5>
-                    <div class="payment-icons">
-                        <span><i class="fab fa-cc-visa"></i> Visa</span>
-                        <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
-                        <span><i class="fab fa-cc-amex"></i> Amex</span>
-                        <span><i class="fab fa-cc-paypal"></i> PayPal</span>
-                    </div>
-                </div>
-                <div class="policies">
-                    <h5>Policies</h5>
-                    <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                        <li><a href="shipping-policy.html">Shipping Policy</a></li>
-                        <li><a href="return-policy.html">Return Policy</a></li>
-                        <li><a href="refund-policy.html">Refund Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
-                <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
-                    Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
-                </p>
-                <div class="footer-bottom-links">
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms-of-service.html">Terms</a>
-                    <a href="#">Faq</a>
-                    <a href="#">Sitemap</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
     <script src="js/script.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/products.js"></script>
@@ -450,8 +392,8 @@
         const copyBtn = document.getElementById('copyLaunchCode');
 
         if (overlay && cardBg) {
-          overlay.style.display = 'flex';
           cardBg.classList.add('coming-soon-bg-blur');
+
 
           // Beautify frame: slight pulse + keep overlay content above animations
           const card = document.getElementById('comingSoonCard');

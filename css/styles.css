@@ -2555,8 +2555,9 @@ body.dark-mode .floating-wishlist-btn {
 
 /* ========== POLICY SECTIONS ========== */
 .coming-soon-bg-blur {
-    filter: blur(10px);
-    transform: translateZ(0);
+    /* Blur ONLY the underlying site content, not the overlay itself */
+    filter: none;
+    transform: none;
 }
 
 .coming-soon-overlay {
@@ -2566,8 +2567,10 @@ body.dark-mode .floating-wishlist-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(2, 6, 23, 0.55);
-    backdrop-filter: blur(8px);
+
+    /* Keep the overlay from dimming; rely on the content blur only */
+    background: rgba(2, 6, 23, 0);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
 }
 
@@ -2587,8 +2590,6 @@ body.dark-mode .floating-wishlist-btn {
 .coming-soon-actions {
     justify-content: center;
 }
-
-
 
 .coming-soon-card::before {
     content: '';
@@ -2610,8 +2611,8 @@ body.dark-mode .floating-wishlist-btn {
     text-align: center;
 }
 
-
 .coming-soon-logo {
+
     width: 78px;
     height: 78px;
     border-radius: 18px;
@@ -2717,11 +2718,12 @@ body.dark-mode .floating-wishlist-btn {
 
 @media (max-width: 640px) {
     .coming-soon-card { padding: 1.5rem; width: 100%; }
-    .coming-soon-logo { width: 64px; height: 64px; }
+    .coming-soon-logo { width: 64px; height: 64px; top: 1rem; left: 1rem; }
     .coming-soon-logo img { width: 46px; height: 46px; }
     .coming-soon-subtitle { font-size: 1rem; }
     .coming-soon-title { font-size: 1.6rem; }
 }
+
 
 @media (max-width: 420px) {
     .coming-soon-actions { gap: 0.5rem; }

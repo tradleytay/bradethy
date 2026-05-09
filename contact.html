@@ -53,29 +53,15 @@
     </div>
   </div>
 
-  <!-- Promotional Banner -->
-  <div class="promo-banner" id="promoBanner">
-    <div class="container">
-      <span> 
-        🎉 <strong>FREE shipping on orders over $50!</strong> Use code:
-        <span class="promo-code">HOTEL15</span> for 15% off!
-      </span>
-      <button class="promo-close" id="promoClose" aria-label="Close promotion">&times;</button>
-    </div>
-  </div>
-
   <header class="header">
     <div class="container">
       <div class="logo">BRADETHY</div>
        
-
       <nav class="nav" id="mainNav">
         <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#products" class="nav-link">Products</a>
-        <a href="index.html#testimonials" class="nav-link">Reviews</a>
-        <a href="index.html#faq" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="products.html" class="nav-link">Products</a>
         <a href="contact.html" class="nav-link active">Contact</a>
-        <a href="index.html#order-tracking" class="nav-link">Track Order</a>
       </nav>
 
       <div class="header-actions">
@@ -83,18 +69,10 @@
           <i class="fas fa-moon"></i>
         </button>
 
-        <button class="wishlist-toggle" id="wishlistToggle" aria-label="Open wishlist" title="Wishlist">
-          <i class="fas fa-heart"></i>
-          <span class="wishlist-count" id="wishlistCount">0</span>
-        </button>
-
-        <div class="cart-icon" id="cartIcon" role="button" aria-label="Open shopping cart" tabindex="0">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="cart-count" id="cartCount" aria-live="polite">0</span>
-        </div>
-
         <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNav">
-          <span></span><span></span><span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
     </div>
@@ -115,7 +93,7 @@
           <div class="contact-hero-badges">
             <div class="contact-badge"><i class="fas fa-clock"></i> Fast replies</div>
             <div class="contact-badge"><i class="fas fa-box"></i> Bulk-friendly</div>
-            <div class="contact-badge"><i class="fas fa-shield-check"></i> Quality assured</div>
+            <div class="contact-badge"><i class="fas fa-check-circle"></i> Quality assured</div>
           </div>
 
           <div class="contact-hero-cta">
@@ -161,7 +139,7 @@
                 <div class="channel-icon"><i class="fas fa-phone"></i></div>
                 <div class="channel-info">
                   <div class="channel-title">Phone</div>
-                  <a class="channel-link" href="tel:+263772814702">+1 (555) 123-4567</a>
+                  <a class="channel-link" href="tel:+263772814702">+(263) 772-814-702</a>
                 </div>
               </div>
 
@@ -169,7 +147,7 @@
                 <div class="channel-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="channel-info">
                   <div class="channel-title">Location</div>
-                  <div class="channel-text">11325 Hatcliffe, Harare, Zimbabwe</div>
+                  <div class="channel-text">54 Van Praagh, Milton Park, Harare, Zimbabwe</div>
                 </div>
               </div>
 
@@ -177,7 +155,7 @@
                 <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="channel-info">
                   <div class="channel-title">WhatsApp</div>
-                  <a class="channel-link" href="https://wa.me/260760678894" target="_blank" rel="noopener noreferrer">
+                  <a class="channel-link" href="https://wa.me/263772814702" target="_blank" rel="noopener noreferrer">
                     Message us
                   </a>
                 </div>
@@ -185,17 +163,19 @@
             </div>
           </div>
 
-          <div class="contact-side-card contact-map">
-            <div class="contact-map-header">
-              <h3><i class="fas fa-location-dot"></i> Our facility</h3>
-              <span class="map-note">Demo map placeholder</span>
+          <a href="https://www.google.com/maps/place/54+Van+Praagh,+Milton+Park,+Harare,+Zimbabwe" target="_blank" rel="noopener noreferrer" class="map-link">
+            <div class="contact-side-card contact-map">
+              <div class="contact-map-header">
+                <h3><i class="fas fa-location-dot"></i> Our facility</h3>
+                <span class="map-note">54 Van Praagh, Milton Park, Harare, Zimbabwe</span>
+              </div>
+              <div class="map-placeholder" role="img" aria-label="Map placeholder">
+                <div class="map-pin"><i class="fas fa-map-pin"></i></div>
+                <div class="map-gridlines" aria-hidden="true"></div>
+                <div class="map-label">Bradethy Investments</div>
+              </div>
             </div>
-            <div class="map-placeholder" role="img" aria-label="Map placeholder">
-              <div class="map-pin"><i class="fas fa-map-pin"></i></div>
-              <div class="map-gridlines" aria-hidden="true"></div>
-              <div class="map-label"> Bradethy</div>
-            </div>
-          </div>
+          </a>
         </aside>
 
         <!-- Right: Form -->
@@ -220,7 +200,7 @@
               <div class="form-row">
                 <div class="field">
                   <label for="contactPhone">Phone (optional)</label>
-                  <input id="contactPhone" type="tel" name="phone" placeholder="+1 (555) 123-4567" />
+                  <input id="contactPhone" type="tel" name="phone" placeholder="+263772814702" />
                 </div>
 
                 <div class="field">
@@ -267,52 +247,6 @@
         </div>
       </div>
     </section>
-
-    <!-- Quick FAQ -->
-    <section class="contact-faq">
-      <div class="container">
-        <h2><i class="fas fa-circle-question"></i> Quick questions</h2>
-        <p class="faq-sub">Tap to expand. For policy details, use the links in the footer.</p>
-
-        <div class="faq-list faq-contact">
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Do you offer bulk discounts?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Yes. Bulk orders (100+ units) are eligible for competitive pricing. Send your quantities and timeline and we’ll prepare a quote.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How fast can you fulfill orders?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Most orders are dispatched quickly depending on product availability. For large restocks, we’ll confirm delivery windows during quoting.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Do you support custom branding?</span>
-              <i class="fas fa-chevron-down" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>
-                Where available, we offer custom logo printing and white-label options. Minimums may apply—contact us with your details.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- Wishlist Modal -->
@@ -345,7 +279,7 @@
 
   <!-- Floating Cart & Wishlist Buttons -->
   <div class="floating-actions">
-    <a href="https://wa.me/260760678894" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/263772814702" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp"></i>
     </a>
     <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
@@ -360,92 +294,25 @@
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-section footer-about">
-          <h4> Bradethy</h4>
-          <p>Premium supplies for the hospitality industry since 2015. <br> Your needs, Out responsibilities.</p>
-          <div class="footer-badges">
-            <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
-            <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
+        
+        <div style="display:flex; flex-direction:row; gap:1.5rem; align-items:center; flex-wrap:wrap; justify-content:space-between;">
+          <div style="font-weight:800; color: var(--primary);">BRADETHY</div>
+          <div style="color: var(--gray); font-size:0.95rem;">Contact: <a href="mailto:bradethysales@gmail.com">bradethysales@gmail.com</a></div>
+          <div class="footer-bottom-links" style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+            <a href="privacy-policy.html" style="color: var(--secondary);">Privacy</a>
+            <a href="terms-of-service.html" style="color: var(--secondary);">Terms</a>
+            <a href="#" style="color: var(--secondary);">Faq</a>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.25rem;">
+            <p style="margin:0;">
+              &copy; <span id="currentYear"></span> Bradethy Store. All rights reserved.
+              Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Digital Extravagance</a>
+            </p>
           </div>
         </div>
 
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#products">Products</a></li>
-            <li><a href="index.html#about">About Us</a></li>
-            <li><a href="index.html#testimonials">Reviews</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul class="footer-links">
-            <li><a href="#">Bulk Orders</a></li>
-            <li><a href="#">Custom Branding</a></li>
-            <li><a href="#">White Label</a></li>
-            <li><a href="#">Hotel Setup Packages</a></li>
-            <li><a href="#">Event Supplies</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Contact Info</h4>
-          <ul class="contact-list">
-            <li><a href="mailto:bradethysales@gmail.com"><i class="fas fa-envelope"></i> bradethysales@gmail.com</a></li>
-            <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +1 (555) 123-4567</a></li>
-            <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h4>Follow Us</h4>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" aria-label="YouTube" class="social-link"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
       </div>
 
-      <div class="footer-middle">
-        <div class="payment-methods">
-          <h5>We Accept</h5>
-          <div class="payment-icons">
-            <span><i class="fab fa-cc-visa"></i> Visa</span>
-            <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
-            <span><i class="fab fa-cc-amex"></i> Amex</span>
-            <span><i class="fab fa-cc-paypal"></i> PayPal</span>
-          </div>
-        </div>
-        <div class="policies">
-          <h5>Policies</h5>
-          <ul>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms-of-service.html">Terms of Service</a></li>
-            <li><a href="shipping-policy.html">Shipping Policy</a></li>
-            <li><a href="return-policy.html">Return Policy</a></li>
-            <li><a href="refund-policy.html">Refund Policy</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
-        <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
-          Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
-        </p>
-        <div class="footer-bottom-links">
-          <a href="privacy-policy.html">Privacy</a>
-          <a href="terms-of-service.html">Terms</a>
-          <a href="#">Sitemap</a>
-        </div>
-      </div>
     </div>
   </footer>
 

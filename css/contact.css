@@ -29,7 +29,7 @@
 .contact-hero::after {
   right: -260px;
   bottom: -360px;
-  background: radial-gradient(circle at center, rgba(245, 158, 11, 1) 0%, rgba(245, 158, 11, 0) 60%);
+  background: radial-gradient(circle at center, rgb(255, 153, 1) 0%, rgba(245, 158, 11, 0) 60%);
 }
 
 .contact-hero-inner {
@@ -87,7 +87,7 @@
 }
 
 .contact-badge i {
-  color: #fbbf24;
+  color: var(--warning);
 }
 
 .contact-hero-cta {
@@ -125,6 +125,7 @@
   background: rgba(0, 0, 0, 0.15);
 }
 
+
 .contact-hero-card {
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -147,9 +148,10 @@
 }
 
 .contact-hero-card-icon i {
-  color: #34d399;
+  color: var(--success);
   font-size: 1.5rem;
 }
+
 
 .contact-hero-card h3 {
   margin-bottom: 0.6rem;
@@ -180,8 +182,9 @@
 }
 
 .pill i {
-  color: #fbbf24;
+  color: var(--warning);
 }
+
 
 /* Main contact layout */
 .contact-page {

@@ -1,7 +1,7 @@
 /* Contact page styles (professional, beautiful) */
 
 .contact-hero {
-  background: linear-gradient(135deg, var(--dark) 0%, rgba(16, 185, 129, 0.9) 100%);
+  background: linear-gradient(135deg, var(--dark) 0%, rgba(16, 109, 185, 0.9) 100%);
   color: white;
   padding: 4.5rem 0 2.5rem;
   position: relative;

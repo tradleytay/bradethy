@@ -350,13 +350,67 @@ function initUI() {
     }
     if (closeWishlist) closeWishlist.addEventListener('click', () => wishlistModal && wishlistModal.classList.remove('active'));
     
+        
     // Contact form
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        const submitBtn = document.getElementById('contactSubmitBtn');
+
+        function canSubmitWhatsApp() {
+            if (!contactForm) return false;
+            const nameEl = contactForm.querySelector('input[type="text"], input[name="name"], input#contactName');
+            const emailEl = contactForm.querySelector('input[type="email"], input[name="email"], input#contactEmail');
+            const topicEl = contactForm.querySelector('select[name="topic"], select#contactTopic');
+            const messageEl = contactForm.querySelector('textarea[name="message"], textarea#contactMessage');
+
+            const name = (nameEl?.value || '').trim();
+            const email = (emailEl?.value || '').trim();
+            const topic = (topicEl?.value || '').trim();
+            const message = (messageEl?.value || '').trim();
+
+            const isEmailValid = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            return name.length >= 2 && isEmailValid && topic.length > 0 && message.length >= 10;
+        }
+
+        function syncSubmitButtonState() {
+            const enabled = canSubmitWhatsApp();
+            if (submitBtn) {
+                submitBtn.disabled = !enabled;
+                if (enabled) submitBtn.removeAttribute('aria-disabled');
+                else submitBtn.setAttribute('aria-disabled', 'true');
+
+                // Optional visual cue if your CSS doesn't already handle disabled
+                submitBtn.style.opacity = enabled ? '' : '0.6';
+                submitBtn.style.cursor = enabled ? '' : 'not-allowed';
+            }
+        }
+
+            // initial + on input changes
+            syncSubmitButtonState();
+            ['input', 'change', 'keyup'].forEach(evt => {
+                contactForm.addEventListener(evt, syncSubmitButtonState, { passive: true });
+            });
+
+            // Hard gate on submit (must not open WhatsApp unless valid)
+            contactForm.addEventListener('submit', async (e) => {
+
+
             e.preventDefault();
 
+            if (!canSubmitWhatsApp()) {
+                const statusEl = document.getElementById('contactFormStatus');
+                if (statusEl) {
+                    statusEl.className = 'form-status error show';
+                    statusEl.textContent = 'Please enter all required information (name, valid email, topic, and a message).';
+                } else {
+                    alert('Please enter all required information (name, valid email, topic, and a message).');
+                }
+                return;
+            }
+
+
             const statusEl = document.getElementById('contactFormStatus');
-            const submitBtn = document.getElementById('contactSubmitBtn');
+            // submitBtn is already captured above
+
 
             if (!validateContactForm()) return;
 
@@ -370,22 +424,62 @@ function initUI() {
                 submitBtn.setAttribute('disabled', 'true');
             }
 
-            // Simulate send (no backend in this project)
-            await new Promise(resolve => setTimeout(resolve, 900));
 
-            if (statusEl) {
-                statusEl.className = 'form-status success show';
-                statusEl.textContent = 'Thanks! Your message has been sent. We will get back to you soon.';
-            } else {
-                alert('Thank you for your message! We will get back to you soon.');
-            }
-
-            contactForm.reset();
-            contactForm.querySelectorAll('.error').forEach(el => el.remove());
+            // WhatsApp submission: open wa.me with a prefilled message.
+            // IMPORTANT: we already called e.preventDefault().
             contactForm.classList.remove('sending');
             if (submitBtn) submitBtn.removeAttribute('disabled');
+
+            const nameField = contactForm.querySelector('input[type="text"], input[name="name"], input#contactName');
+            const emailField = contactForm.querySelector('input[type="email"], input[name="email"], input#contactEmail');
+            const phoneField = contactForm.querySelector('input[type="tel"], input[name="phone"], input#contactPhone');
+            const topicField = contactForm.querySelector('select[name="topic"], select#contactTopic');
+            const messageField = contactForm.querySelector('textarea[name="message"], textarea#contactMessage');
+
+            const name = (nameField?.value || '').trim();
+            const email = (emailField?.value || '').trim();
+            const phone = (phoneField?.value || '').trim();
+            const topic = (topicField?.value || '').trim();
+            const message = (messageField?.value || '').trim();
+
+            // Use the site WhatsApp number.
+            // Update this number if yours changes.
+            const waNumber = '263772814702';
+
+            const lines = [
+                'Hello Bradethy 👋',
+                '',
+                `Name: ${name || '—'}`,
+                `Email: ${email || '—'}`,
+                `Phone: ${phone || '—'}`,
+                `Topic: ${topic || '—'}`,
+                '',
+                'Message:',
+                message || '—'
+            ];
+
+            const text = lines.join('\n');
+            const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+
+            // Open WhatsApp in a new tab/window.
+            window.open(url, '_blank', 'noopener,noreferrer');
+
+            // UI success.
+            try {
+                contactForm.reset();
+                contactForm.querySelectorAll('.error').forEach(el => el.remove());
+                if (statusEl) {
+                    statusEl.className = 'form-status success show';
+                    statusEl.textContent = 'Opening WhatsApp with your message...';
+                }
+            } catch (err) {
+                // ignore UI clearing errors
+            }
+
+            return;
         });
     }
+
     
     // FAQ
     setupFAQAccordion();

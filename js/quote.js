@@ -1,73 +1,77 @@
-// Catalogue quote PDF generation (browser print-to-PDF)
+/*
+  Bradethy - Catalogue quote renderer
+  Uses current localStorage cart to render the quote table.
+*/
+(function (window, document) {
+  'use strict';
 
-(function(){
-  const pad2 = (n)=>String(n).padStart(2,'0');
-
-
-  function buildDateStr(d){
-    const yyyy = d.getFullYear();
-    const mm = pad2(d.getMonth()+1);
-    const dd = pad2(d.getDate());
-    return `${yyyy}-${mm}-${dd}`;
+  const storage = window.BradethyQuoteStorage;
+  if (!storage) {
+    // Fail silently; page should still render without JS errors.
+    return;
   }
 
-  function getCart(){
-    try{
-      const raw = localStorage.getItem('hotelEssentialsCart');
-
-      const parsed = JSON.parse(raw || '[]');
-      return Array.isArray(parsed) ? parsed : [];
-    }catch(e){
-      return [];
-    }
+  function qs(sel) {
+    return document.querySelector(sel);
   }
 
-  function init(){
-    const tbody = document.getElementById('quoteTbody');
-    const totalEl = document.getElementById('quoteTotalText');
-    if(!tbody || !totalEl) return;
+  function render() {
+    const tbody = qs('#quoteTbody');
+    const totalEl = qs('#quoteTotalText');
+    const titleEl = qs('#quoteTitle');
 
-    const dateStr = buildDateStr(new Date());
-    const title = `quote of ${dateStr}`;
+    if (!tbody) return;
 
-    document.title = title;
+    const cart = storage.getCart();
 
-    const quoteTitleEl = document.getElementById('quoteTitle');
-    const quoteMetaEl = document.getElementById('quoteMeta');
-    if(quoteTitleEl) quoteTitleEl.textContent = title;
-    if(quoteMetaEl) quoteMetaEl.innerHTML = `Date: <b>${dateStr}</b><br/>Scope: <b>Catalogue quotation</b>`;
-
-    const cart = getCart();
-    if(cart.length === 0){
-      tbody.innerHTML = `<tr><td colspan="4" style="color:var(--gray)">Your cart is empty. Add items first, then generate a quote.</td></tr>`;
-      totalEl.textContent = '$0.00';
-      return;
-    }
-
-    let total = 0;
-    tbody.innerHTML = cart.map(item => {
-      const qty = Number(item.quantity) || 0;
-      const unit = Number(item.price) || 0;
-      const lineTotal = unit * qty;
-      total += lineTotal;
-      return `
-        <tr>
-          <td>${item.name || ''}</td>
-          <td>${qty}</td>
-          <td>$${unit.toFixed(2)}</td>
-          <td>$${lineTotal.toFixed(2)}</td>
-        </tr>
+    tbody.innerHTML = '';
+    cart.forEach((item) => {
+      const tr = document.createElement('tr');
+      const lineTotal = item.price * (item.qty || 1);
+      tr.innerHTML = `
+        <td>${escapeHtml(item.name)}</td>
+        <td>${escapeHtml(String(item.qty || 1))}</td>
+        <td>${storage.formatCurrency(item.price)}</td>
+        <td>${storage.formatCurrency(lineTotal)}</td>
       `;
-    }).join('');
+      tbody.appendChild(tr);
+    });
 
-    totalEl.textContent = `$${total.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = storage.formatCurrency(storage.cartTotal(cart));
+    if (titleEl) titleEl.textContent = 'Catalogue Quote';
 
-    const btn = document.getElementById('downloadPdfBtn');
-    if(btn){
-      btn.addEventListener('click', ()=> window.print());
+    const meta = qs('#quoteMeta');
+    if (meta) {
+      const now = new Date();
+      meta.textContent = `Generated: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
     }
   }
 
-  document.addEventListener('DOMContentLoaded', init);
-})();
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '<')
+      .replaceAll('>', '>')
+      .replaceAll('"', '"')
+      .replaceAll("'", '&#039;');
+  }
+
+  // Wire up download button (simple print fallback)
+  document.addEventListener('DOMContentLoaded', () => {
+    render();
+
+    const downloadBtn = qs('#downloadPdfBtn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        // For static sites without backend/pdf generation: use native print.
+        // Users can “Save as PDF” in the print dialog.
+        window.print();
+      });
+    }
+
+    // Set consistent year in case the HTML depends on it
+    const y = qs('#currentYear');
+    if (y) y.textContent = String(new Date().getFullYear());
+  });
+})(window, document);
 

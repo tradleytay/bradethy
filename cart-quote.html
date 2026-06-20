@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cart Quote | Hotel Essentials</title>
+  <title>Cart Quote | Bradethy Store</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -46,6 +47,73 @@
       margin:0.25rem 0 0;
     }
 
+    .quote-summary{
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+      margin:0 0 1rem;
+    }
+
+    .quote-summary .pill{
+      flex: 1;
+      min-width: 220px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      background: #fff;
+    }
+
+    .quote-summary .pill .label{
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-bottom: 0.15rem;
+      display:flex;
+      align-items:center;
+      gap:0.4rem;
+      font-weight: 700;
+    }
+
+    .quote-summary .pill .value{
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--dark);
+    }
+
+    .quote-identity{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0 0 1rem;
+    }
+
+    .quote-identity .box{
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 0.85rem 0.95rem;
+    }
+
+    .quote-identity .box h4{
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-bottom: 0.35rem;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+    }
+
+    .quote-identity .box .lines{
+      color: var(--dark);
+      font-weight: 700;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .quote-identity .box .lines span{
+      display:block;
+      font-weight: 600;
+      color: var(--gray);
+      margin-top: 0.1rem;
+    }
+
     .quote-table{width:100%;border-collapse:collapse;}
     .quote-table th,.quote-table td{
       border:1px solid #e5e7eb;
@@ -65,11 +133,46 @@
 
     .quote-total .box strong{color:var(--primary)}
 
+    .quote-terms{
+      margin-top:1rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:0.75rem;
+      justify-content:space-between;
+    }
+
+    .quote-terms .note{
+      flex: 1;
+      min-width: 240px;
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .quote-terms .signature{
+      flex: 0 0 260px;
+      min-width: 260px;
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 0.85rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .quote-terms .signature .line{
+      margin-top: 0.9rem;
+      border-top: 1px solid #cbd5e1;
+      height: 1px;
+    }
+
     @media print{
       .quote-actions{display:none;}
       body{margin:0;}
       .quote-wrap{margin:0;max-width:none;padding:0;}
       .quote-card{border:none;box-shadow:none;border-radius:0;}
+
+      .quote-identity{grid-template-columns: 1fr 1fr;}
+      .quote-summary .pill{min-width: 190px;}
     }
   </style>
 </head>
@@ -78,9 +181,21 @@
     <div class="quote-card">
 <div class="quote-head" aria-label="Cart quotation header">
         <div>
-          <div class="quote-title" id="quoteTitle">Cart Quote</div>
+          <div class="quote-title" id="quoteTitle">Request for Quotation (RFQ)</div>
           <div class="quote-meta" id="quoteMeta">&nbsp;</div>
         </div>
+
+        <div class="quote-summary" aria-label="RFQ summary">
+          <div class="pill">
+            <div class="label">RFQ Number</div>
+            <div class="value" id="quoteRFQNumber">—</div>
+          </div>
+          <div class="pill">
+            <div class="label">Date</div>
+            <div class="value" id="quoteCreatedAt">—</div>
+          </div>
+        </div>
+
 
         <div class="quote-actions">
           <button class="btn" type="button" id="downloadPdfBtn">Download PDF</button>
@@ -91,10 +206,11 @@
       <table class="quote-table" id="quoteTable">
         <thead>
           <tr>
-            <th style="width:50%">Item</th>
-            <th style="width:10%">Qty</th>
-            <th style="width:20%">Unit Price</th>
-            <th style="width:20%">Line Total</th>
+            <th style="width:60%">Item</th>
+            <th style="width:40%">Qty</th>
+
+
+
           </tr>
         </thead>
         <tbody id="quoteTbody"></tbody>
@@ -104,22 +220,24 @@
         <div class="box">
           <div style="display:flex;justify-content:space-between;gap:1rem;align-items:center;">
             <span style="color:var(--gray)">Total</span>
-            <strong id="quoteTotalText">$0.00</strong>
+            <strong id="quoteTotalText">(hidden)</strong>
           </div>
           <div style="color:var(--gray);font-size:0.9rem;margin-top:0.5rem;">
             <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.25rem;">
-              <img src="images/icon-192.png" alt="Hotel Essentials logo" style="width:40px;height:40px;object-fit:contain;" />
-              <div style="font-weight:800;color:var(--dark);">Hotel Essentials</div>
+              <img src="images/logo.png" alt="Bradethy logo" style="width:40px;height:40px;object-fit:contain;" />
+              <div style="font-weight:800;color:var(--dark);">Bradethy</div>
             </div>
-            <div>11325 Hatcliffe, Harare, Zimbabwe</div>
-            <div>info@hotelessentials.com</div>
+            <div>Harare, Zimbabwe</div>
+            <div>sales@bradethy.store</div>
             <div>+(263) 772-814-702</div>
+            <div>+(263) 780-867-459</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <script src="js/quote-storage.js"></script>
   <script src="js/cart-quote.js"></script>
 </body>
 </html>

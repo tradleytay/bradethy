@@ -1,17 +1,29 @@
-# TODO - Offline installable PWA
+# TODO - CSS Debug Plan (Bradethy Store)
 
-- [x] Inspect current PWA setup (manifest.json + sw.js + service worker registration)
-- [x] Expand service worker pre-cache list to include all key site pages (about/contact/products/policies) and CSS assets
-- [x] Update service worker fetch strategy to improve offline navigation:
-  - cache-first for HTML document navigations
-  - network-first with cache fallback for other GET requests
-- [ ] Run a quick local offline test:
-  - open index once with internet
-  - install app from browser ("Install app" / PWA prompt)
-  - reload with network disabled and verify pages load
-- [ ] Optional: remove/replace any external-only assets (e.g. Unsplash images / FontAwesome CDN) if you need 100% offline media fidelity
-- [ ] Add real PDF generation (jsPDF/pdf-lib) to control filename exactly (no print dialog)
-- [ ] Add quote number + validity + customer fields into PDF
-- [ ] Add “Request Quote” form that sends cart quote via email/WhatsApp
+## Step 1: Confirm current status
+- [x] Parsed CSS loading order in HTML: `css/base.css` → `css/styles.css` → `css/about.css` / `css/contact.css`
+- [x] Inspected `css/base.css` and `css/styles.css` variable definitions
+- [x] Checked for high-probability cascade issues (duplicate `:root`, duplicate media blocks)
+
+## Step 2: Current conclusion
+- [x] User confirmed: nothing is visually wrong right now.
+
+## Step 3 (Recommended Hardening): Make theme variables consistent
+- [ ] Make `--primary/--primary-dark/--secondary/--dark/--light/--gray/...` defined in exactly one place (either `base.css` or `styles.css`).
+  - Check: which pages require which theme.
+- [ ] Remove/avoid accidental overrides between `base.css` and `styles.css`.
+
+## Step 4 (Recommended Hardening): Reduce duplicate media blocks
+- [ ] Consolidate repeated `@media (max-width: 768px)` sections inside `css/styles.css`.
+- [ ] Ensure nav/mobile/cart modal rules exist only once per breakpoint.
+
+## Step 5 (Regression test)
+- [ ] Validate on desktop + mobile breakpoints:
+  - [ ] index.html
+  - [ ] about.html
+  - [ ] contact.html
+  - [ ] products.html
+  - [ ] mobile widths (<=768px)
+
 
 

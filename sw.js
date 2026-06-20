@@ -1,5 +1,5 @@
 //  Bradethy PWA Service Worker
-const CACHE_NAME = 'hotel-essentials-v3';
+const CACHE_NAME = 'bradethy-v1';
 
 // Cache app shell + important static assets
 // NOTE: Keep this list in sync with your site pages/assets.
@@ -9,7 +9,7 @@ const STATIC_ASSETS = [
   '/about.html',
   '/contact.html',
   '/products.html',
-  '/catalog-quote.html',
+  '/cart-quote.html',
   '/cart-quote.html',
 
   '/privacy-policy.html',
@@ -23,10 +23,10 @@ const STATIC_ASSETS = [
   '/css/styles.css',
   '/css/contact.css',
 
-  '/js/script.js',
-  '/js/cart.js',
-  '/js/products.js',
-  '/js/ui.js',
+  '/js/app.js',
+  '/js/quote-storage.js',
+  '/js/quote.js',
+  '/js/cart-quote.js',
 
   '/manifest.json',
   '/images/icon-192.png',

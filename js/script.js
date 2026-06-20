@@ -1869,6 +1869,44 @@ document.head.appendChild(style);
 // Utility functions for validation and accessibility
 function validateContactForm() {
     // Add name, email, message fields to form if not exist
+!emailField || !messageField) return false;
+
+    const name = nameField.value.trim();
+    const email = emailField.value.trim();
+    const message = messageField.value.trim();
+
+    let isValid = true;
+
+    if (!name || name.length < 2) {
+        showFieldError(nameField, 'Name must be at least 2 characters');
+        isValid = false;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showFieldError(emailField, 'Please enter a valid email');
+        isValid = false;
+    }
+    if (!message || message.length < 10) {
+        showFieldError(messageField, 'Message must be at least 10 characters');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function showFieldError(field, message) {
+    let error = field.parentNode.querySelector('.error');
+    if (error) error.remove();
+    error = document.createElement('div');
+    error.className = 'error';
+    error.textContent = message;
+    field.parentNode.appendChild(error);
+}
+
+/* ===== End ui.js merged content ===== */
+
+// Utility functions for validation and accessibility
+function validateContactForm() {
+    // Add name, email, message fields to form if not exist
     let nameField = contactForm.querySelector('input[type="text"]');
     let emailField = contactForm.querySelector('input[type="email"]');
     let messageField = contactForm.querySelector('textarea');

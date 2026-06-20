@@ -143,6 +143,8 @@
                 <div class="channel-info">
                   <div class="channel-title">Phone</div>
                   <a class="channel-link" href="tel:+263772814702">+(263) 772-814-702</a>
+                  <br>
+                  <a class="channel-link" href="tel:+263780867459">+(263) 780-867-459</a>
                 </div>
               </div>
 
@@ -150,7 +152,7 @@
                 <div class="channel-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="channel-info">
                   <div class="channel-title">Location</div>
-                  <div class="channel-text">54 Van Praagh, Milton Park, Harare, Zimbabwe</div>
+                  <div class="channel-text">Harare, Zimbabwe</div>
                 </div>
               </div>
 
@@ -158,7 +160,7 @@
                 <div class="channel-icon"><i class="fab fa-whatsapp"></i></div>
                 <div class="channel-info">
                   <div class="channel-title">WhatsApp</div>
-                  <a class="channel-link" href="https://wa.me/263772814702" target="_blank" rel="noopener noreferrer">
+                  <a class="channel-link" href="https://wa.me/263772814702?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist" target="_blank" rel="noopener noreferrer">
                     Message us
                   </a>
                 </div>
@@ -166,11 +168,11 @@
             </div>
           </div>
 
-          <a href="https://www.google.com/maps/place/54+Van+Praagh,+Milton+Park,+Harare,+Zimbabwe" target="_blank" rel="noopener noreferrer" class="map-link">
+          <a href="https://www.google.com/maps/place/Harare,+Zimbabwe" target="_blank" rel="noopener noreferrer" class="map-link">
             <div class="contact-side-card contact-map">
               <div class="contact-map-header">
                 <h3><i class="fas fa-location-dot"></i> Our facility</h3>
-                <span class="map-note">54 Van Praagh, Milton Park, Harare, Zimbabwe</span>
+                <span class="map-note">Harare, Zimbabwe</span>
               </div>
               <div class="map-placeholder" role="img" aria-label="Map placeholder">
                 <div class="map-pin"><i class="fas fa-map-pin"></i></div>
@@ -187,7 +189,7 @@
             <h2><i class="fas fa-comment-dots"></i> Send a message</h2>
             <p class="contact-form-subtitle">We’ll route your request to the right team.</p>
 
-            <form class="contact-form contact-form-modern" id="contactForm" novalidate action="https://wa.me/263772814702" method="GET">
+            <form class="contact-form contact-form-modern" id="contactForm" novalidate action="https://wa.me/263772814702?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist" method="GET">
               <div class="form-row">
                 <div class="field">
                   <label for="contactName">Full name</label>
@@ -271,8 +273,38 @@
         <span>Total:</span>
         <span id="cartTotal">$0.00</span>
       </div>
-      <button class="btn" id="checkoutBtn">Checkout</button>
-      <button class="close-cart" id="closeCart">Close</button>
+      <form id="checkoutForm" class="checkout-form" aria-label="Checkout form">
+        <div class="checkout-grid">
+          <div class="field">
+            <label for="checkoutFullname">Full name</label>
+            <input id="checkoutFullname" name="fullname" type="text" required placeholder="Your full name" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="checkoutCompany">Company</label>
+            <input id="checkoutCompany" name="company" type="text" required placeholder="Company name" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="checkoutAddress">Address</label>
+            <input id="checkoutAddress" name="address" type="text" required placeholder="Delivery address" />
+          </div>
+          <div class="field">
+            <label for="checkoutPhone">Phone</label>
+            <input id="checkoutPhone" name="phone" type="tel" placeholder="Optional" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="checkoutPromocode">Promo code</label>
+            <input id="checkoutPromocode" name="promocode" type="text" placeholder="Optional" />
+          </div>
+          <div class="field">
+            <label for="checkoutDeliveryNote">Delivery note</label>
+            <input id="checkoutDeliveryNote" name="deliveryNote" type="text" placeholder="Optional (timing, instructions)" />
+          </div>
+        </div>
+        <div class="checkout-actions">
+          <button class="btn" type="submit" id="checkoutBtn">Checkout</button>
+          <button class="close-cart" type="button" id="closeCart">Close</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -283,7 +315,7 @@
 
   <!-- Floating Cart & Wishlist Buttons -->
   <div class="floating-actions">
-    <a href="https://wa.me/263772814702" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/263772814702?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-whatsapp"></i>
     </a>
     <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
@@ -298,32 +330,104 @@
 
   <footer class="footer">
     <div class="container">
-        
-        <div style="display:flex; flex-direction:row; gap:1.5rem; align-items:center; flex-wrap:wrap; justify-content:space-between;">
-          <div style="font-weight:800; color: var(--primary);">BRADETHY</div>
-          <div style="color: var(--gray); font-size:0.95rem;">Contact: <a href="mailto:sales@bradethy.store">sales@bradethy.store</a></div>
-          <div class="footer-bottom-links" style="display:flex; flex-wrap:wrap; gap:0.75rem;">
-            <a href="privacy-policy.html" style="color: var(--secondary);">Privacy</a>
-            <a href="terms-of-service.html" style="color: var(--secondary);">Terms</a>
-            <a href="#" style="color: var(--secondary);">Faq</a>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:0.25rem;">
-            <p style="margin:0;">
-              &copy; <span id="currentYear"></span> Bradethy Store. All rights reserved.
-              Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Digital Extravagance</a>
-            </p>
+      <div class="footer-content">
+        <!-- Company Info -->
+        <div class="footer-section footer-about">
+          <h4>BRADETHY</h4>
+          <p>Premium supplies for the hospitality industry since 2015. Your Needs, Our Responsibilities.</p>
+          <div class="footer-badges">
+            <span class="badge"><i class="fas fa-shipping-fast"></i> Fast Delivery</span>
+            <span class="badge"><i class="fas fa-check-circle"></i> Quality Assured</span>
           </div>
         </div>
 
+        <!-- Quick Links -->
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#">Bulk Orders</a></li>
+            <li><a href="#">Custom Branding</a></li>
+            <li><a href="#">Hotel Setup Packages</a></li>
+            <li><a href="#">Event Supplies</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <ul class="contact-list">
+            <li><a href="mailto:sales@bradethy.store"><i class="fas fa-envelope"></i>sales@bradethy.store</a></li>
+            <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
+            <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
+            <li><a href="https://www.google.com/maps/place/Harare,+Zimbabwe"><i class="fas fa-map-marker"></i>Harare, Zimbabwe</a></li>
+          </ul>
+        </div>
+
+        <!-- Follow Us -->
+        <div class="footer-section">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
       </div>
 
+      <!-- Footer Middle Bar: Payment & Policies -->
+      <div class="footer-middle">
+        <div class="payment-methods">
+          <h5>We Accept</h5>
+          <div class="payment-icons">
+            <span><i class="fab fa-cc-visa"></i> Visa</span>
+            <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
+            <span><i class="fab fa-cc-amex"></i> Amex</span>
+            <span><i class="fab fa-cc-paypal"></i> PayPal</span>
+          </div>
+        </div>
+        <div class="policies">
+          <h5>Policies</h5>
+          <ul>
+            <!--li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li-->
+            <li><a href="shipping-policy.html">Shipping Policy</a></li>
+            <li><a href="return-policy.html">Return Policy</a></li>
+            <li><a href="refund-policy.html">Refund Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <div class="footer-bottom">
+          <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
+          <p style="margin-top:0.5rem; font-size:0.9rem; color: rgb(0, 106, 255);">
+            In Partnership With <a href="https://digitalextra.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
+          </p>
+          <div class="footer-bottom-links">
+            <a href="privacy-policy.html">Privacy</a>
+            <a href="terms-of-service.html">Terms</a>
+            <a href="https://wa.me/263780867459?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist">Support Team</a>
+            <a href="#">Sitemap</a>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/products.js"></script>
-  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+
 </body>
 </html>
 

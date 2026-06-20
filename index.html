@@ -75,52 +75,18 @@
                 </button>
             </div>
         </div>
-</header>
+    </header>
 
-    <div id="comingSoonOverlay" class="coming-soon-overlay" aria-live="polite" role="dialog" aria-modal="true">
-        <div class="coming-soon-card" id="comingSoonCard">
-            <div class="coming-soon-eyebrow"><i class="fas fa-hourglass-half" aria-hidden="true"></i> Coming soon</div>
-            <div class="coming-soon-logo" aria-hidden="true">
-                <img src="images/logo.png" alt="BRADETHY LOGO"/>
-            </div>
-            <h2 class="coming-soon-title">Bradethy Online Store <br> is launching soon</h2>
-        
-            <p class="coming-soon-subtitle">Launch date: <strong>20 June 2026</strong></p>
-
-            <div class="coming-soon-actions">
-                <div class="coming-soon-pill" role="group" aria-label="Promo code">
-                    <span class="label">Promo code</span>
-                    <span class="value" id="comingSoonPromoCodeValue">LAUNCH@11</span>
-                </div>
-            
-                <button class="coming-soon-btn" type="button" id="copyLaunchCode" aria-controls="comingSoonCard">
-                    <i class="fas fa-copy" aria-hidden="true"></i> Copy code
-                </button>
-            </div>
-        
-            <p class="coming-soon-note">Use <strong>LAUNCH@11</strong> when the site goes live.</p>
-
-            <div class="coming-soon-actions">
-                <a class="coming-soon-btn" href="https://wa.me/263772814702?text=Hi%20Bradethy%2C%20can%20you%20please%20notify%20me%20as%20soon%20as%20you%20launch" target="_blank" rel="noopener noreferrer" id="comingSoonWhatsAppBtn" aria-label="Chat on WhatsApp">
-                    <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
-                </a>
-                <a class="coming-soon-btn" href="contact.html" id="comingSoonContactBtn">
-                    <i class="fas fa-headset" aria-hidden="true"></i> Contact Us
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div id="siteContent" class="coming-soon-bg">
+    <div id="siteContent">
         <main>
             <section class="hero" id="home">
                 <div class="container hero-inner">
                     <div class="hero-copy">
-                        <h1>Premium  Bradethy</h1>
-                        <p>Condiments, Amenities & Cleaning Supplies for Hotels</p>
+                        <h1>Welcome To Bradethy</h1>
+                        <p>Home of Quality Condiments, Amenities & Cleaning Supplies for the Hospitality Businesses</p>
                         <div class="hero-cta">
-                            <a href="#products" class="btn">Shop Now</a>
-                            <a href="products.html" class="btn btn-ghost">View All</a>
+                            <a href="#products" class="btn"><i class="fas fa-bag-shopping"></i> Shop Now</a>
+                            <a href="#about" class="btn btn-ghost"><i class="fas fa-magnifying-glass"></i> Learn More</a>
                         </div>
 
                         <div class="hero-trust">
@@ -144,7 +110,7 @@
                             <img src="images/back.png" alt="" loading="eager" decoding="async" onload="this.closest('.hero-visual-frame')?.classList.add('loaded');" />
                         </div>
                         <div class="hero-visual-badge">
-                            <span><i class="fas fa-sparkles" aria-hidden="true"></i> Stay-ready in hours, not days or weeks</span>
+                            <span><i class="fas fa-star" aria-hidden="true"></i> Stay-ready in a matter of hours, not days or weeks</span>
                         </div>
                     </div>
                 </div>
@@ -153,9 +119,9 @@
             <section class="about" id="about">
                 <div class="container">
                     <div class="about-header">
-                        <h2>About Bradethy</h2>
+                        <h2>About Us</h2>
                         <p class="about-subtitle">
-                            Bradethy is a business specializing in premium packaging solutions tailored for the hospitality industry, including hotels, restaurants, and schools. They offer elegant and high-quality packaging for products such as coffee, tea, sugar, sweeteners, creamers, and personal care amenities like soaps and shampoos. Bradethy focuses on providing customized, sustainable, and functional packaging options designed to enhance the guest experience and meet the specific needs of boutique hotels and larger chains. With a commitment to quality and customer satisfaction, Bradethy aims to be a trusted partner for hospitality businesses seeking to elevate their brand through superior packaging solutions.
+                            We deliver premium, sustainable packaging solutions for hetels, restaurants and schools. With a fully pledged commitement to quality and customer satisfaction, Bradethy aims to be a trusted partner for hospitality businesses seeking to elevate their brands through superior packaging solutions.
                         </p>
                     </div>
 
@@ -198,11 +164,12 @@
                         </div>
                         <div class="filter-group">
                             <select id="categoryFilter" aria-label="Filter by category">
-                                <option value="">Categories</option>
-                                <option value="amenities">Guest Amenities</option>
-                                <option value="cleaning">Cleaning Supplies</option>
-                                <option value="bedding">Bedding & Towels</option>
+                                <option value="">All Categories</option>
+                                <option value="amenities">Amenities</option>
                                 <option value="beverages">Beverages</option>
+                                <option value="cleaning">Cleaning</option>
+                                <option value="condiments">Condiments</option>
+                                <option value="packaging">Packaging</option>
                             </select>
                             <select id="priceSort" aria-label="Sort by price">
                                 <option value="">Sort by: Default</option>
@@ -222,18 +189,6 @@
                     <div style="text-align: center; margin: 3rem 0;">
                         <a href="products.html" class="btn" style="font-size: 1.2rem; padding: 1rem 3rem;">View All Products</a>
                     </div>
-                </div>
-            </section>
-
-            <section class="contact" id="contact">
-                <div class="container">
-                    <h2>Contact Us</h2>
-                    <form class="contact-form contact-form-modern" id="contactForm" novalidate action="https://wa.me/263772814702" method="GET">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
                 </div>
             </section>
 
@@ -258,8 +213,38 @@
                     <span id="cartTotal">$0.00</span>
                 </div>
                 <button class="btn" type="button" onclick="window.open('cart-quote.html','_blank')">Download Cart (PDF)</button>
-                <button class="btn" id="checkoutBtn">Checkout</button>
-                <button class="close-cart" id="closeCart">Close</button>
+                <form id="checkoutForm" class="checkout-form" aria-label="Checkout form">
+                    <div class="checkout-grid">
+                        <div class="field">
+                            <label for="checkoutFullname">Full name</label>
+                            <input id="checkoutFullname" name="fullname" type="text" required placeholder="Your full name" autocomplete="name" />
+                        </div>
+                        <div class="field">
+                            <label for="checkoutCompany">Company</label>
+                            <input id="checkoutCompany" name="company" type="text" required placeholder="Company name" autocomplete="organization" />
+                        </div>
+                        <div class="field">
+                            <label for="checkoutAddress">Address</label>
+                            <input id="checkoutAddress" name="address" type="text" required placeholder="Delivery address" />
+                        </div>
+                        <div class="field">
+                            <label for="checkoutPhone">Phone</label>
+                            <input id="checkoutPhone" name="phone" type="tel" placeholder="Optional" autocomplete="tel" />
+                        </div>
+                        <div class="field">
+                            <label for="checkoutPromocode">Promo code</label>
+                            <input id="checkoutPromocode" name="promocode" type="text" placeholder="Optional" />
+                        </div>
+                        <div class="field">
+                            <label for="checkoutDeliveryNote">Delivery note</label>
+                            <input id="checkoutDeliveryNote" name="deliveryNote" type="text" placeholder="Optional (timing, instructions)" />
+                        </div>
+                    </div>
+                    <div class="checkout-actions">
+                        <button class="btn" type="submit" id="checkoutBtn">Checkout</button>
+                        <button class="close-cart" type="button" id="closeCart">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -270,7 +255,7 @@
 
         <!-- Floating Cart & Wishlist Buttons -->
         <div class="floating-actions">
-            <a href="https://wa.me/260760678894" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/263772814702?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist%" class="floating-whatsapp-btn" id="floatingWhatsapp" aria-label="Chat on WhatsApp" title="Chat on WhatsApp" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-whatsapp"></i>
             </a>
             <button class="floating-wishlist-btn" id="floatingWishlist" aria-label="Open wishlist" title="Wishlist">
@@ -300,24 +285,23 @@
                     <div class="footer-section">
                         <h4>Quick Links</h4>
                         <ul class="footer-links">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#products">Products</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="products.html">Products</a></li>
+                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
 
-                <!-- Services 
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Bulk Orders</a></li>
-                        <li><a href="#">Custom Branding</a></li>
-                        <li><a href="#">White Label</a></li>
-                        <li><a href="#">Hotel Setup Packages</a></li>
-                        <li><a href="#">Event Supplies</a></li>
-                    </ul>
-                </div>-->
+                    <!-- Services -->
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Bulk Orders</a></li>
+                            <li><a href="#">Custom Branding</a></li>
+                            <li><a href="#">Hotel Setup Packages</a></li>
+                            <li><a href="#">Event Supplies</a></li>
+                        </ul>
+                    </div>
 
                     <!-- Contact Info -->
                     <div class="footer-section">
@@ -326,7 +310,7 @@
                             <li><a href="mailto:sales@bradethy.store"><i class="fas fa-envelope"></i>sales@bradethy.store</a></li>
                             <li><a href="tel:+263772814702"><i class="fas fa-phone"></i> +(263) 772-814-702</a></li>
                             <li><a href="tel:+263780867459"><i class="fas fa-phone"></i> +(263) 780-867-459</a></li>
-                            <li><a href="#"><i class="fas fa-map-marker"></i>54 Van Praagh, Milton Park, Harare, Zimbabwe</a></li>
+                            <li><a href="https://www.google.com/maps/place/Harare,+Zimbabwe"><i class="fas fa-map-marker"></i>Harare, Zimbabwe</a></li>
                         </ul>
                     </div>
 
@@ -355,8 +339,8 @@
                     <div class="policies">
                         <h5>Policies</h5>
                         <ul>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            <li><a href="terms-of-service.html">Terms of Service</a></li>
+                            <!--li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="terms-of-service.html">Terms of Service</a></li-->
                             <li><a href="shipping-policy.html">Shipping Policy</a></li>
                             <li><a href="return-policy.html">Return Policy</a></li>
                             <li><a href="refund-policy.html">Refund Policy</a></li>
@@ -367,13 +351,13 @@
                 <!-- Footer Bottom -->
                 <div class="footer-bottom">
                     <p>&copy; <span id="currentYear"></span>  Bradethy Store. All rights reserved.</p>
-                    <p style="margin-top:0.5rem; font-size:0.9rem; color: rgba(100,116,139,1);">
-                        Built by <a href="https://digitalextre.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: rgb(0, 106, 255);">
+                        In Partnership With <a href="https://digitalextra.vercel.app" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">Digital Extravagance</a>
                     </p>
                     <div class="footer-bottom-links">
                         <a href="privacy-policy.html">Privacy</a>
                         <a href="terms-of-service.html">Terms</a>
-                        <a href="#">Faq</a>
+                        <a href="https://wa.me/263780867459?text=Hello%20Bradethy%20Team%20I%E2%80%99m%20interested%20in%20premuim%20packaging%20for%20hospitality%20brands.%20Please%20assist%">Support Team</a>
                         <a href="#">Sitemap</a>
                     </div>
                 </div>
@@ -381,60 +365,7 @@
         </footer>
     </div>
 
-    <script src="js/script.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/ui.js"></script>
-    <script>
-      // Ensure coming-soon overlay + copy code + flash-sale countdown are initialized.
-      document.addEventListener('DOMContentLoaded', () => {
-        // If coming-soon overlay is present, pause UI animations until dismissed.
-        const overlay = document.getElementById('comingSoonOverlay');
-        const cardBg = document.getElementById('siteContent');
-        const copyBtn = document.getElementById('copyLaunchCode');
-
-        if (overlay && cardBg) {
-          cardBg.classList.add('coming-soon-bg-blur');
-
-
-          // Beautify frame: slight pulse + keep overlay content above animations
-          const card = document.getElementById('comingSoonCard');
-          if (card) card.style.transform = 'translateZ(0)';
-
-
-        }
-
-        if (copyBtn) {
-          copyBtn.addEventListener('click', async () => {
-            const code = 'LAUNCH@11';
-            try {
-              if (navigator.clipboard && navigator.clipboard.writeText) {
-                await navigator.clipboard.writeText(code);
-              } else {
-                // Fallback for older browsers
-                const ta = document.createElement('textarea');
-                ta.value = code;
-                ta.style.position = 'fixed';
-                ta.style.left = '-9999px';
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-              document.body.removeChild(ta);
-              }
-
-              copyBtn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
-              const valueEl = document.getElementById('comingSoonPromoCodeValue');
-              if (valueEl) valueEl.textContent = code;
-
-              setTimeout(() => {
-                copyBtn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy code';
-              }, 1400);
-            } catch (e) {
-              alert('Copy this promo code: ' + code);
-            }
-          });
-        }
-      });
-    </script>
+    <script src="js/app.js"></script>
+    
 </body>
 </html>

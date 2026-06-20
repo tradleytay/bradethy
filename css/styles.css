@@ -182,9 +182,35 @@ body {
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+        display: grid;
+        /* Mobile-first: ensure at least 2 columns on smallest screens */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+}
+
+/* Medium screens: show 3 cards per row */
+@media (min-width: 640px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+/* Large screens: allow flexible sizing as originally intended */
+@media (min-width: 1024px) {
+    .product-grid {
+        /* Show 4 columns on large screens */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Extra-large screens: allow flexible sizing with min width per card */
+@media (min-width: 1400px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
 }
 
 .product-card {
@@ -319,6 +345,70 @@ body {
     flex-direction: column;
 }
 
+/* Redesigned cart panel styling */
+.cart-panel {
+    width: 420px;
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg, #fff);
+}
+
+.cart-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #eef2f7;
+}
+.cart-panel-header h3 { margin: 0; font-size: 1.125rem; }
+.close-panel { background: transparent; border: none; font-size: 1.5rem; line-height: 1; cursor: pointer; }
+
+.cart-panel-body { padding: 1rem; overflow-y: auto; flex: 1 1 auto; }
+.cart-items { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.cart-item-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    background: #fbfdff;
+    border: 1px solid #f1f5f9;
+}
+.qty-input {
+    width: 72px;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #e6edf3;
+    border-radius: 6px;
+    text-align: center;
+}
+.cart-item-info { flex: 1; }
+.cart-item-info h4 { margin: 0 0 0.25rem 0; font-size: 0.95rem; }
+.cart-item-info .meta { font-size: 0.85rem; color: var(--gray); }
+
+.qty-controls { display:flex; align-items:center; gap:0.5rem; }
+.qty-controls button { width:28px;height:28px;border-radius:6px;border:1px solid #e6edf3;background:#fff;cursor:pointer }
+.qty-controls .qty { min-width:28px; text-align:center; }
+
+.cart-item-actions { display:flex; flex-direction:column; gap:0.5rem; align-items:flex-end; }
+.remove-item { background: transparent; color: #ef4444; border: none; cursor: pointer; }
+
+.cart-panel-footer { padding: 1rem; border-top: 1px solid #eef2f7; background: linear-gradient(180deg, #ffffff, #fbfdff); }
+.cart-summary { margin-bottom: 0.75rem; }
+.summary-line { display:flex; justify-content:space-between; padding: 0.25rem 0; color: var(--gray); }
+.total-line { font-size: 1.125rem; color: var(--dark); }
+
+.checkout-actions { display:flex; gap:0.5rem; }
+.btn.primary { background: var(--primary, #0ea5e9); color: white; border: none; padding: 0.65rem 1rem; border-radius: 8px; }
+.btn.ghost { background: transparent; border: 1px solid #e6edf3; padding: 0.6rem 0.9rem; border-radius: 8px; }
+
+@media (max-width: 640px) {
+    .cart-panel { width: 100%; }
+    .cart-panel-body { padding: 0.75rem; }
+}
+
 .cart-modal.active {
     right: 0;
 }
@@ -332,6 +422,34 @@ body {
     flex: 1;
     overflow-y: auto;
 }
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Let the whole cart (including checkout form) scroll nicely */
+.cart-modal .cart-content {
+    overflow-y: auto;
+}
+
+/* Keep the cart item list scrolling independently */
+.cart-modal .cart-items {
+    /* allow the list to grow and let the panel body handle scrolling */
+    max-height: none;
+    min-height: 0; /* for proper flexbox behavior */
+}
+
+/* Ensure the panel body can scroll while header/footer stay fixed */
+.cart-panel { box-sizing: border-box; height: 100%; }
+.cart-panel-body { min-height: 0; }
+
+
+/* Ensure checkout form doesn't break scrolling inside the cart modal */
+#checkoutForm.checkout-form {
+    flex: 0 0 auto;
+}
+
 
 .cart-item {
     display: flex;
@@ -1017,6 +1135,96 @@ body {
 }
 
 /* ========== CART QUANTITY CONTROLS ========== */
+
+/* ========== CHECKOUT FORM (CART MODAL) ========== */
+.checkout-form {
+    margin-top: 0.75rem;
+    background: rgba(245, 245, 245, 0.6);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* Always use the compact “single column” layout (professional + consistent) */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.checkout-form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+
+.checkout-form label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.checkout-form input {
+    padding: 0.8rem 0.9rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.checkout-form input:focus {
+    outline: none;
+    border-color: rgba(37, 99, 235, 0.65);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.checkout-actions {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.checkout-actions .btn {
+    flex: 1;
+    text-align: center;
+}
+
+.checkout-actions .close-cart {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 500px) {
+    /* grid is already single-column; keep for safety */
+}
+
+
+body.dark-mode .checkout-form {
+    background: rgba(15, 23, 42, 0.5);
+    border-color: rgba(96, 165, 250, 0.25);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .checkout-form label {
+    color: #e2e8f0;
+}
+
+body.dark-mode .checkout-form input {
+    background: #1e293b;
+    border-color: #334155;
+    color: #e2e8f0;
+}
+
+body.dark-mode .checkout-form input:focus {
+    border-color: rgba(96, 165, 250, 0.7);
+    box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+
+
 .cart-item {
     display: flex;
     justify-content: space-between;

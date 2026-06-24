@@ -41,8 +41,9 @@
     KEYS,
     getCart,
     cartTotal,
+    // Currency intentionally removed (prices vary; do not display)
     formatCurrency(v) {
-      return '$' + Number(v || 0).toFixed(2);
+      return String(v ?? '');
     },
   };
 })(window);

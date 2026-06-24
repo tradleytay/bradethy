@@ -27,17 +27,14 @@
     tbody.innerHTML = '';
     cart.forEach((item) => {
       const tr = document.createElement('tr');
-      const lineTotal = item.price * (item.qty || 1);
       tr.innerHTML = `
         <td>${escapeHtml(item.name)}</td>
         <td>${escapeHtml(String(item.qty || 1))}</td>
-        <td>${storage.formatCurrency(item.price)}</td>
-        <td>${storage.formatCurrency(lineTotal)}</td>
       `;
       tbody.appendChild(tr);
     });
 
-    if (totalEl) totalEl.textContent = storage.formatCurrency(storage.cartTotal(cart));
+    if (totalEl) totalEl.textContent = 'Request';
     if (titleEl) titleEl.textContent = 'Catalogue Quote';
 
     const meta = qs('#quoteMeta');

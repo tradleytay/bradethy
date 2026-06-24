@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy -  Bradethy Store</title>
+    <title>Privacy Policy - Bradethy Store</title>
+    <meta name="description" content="Privacy policy for Bradethy Store. Learn how we use and protect your data.">
+    <link rel="canonical" href="https://bradethy.store/privacy-policy.html">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5YPDMQTKGX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);} 
+        gtag('js', new Date());
+        gtag('config', 'G-5YPDMQTKGX');
+    </script>
 </head>
-<body>
+<body data-page="privacy">
     <header class="header">
         <div class="container">
-            <div class="logo"><a href="index.html" style="color:white;text-decoration:none;"> Bradethy</a></div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="index.html#products" class="nav-link">Products</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
+            <a href="index.html" class="logo">Bradethy</a>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link" data-nav="home">Home</a>
+                <a href="about.html" class="nav-link" data-nav="about">About</a>
+                <a href="products.html" class="nav-link" data-nav="products">Products</a>
+                <a href="contact.html" class="nav-link" data-nav="contact">Contact</a>
             </nav>
         </div>
     </header>
+    <script>(function(){ try{ var p=document.body.dataset.page; if(p){ var el=document.querySelector('#mainNav .nav-link[data-nav="'+p+'"]'); if(el) el.classList.add('active'); } }catch(e){} })();</script>
 
     <main>
         <section class="policy-section" style="padding-top: 6rem;">
@@ -40,7 +52,7 @@
                     <h3>Your Rights</h3>
                     <p>You have the right to access, correct, or delete your personal information. Contact us at sales@bradethy.store to exercise these rights.</p>
                     
-<p class="policy-updated">Last updated: January <span class="year-dynamic"></span></p>
+                    <p class="policy-updated">Last updated:  <span class="year-dynamic"></span></p>
                 </div>
             </div>
         </section>

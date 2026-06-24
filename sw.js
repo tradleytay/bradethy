@@ -1,5 +1,6 @@
-//  Bradethy PWA Service Worker
-const CACHE_NAME = 'bradethy-v1';
+// Bradethy PWA Service Worker
+const CACHE_VERSION = 2;
+const CACHE_NAME = `bradethy-v${CACHE_VERSION}`;
 
 // Cache app shell + important static assets
 // NOTE: Keep this list in sync with your site pages/assets.
@@ -10,14 +11,12 @@ const STATIC_ASSETS = [
   '/contact.html',
   '/products.html',
   '/cart-quote.html',
-  '/cart-quote.html',
 
   '/privacy-policy.html',
   '/terms-of-service.html',
   '/shipping-policy.html',
   '/return-policy.html',
   '/refund-policy.html',
-  '/TODO.md',
 
   '/css/base.css',
   '/css/styles.css',
@@ -35,9 +34,9 @@ const STATIC_ASSETS = [
   '/images/back.png',
   '/images/bg.png',
 
-  '/favicon.ico'
+  '/favicon.ico',
+  '/offline.html'
 ];
-
 
 
 self.addEventListener('message', (event) => {
@@ -55,6 +54,7 @@ self.addEventListener('install', (event) => {
       return cache.addAll(STATIC_ASSETS);
     })
   );
+  // Activate new SW as soon as it's finished installing
   self.skipWaiting();
 });
 
@@ -67,49 +67,73 @@ self.addEventListener('activate', (event) => {
             console.log('PWA: Deleting old cache', cacheName);
             return caches.delete(cacheName);
           }
+          return null;
         })
       );
     })
   );
+  // Take control of uncontrolled clients immediately
   self.clients.claim();
 });
 
-// Network-first for dynamic content (products, cart)
-// Offline-first-ish: try cache for navigations, otherwise fall back.
+// Helper: try cache first, then network; update cache in background
+async function cacheFirstThenUpdate(req) {
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(req);
+  const networkFetch = fetch(req)
+    .then((res) => {
+      if (res && res.status === 200) cache.put(req, res.clone());
+      return res;
+    })
+    .catch(() => null);
+
+  return cached || networkFetch;
+}
+
+// Fetch handler with simple routing by request type
 self.addEventListener('fetch', (event) => {
   const req = event.request;
 
   // Only handle GET requests
   if (req.method !== 'GET') return;
 
-  // For document navigations, use cache-first.
-  if (req.destination === 'document' || req.headers.get('accept')?.includes('text/html')) {
-
+  // Navigation requests (HTML) -> try network first, fallback to cache then offline page
+  if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
     event.respondWith(
-      caches.match(req).then((cached) => {
-        if (cached) return cached;
-
-        return fetch(req)
-          .then((response) => {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(req, responseClone));
-            return response;
-          })
-          .catch(() => caches.match('/index.html'));
-      })
+      fetch(req)
+        .then((res) => {
+          // Put a copy in cache for offline use
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+          return res;
+        })
+        .catch(async () => {
+          const cached = await caches.match(req);
+          if (cached) return cached;
+          return caches.match('/offline.html');
+        })
     );
     return;
   }
 
-  // For everything else: network-first with cache fallback.
+  // Static assets (CSS/JS/images/fonts): cache-first with background update
+  if (req.destination === 'style' || req.destination === 'script' || req.destination === 'image' || req.destination === 'font') {
+    event.respondWith(cacheFirstThenUpdate(req));
+    return;
+  }
+
+  // Default: try network, fall back to cache
   event.respondWith(
     fetch(req)
-      .then((response) => {
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(req, responseClone));
-        return response;
+      .then((res) => {
+        // Cache dynamic responses if OK
+        if (res && res.status === 200 && req.url.startsWith(self.location.origin)) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
+        }
+        return res;
       })
-      .catch(() => caches.match(req).then((cachedResponse) => cachedResponse))
+      .catch(() => caches.match(req))
   );
 });
 

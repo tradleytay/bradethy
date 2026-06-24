@@ -36,7 +36,6 @@
     tbody.innerHTML = '';
     cart.forEach((item) => {
       const tr = document.createElement('tr');
-      const lineTotal = item.price * (item.qty || 1);
       tr.innerHTML = `
         <td>${escapeHtml(item.name)}</td>
         <td>${escapeHtml(String(item.qty || 1))}</td>
@@ -44,8 +43,8 @@
       tbody.appendChild(tr);
     });
 
-    // Total (shown on RFQ)
-    if (totalEl) totalEl.textContent = storage.formatCurrency(storage.cartTotal(cart));
+    // Total intentionally hidden (prices vary over time)
+    if (totalEl) totalEl.textContent = 'Request';
 
     if (titleEl) titleEl.textContent = 'Request for Quotation (RFQ)';
 

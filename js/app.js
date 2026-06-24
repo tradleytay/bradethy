@@ -99,8 +99,9 @@
     return Array.from((ctx || document).querySelectorAll(sel));
   }
 
+  // Currency intentionally removed (prices vary; site should not display them).
   function formatCurrency(v) {
-    return '$' + Number(v || 0).toFixed(2);
+    return String(v ?? '');
   }
 
   function safeParse(raw, fallback) {
@@ -117,7 +118,7 @@
       const raw = JSON.stringify(value);
       localStorage.setItem(key, raw);
       // Backwards-compatibility: some older code stored the cart under a key with a leading space
-      // e.g. ' bradethyCart'. When we save the cart, mirror it to the legacy key so both readers see it.
+      // e.g. 'bradethyCart'. When we save the cart, mirror it to the legacy key so both readers see it.
       try {
         if (key === STORAGE_KEYS.cart) {
           localStorage.setItem(' ' + key, raw);
@@ -195,6 +196,7 @@
     renderCartCount();
     renderCartModal();
     showToast(`${prod.name} added to cart`);
+    // Persisted data may still contain price internally, but UI intentionally never displays prices.
     return true;
   }
 
@@ -222,17 +224,20 @@
 
   // ---------- Wishlist API ----------
     // Update heart icons in the product grid (so user sees changes instantly)
-    // without requiring a refresh or a re-render.
-    qsa('.wishlist-btn').forEach((btn) => {
-      const pid = Number(btn.dataset.id);
-      const inWish = wishlistHas(pid);
-      btn.classList.toggle('active', inWish);
-      const heart = btn.querySelector('i.fas.fa-heart');
-      if (heart) {
-        // keep icon markup as-is; just ensure active state via class
-      }
-      btn.setAttribute('aria-pressed', inWish ? 'true' : 'false');
-    });
+    // without requiring a refresh or a re-render. A dedicated helper is provided
+    // so other parts of the app (toggleWishlist, init) can keep buttons in sync.
+    function syncWishlistButtonsOnPage() {
+      qsa('.wishlist-btn').forEach((btn) => {
+        const pid = Number(btn.dataset.id);
+        const inWish = wishlistHas(pid);
+        btn.classList.toggle('active', inWish);
+        const heart = btn.querySelector('i.fas.fa-heart');
+        if (heart) {
+          // keep icon markup as-is; just ensure active state via class
+        }
+        btn.setAttribute('aria-pressed', inWish ? 'true' : 'false');
+      });
+    }
 
   function toggleWishlist(productId) {
     const id = Number(productId);
@@ -389,89 +394,104 @@
     el.textContent = String(wishlist.length || 0);
   }
 
+  // ---- Cart modal manager (clear, accessible, and self-contained) ----
   function renderCartModal() {
-    const modal = qs('#cartModal');
-    const itemsEl = qs('#cartItems');
-    const totalEl = qs('#cartTotal');
-    const subtotalEl = qs('#cartSubtotal');
-    const deliveryEl = qs('#cartDelivery');
-    if (!modal || !itemsEl || !totalEl || !subtotalEl || !deliveryEl) return;
+  const modal = qs('#cartModal');
+  const itemsEl = qs('#cartItems');
+  const subtotalEl = qs('#cartSubtotal');
+  const deliveryEl = qs('#cartDelivery');
+  const totalEl = qs('#cartTotal');
+  const checkoutForm = qs('#checkoutForm');
+  // Be tolerant: only require modal and items container. Some pages include only a subset of totals.
+  if (!modal || !itemsEl) return;
 
-    // Re-sync from storage on every open/render to handle legacy/stale state.
+    // Load fresh cart state and update floating count
     cart = normalizeCart(load(STORAGE_KEYS.cart, []));
     renderCartCount();
 
+    // Clear previous content
     itemsEl.innerHTML = '';
+
     if (!cart.length) {
       itemsEl.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-      subtotalEl.textContent = '$0.00';
-      deliveryEl.textContent = '$0.00';
-      totalEl.textContent = '$0.00';
+      // Prices are intentionally hidden — show request placeholders
+      if (subtotalEl) subtotalEl.textContent = 'Request';
+      if (deliveryEl) deliveryEl.textContent = 'Request';
+      if (totalEl) totalEl.textContent = 'Request';
+      // disable checkout if present
+      if (checkoutForm) qs('#checkoutBtn')?.setAttribute('disabled', 'disabled');
       return;
     }
 
-    // Helper to format price
-    const fmt = (v) => formatCurrency(Number(v || 0));
-
-    // Render each cart row
-    cart.forEach((i) => {
+    // For each item render a compact row with name, quantity input and remove button (no prices)
+    cart.forEach((it) => {
       const row = document.createElement('div');
       row.className = 'cart-item-row';
+      row.dataset.id = String(it.id);
 
       row.innerHTML = `
         <div class="cart-item-info">
-          <h4>${escapeHtml(i.name)}</h4>
-          <div class="meta">${fmt(i.price)}</div>
+          <div class="cart-item-name">${escapeHtml(it.name)}</div>
         </div>
         <div class="cart-item-actions">
-          <div class="qty-controls">
-            <input class="qty-input" data-id="${i.id}" type="number" min="0" value="${i.qty}" />
-          </div>
-          <div class="item-subtotal">${fmt(i.price * (i.qty || 1))}</div>
-          <button class="remove-item" data-id="${i.id}" type="button">Remove</button>
+          <input class="qty-input" data-id="${it.id}" type="number" min="1" step="1" value="${it.qty}" aria-label="Quantity for ${escapeHtml(
+        it.name
+      )}" />
+          <button class="remove-item" data-id="${it.id}" type="button" aria-label="Remove ${escapeHtml(it.name)}">Remove</button>
         </div>`;
 
       itemsEl.appendChild(row);
     });
 
-    // Totals
-    const subtotal = cart.reduce((s, it) => s + (it.price || 0) * (it.qty || 0), 0);
-    const delivery = 0.0; // placeholder; future feature
-    const total = subtotal + delivery;
-    subtotalEl.textContent = fmt(subtotal);
-    deliveryEl.textContent = fmt(delivery);
-    totalEl.textContent = fmt(total);
+    // Totals are hidden from the UI — keep placeholders for pages that expect them
+    if (subtotalEl) subtotalEl.textContent = 'Request';
+    if (deliveryEl) deliveryEl.textContent = 'Request';
+    if (totalEl) totalEl.textContent = 'Request';
 
-    // Wire up quantity and remove handlers
-    // Quantity numeric inputs: allow manual entry
+    // Wire quantity inputs (live update) and remove buttons
     itemsEl.querySelectorAll('.qty-input').forEach((input) => {
-      input.addEventListener('change', (e) => {
-        const id = Number(input.dataset.id);
-        let val = Number(input.value || 0);
-        if (!Number.isFinite(val) || val < 0) val = 0;
-        updateCartQty(id, Math.floor(val));
-      });
-      // update subtotal live on input
-      input.addEventListener('input', (e) => {
-        const id = Number(input.dataset.id);
-        const row = input.closest('.cart-item-row');
-        const item = cart.find((x) => x.id === id);
-        const qty = Math.max(0, Math.floor(Number(input.value || 0) || 0));
-        const subEl = row?.querySelector('.item-subtotal');
-        if (subEl && item) subEl.textContent = fmt(item.price * qty);
-      });
+      const id = Number(input.dataset.id);
+      const update = () => {
+        let val = Math.floor(Number(input.value || 0) || 0);
+        if (val <= 0) return removeFromCart(id);
+        updateCartQty(id, val);
+      };
+      input.addEventListener('change', update);
+      // no per-item subtotal updates (prices hidden)
     });
+
     itemsEl.querySelectorAll('.remove-item').forEach((btn) => {
       btn.addEventListener('click', () => removeFromCart(Number(btn.dataset.id)));
     });
 
-    // Clear cart button
-    qs('#clearCartBtn')?.addEventListener('click', () => {
-      cart = [];
-      save(STORAGE_KEYS.cart, cart);
-      renderCartCount();
-      renderCartModal();
-    });
+    // Clear cart button: replace node to avoid duplicate handlers
+    const clearBtn = qs('#clearCartBtn');
+    if (clearBtn) {
+      const clone = clearBtn.cloneNode(true);
+      clearBtn.parentNode.replaceChild(clone, clearBtn);
+      clone.addEventListener('click', () => {
+        cart = [];
+        save(STORAGE_KEYS.cart, cart);
+        renderCartCount();
+        renderCartModal();
+        // keep modal open but show empty state
+      });
+    }
+
+    // enable checkout if present
+    if (checkoutForm) qs('#checkoutBtn')?.removeAttribute('disabled');
+  }
+
+  function openCartModal() {
+    const modal = qs('#cartModal');
+    if (!modal) return;
+    openModal(modal, renderCartModal);
+  }
+
+  function closeCartModal() {
+    const modal = qs('#cartModal');
+    if (!modal) return;
+    closeModal(modal);
   }
 
   function renderWishlistModal() {
@@ -516,8 +536,38 @@
 
   function openModal(modalEl, renderer) {
     if (!modalEl) return;
+    // Save last focused element so we can restore focus on close
+    window.__bradethyLastFocus__ = document.activeElement;
+    // Make modal visible to assistive tech and visually
+    modalEl.setAttribute('aria-hidden', 'false');
     modalEl.classList.add('active');
     if (renderer) renderer();
+    // Move focus into the modal: prefer the first focusable control
+    const focusable = modalEl.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    try {
+      if (focusable && typeof focusable.focus === 'function') focusable.focus();
+    } catch (e) {
+      // ignore focus errors
+    }
+  }
+
+  function closeModal(modalEl) {
+    if (!modalEl) return;
+    // If focus is inside modal, move it back to the last focused element or blur
+    try {
+      if (modalEl.contains(document.activeElement)) {
+        const last = window.__bradethyLastFocus__;
+        if (last && typeof last.focus === 'function') last.focus();
+        else document.activeElement?.blur?.();
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    modalEl.classList.remove('active');
+    modalEl.setAttribute('aria-hidden', 'true');
+    // clear saved focus
+    window.__bradethyLastFocus__ = null;
   }
 
   // ---------- Products ----------
@@ -527,11 +577,10 @@
 
     const searchInput = qs('#productSearch');
     const categoryFilter = qs('#categoryFilter');
-    const priceSort = qs('#priceSort');
-
     const q = (searchInput?.value || '').trim().toLowerCase();
     const category = (categoryFilter?.value || '').trim();
-    const sort = (priceSort?.value || '').trim();
+    // Price sort removed intentionally (prices are not shown).
+    const sort = (qs('#priceSort')?.value || '').trim();
 
     let list = PRODUCTS.slice();
 
@@ -543,12 +592,11 @@
       );
     }
 
-    if (sort === 'price-low') list.sort((a, b) => a.price - b.price);
-    else if (sort === 'price-high') list.sort((a, b) => b.price - a.price);
-    else if (sort === 'name') list.sort((a, b) => String(a.name).localeCompare(String(b.name)));
+    // Sorting by price removed. Keep name sorting if requested.
+    if (sort === 'name') list.sort((a, b) => String(a.name).localeCompare(String(b.name)));
 
-    const shouldLimitToThree = document.querySelector('#home') && grid.closest('#products');
-    if (shouldLimitToThree) list = list.slice(0, 3);
+    const shouldLimitToFour = document.querySelector('#home') && grid.closest('#products');
+    if (shouldLimitToFour) list = list.slice(0, 4);
 
     // Save last filtered list for pagination and reset shown count
     window.__bradethyFilteredProducts__ = list;
@@ -662,11 +710,13 @@
     document.body.classList.toggle('dark-mode', enabled);
 
     if (btn) {
-      btn.innerHTML = enabled ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+      // Render both icons; CSS will show the appropriate one depending on body.dark-mode
+      btn.innerHTML = '<i class="fas fa-moon"></i><i class="fas fa-sun"></i>';
+      btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
       btn.addEventListener('click', () => {
         const next = !document.body.classList.contains('dark-mode');
         document.body.classList.toggle('dark-mode', next);
-        btn.innerHTML = next ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        btn.setAttribute('aria-pressed', next ? 'true' : 'false');
         save(STORAGE_KEYS.dark, next);
       });
     }
@@ -711,7 +761,7 @@
     const wishModal = qs('#wishlistModal');
 
     if (cartBtn && cartModal) {
-      cartBtn.addEventListener('click', () => openModal(cartModal, renderCartModal));
+      cartBtn.addEventListener('click', () => openCartModal());
     }
     if (wishBtn && wishModal) {
       wishBtn.addEventListener('click', () => openModal(wishModal, renderWishlistModal));
@@ -719,12 +769,12 @@
 
     document.addEventListener('click', (e) => {
       const target = e.target;
-      if (cartModal && target === cartModal) cartModal.classList.remove('active');
-      if (wishModal && target === wishModal) wishModal.classList.remove('active');
+      if (cartModal && target === cartModal) closeModal(cartModal);
+      if (wishModal && target === wishModal) closeModal(wishModal);
     });
 
-    qs('#closeCart')?.addEventListener('click', () => cartModal?.classList.remove('active'));
-    qs('#closeWishlist')?.addEventListener('click', () => wishModal?.classList.remove('active'));
+    qs('#closeCart')?.addEventListener('click', () => closeCartModal());
+    qs('#closeWishlist')?.addEventListener('click', () => closeModal(wishModal));
   }
 
   function setupCookieBanner() {
@@ -796,12 +846,25 @@
     }
 
     form.addEventListener('submit', (e) => {
+      // If the form is configured to use FormSubmit (data-form="formsubmit"),
+      // allow the browser to perform a normal POST so FormSubmit can process it.
+      const usesFormSubmit = String(form.getAttribute('data-form') || '').toLowerCase() === 'formsubmit';
+
       if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
         e.preventDefault();
         setStatus('Please complete all required fields correctly before sending.', 'error');
         return;
       }
 
+      if (usesFormSubmit) {
+        // Let the browser submit the form to FormSubmit. Show a brief status.
+        setStatus('Sending your message…', 'info');
+        setSubmitting(true);
+        // Do not call preventDefault — allow normal POST flow and redirect via _next
+        return;
+      }
+
+      // Fallback/legacy behavior: build a WhatsApp URL and open it.
       const fd = new FormData(form);
       const name = String(fd.get('name') || '').trim();
       const email = String(fd.get('email') || '').trim();
@@ -845,7 +908,7 @@
 
   // ---------- Init ----------
   function init() {
-    // Attempt one-time migration from legacy storage key (' bradethyCart') to canonical key
+    // Attempt one-time migration from legacy storage key ('bradethyCart') to canonical key
     (function migrateLegacyCart() {
       try {
         const mainRaw = localStorage.getItem(STORAGE_KEYS.cart);
@@ -877,6 +940,9 @@
           price: Number(x.price ?? 0),
         })).filter((x) => x.id && x.name)
       : [];
+
+    // Ensure heart buttons on the page reflect stored wishlist state
+    try { syncWishlistButtonsOnPage(); } catch (e) { /* ignore */ }
 
     setupCookieBanner();
     setupDarkMode();
@@ -927,17 +993,16 @@
       console.log('localStorage[bradethyCart] parse error', e);
     }
     try {
-      console.log("localStorage[' bradethyCart'] ->", JSON.parse(localStorage.getItem(' ' + STORAGE_KEYS.cart) || 'null'));
+      console.log("localStorage['bradethyCart'] ->", JSON.parse(localStorage.getItem(' ' + STORAGE_KEYS.cart) || 'null'));
     } catch (e) {
-      console.log("localStorage[' bradethyCart'] parse error", e);
+      console.log("localStorage['bradethyCart'] parse error", e);
     }
     cart = normalizeCart(load(STORAGE_KEYS.cart, []));
     console.log('Normalized cart:', cart);
     const modal = qs('#cartModal');
     if (modal) {
-      // Render and open modal
-      openModal(modal, renderCartModal);
-      modal.classList.add('active');
+      // Render and open modal via the cart manager
+      openCartModal();
 
       // Inspect the cart-items DOM after rendering
       const itemsEl = qs('#cartItems');
@@ -958,5 +1023,149 @@
       }
     }
   };
+
+  // --- Service worker registration (idempotent and safe) ---
+  // Registers /sw.js when available on secure contexts (https or localhost).
+  // Shows a small toast when content is cached or when an update is available.
+  (function registerServiceWorker() {
+    try {
+      if (!('serviceWorker' in navigator)) return;
+      if (!(location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) return;
+
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((reg) => {
+            console.info('PWA: Service worker registered', reg);
+
+            // New service worker found — monitor its state changes
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              if (!newWorker) return;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed') {
+                  // If there's an active controller, this is an update
+                  if (navigator.serviceWorker.controller) {
+                    try {
+                      showToast('Update available — refresh to apply');
+                    } catch (e) {}
+                    console.info('PWA: New content installed (update available)');
+                  } else {
+                    try {
+                      showToast('App ready for offline use');
+                    } catch (e) {}
+                    console.info('PWA: Content cached for offline use');
+                  }
+                }
+              });
+            });
+
+            // When a new SW takes control, reload so the page runs under the new SW.
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+              console.info('PWA: controllerchange — reloading to activate new service worker');
+              if (!window.__bradethySwReloading) {
+                window.__bradethySwReloading = true;
+                window.location.reload();
+              }
+            });
+          })
+          .catch((err) => console.warn('PWA: Service worker registration failed', err));
+      });
+    } catch (e) {
+      // swallow registration errors to avoid crashing the app in older browsers
+      console.warn('PWA: SW registration error', e);
+    }
+  })();
+
+  // Global safeguard: if focus ever appears inside an element whose ancestor has aria-hidden="true",
+  // move focus out. This prevents the accessibility error where a focused element is hidden from AT.
+  document.addEventListener('focusin', (e) => {
+    try {
+      const focused = e.target;
+      if (!(focused instanceof Element)) return;
+
+      // Find the nearest ancestor (including self) that is a dialog/modal and has aria-hidden="true"
+      const hiddenAncestor = focused.closest('.cart-modal[aria-hidden="true"], .wishlist-modal[aria-hidden="true"], [role="dialog"][aria-hidden="true"]');
+      if (hiddenAncestor) {
+        // Move focus to last known focus or to the document body.
+        const last = window.__bradethyLastFocus__;
+        if (last && typeof last.focus === 'function') last.focus();
+        else (document.body || document.documentElement).focus?.();
+        // Optionally log for debugging
+        console.warn('Focus moved out of aria-hidden element:', hiddenAncestor);
+      }
+    } catch (err) {
+      // ignore
+    }
+  });
+
+  // ---------- beforeinstallprompt (custom install UI) ----------
+  (function setupInstallPrompt() {
+    let deferredPrompt = null;
+
+    function showInstallButton(show) {
+      try {
+        const btn = document.getElementById('installBtn');
+        if (!btn) return;
+        btn.style.display = show ? 'inline-flex' : 'none';
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    // Listen for the browser's beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      deferredPrompt = e;
+      // Show the install button in the UI
+      showInstallButton(true);
+      console.info('PWA: beforeinstallprompt fired — showing install button');
+    });
+
+    // When user clicks the install button, show the prompt
+    document.addEventListener('click', (ev) => {
+      const target = ev.target instanceof Element ? ev.target.closest && ev.target.closest('#installBtn') : null;
+      if (!target) return;
+      ev.preventDefault();
+      if (!deferredPrompt) {
+        showToast('Install not available');
+        return;
+      }
+
+      // Show the prompt
+      deferredPrompt.prompt();
+      // Wait for the user's response
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          showToast('Thanks — app installed');
+          console.info('PWA: user accepted the install prompt');
+        } else {
+          showToast('Install dismissed');
+          console.info('PWA: user dismissed the install prompt');
+        }
+        // Clear the saved prompt — it can only be used once
+        deferredPrompt = null;
+        showInstallButton(false);
+      });
+    });
+
+    // If app is already installed (platform-specific), hide button
+    window.addEventListener('appinstalled', () => {
+      showToast('App installed');
+      showInstallButton(false);
+      deferredPrompt = null;
+      console.info('PWA: appinstalled event fired');
+    });
+
+    // Attempt small heuristic: if display mode is standalone already, hide button
+    try {
+      if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+        showInstallButton(false);
+      }
+    } catch (e) {
+      // ignore
+    }
+  })();
 })(window, document);
 
